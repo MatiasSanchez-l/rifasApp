@@ -19,3 +19,4 @@ router.post("/usuario", (req, res) => {
 });
 
 module.exports = router;
+

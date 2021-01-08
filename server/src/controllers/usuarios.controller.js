@@ -1,6 +1,11 @@
 const db = require("../db/index");
+const usuariosCtrl = {};
 
-const obtener_usuario = async(req, res) => {
+usuariosCtrl.crear_usuario = (req, res) => {
+    console.log("creando usuario");
+  };
+
+usuariosCtrl.obtener_usuario = async(req, res) => {
     console.log(req.params.id);
     try {
         const resultado = await db.query("SELECT * FROM usuario where usuario_id = $1", [req.params.id]);
@@ -16,6 +21,4 @@ const obtener_usuario = async(req, res) => {
     }
   };
 
-module.exports = {
-    obtener_usuario
-  };
+module.exports = usuariosCtrl;

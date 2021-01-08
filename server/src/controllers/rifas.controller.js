@@ -1,9 +1,9 @@
 const db = require("../db/index");
+const rifasCtrl = {};
 
-const obtener_rifas = async (req, res) => {
+rifasCtrl.obtener_rifas = async (req, res) => {
   try {
     const resultado = await db.query("SELECT * FROM rifa");
-    console.log(resultado );
     res.status(200).json({
       status: "success",
       resultado: resultado.rows.length,
@@ -16,7 +16,7 @@ const obtener_rifas = async (req, res) => {
   }
 };
 
-const crear_rifas = async (req, res) => {
+rifasCtrl.crear_rifas = async (req, res) => {
   console.log(req.body);
   try {
     const cantidad_rifas = 50;
@@ -39,7 +39,4 @@ const crear_rifas = async (req, res) => {
   }
 };
 
-module.exports = {
-  obtener_rifas,
-  crear_rifas
-};
+module.exports = rifasCtrl;

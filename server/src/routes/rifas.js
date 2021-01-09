@@ -1,12 +1,14 @@
 const { Router } = require("express");
 const router = Router();
-const { obtener_rifas, crear_rifas } = require('../controllers/rifas.controller');
+const { obtener_rifas, crear_rifas, comprar_rifas } = require('../controllers/rifas.controller');
 
-//obtener todas las rifa
 router.route("/")
     .get(obtener_rifas)
 
-router.route("/:cantidad")
+router.route("/crear/:cantidad")
     .post(crear_rifas);
+
+router.route("/comprar/:cantidad")
+    .post(comprar_rifas);
 
 module.exports = router;

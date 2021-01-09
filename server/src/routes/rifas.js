@@ -5,7 +5,6 @@ const { obtener_rifas, crear_rifas } = require('../controllers/rifas.controller'
 //obtener todas las rifa
 router.route("/")
     .get(obtener_rifas)
-    //.post(crear_rifas);
 
 router.route("/:cantidad")
     .post(crear_rifas);

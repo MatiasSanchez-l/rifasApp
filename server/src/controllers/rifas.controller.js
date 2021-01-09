@@ -17,9 +17,8 @@ rifasCtrl.obtener_rifas = async (req, res) => {
 };
 
 rifasCtrl.crear_rifas = async (req, res) => {
-  console.log(req.body);
   try {
-    const cantidad_rifas = 50;
+    const cantidad_rifas = req.params.cantidad;
     let resultado  = "";
     for (let i = 0; i < cantidad_rifas; i++) {
         resultado  = await db.query(

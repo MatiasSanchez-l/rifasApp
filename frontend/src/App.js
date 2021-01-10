@@ -4,6 +4,7 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './components/Home';
+import CompraRifa from './components/CompraRifa';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <div className="container">
         <Route exact path="/" component={Home} />
+        <Route exact path="/comprarRifa" component={CompraRifa} />
       </div>
     </Router>
   );

@@ -9,6 +9,6 @@ router.route("/crear/:cantidad")
     .post(crear_rifas);
 
 router.route("/comprar/:cantidad")
-    .post(comprar_rifas);
+    .put(comprar_rifas);
 
 module.exports = router;

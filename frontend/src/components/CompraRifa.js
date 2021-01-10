@@ -164,12 +164,12 @@ export default class CompraRifa extends Component {
                         <tbody>
 
                             <tr>
-                                <th>{this.state.compras.nombre}</th>
-                                <th>{this.state.compras.apellido}</th>
-                                <th>{this.state.compras.email}</th>
-                                <th>{this.state.compras.telefono}</th>
-                                <th>{this.state.compras.cantidadRifas}</th>
-                                <th>{this.state.compras.valorTotal}</th>
+                                <th>{this.state.compras.nombre !== undefined ? ("$" + this.state.compras.nombre) : "Sin valor asignado"}</th>
+                                <th>{this.state.compras.apellido !== undefined ? ("$" + this.state.compras.apellido) : "Sin valor asignado"}</th>
+                                <th>{this.state.compras.email !== undefined ? ("$" + this.state.compras.email) : "Sin valor asignado"}</th>
+                                <th>{this.state.compras.telefono !== undefined ? ("$" + this.state.compras.telefono) : "Sin valor asignado"}</th>
+                                <th>{this.state.compras.cantidadRifas !== undefined ? ("$" + this.state.compras.cantidadRifas) : "Sin valor asignado"}</th>
+                                <th>{this.state.compras.valorTotal !== undefined ? ("$" + this.state.compras.valorTotal) : "Sin valor asignado"}</th>
                             </tr>
 
                         </tbody>

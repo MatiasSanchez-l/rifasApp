@@ -16,7 +16,7 @@ export default class Header extends Component {
                                 <Nav.Link eventKey="1" as={Link} to="/">Home</Nav.Link>
                                 <Nav.Link eventKey="2" as={Link} to="/">Acerca de Oscar</Nav.Link>
                                 <Nav.Link eventKey="3" as={Link} to="/comprarRifa">Comprar Rifas</Nav.Link>
-                                <Nav.Link eventKey="4" as={Link} to="/">Contacto</Nav.Link>
+                                <Nav.Link eventKey="4" as={Link} to="/contacto">Contacto</Nav.Link>
 
                             </Nav>
 

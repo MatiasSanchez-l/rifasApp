@@ -181,13 +181,3 @@ export default class CompraRifa extends Component {
         )
     }
 }
-/*
-<tbody>
-                            <tr>
-                            <th>{this.state.user.nombre}</th>
-                            <th>{this.state.user.apellido}</th>
-                            <th>{this.state.user.email}</th>
-                            <th>{this.state.user.telefono}</th>
-                            </tr>
-                        </tbody>
-*/

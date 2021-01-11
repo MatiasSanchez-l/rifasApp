@@ -41,7 +41,13 @@ rifasCtrl.crear_rifas = async (req, res) => {
 rifasCtrl.comprar_rifas = async (req, res) => {
   try {
     // cantidad de rifas a comprar
-    const cantidad_rifas_comprar = req.params.cantidad;
+    const cantidad_rifas_comprar = req.body.cantidad;
+    const cliente_nombre = req.body.nombre;
+    const cliente_apellido = req.body.apellido;
+    const cliente_telefono = req.body.telefono;
+    const cliente_email = req.body.email;
+    const cliente_valorTotal = req.body.valorTotal;
+    
 
     //obtener rifas disponibles
     const rifas_disponibles = await db.query("SELECT rifa_id FROM rifa WHERE disponible = TRUE");
@@ -63,6 +69,11 @@ rifasCtrl.comprar_rifas = async (req, res) => {
     
     res.status(200).json({
       cantidad: cantidad_rifas_comprar,
+      cliente_nombre: cliente_nombre,
+      cliente_apellido: cliente_apellido,
+      cliente_telefono: cliente_telefono,
+      cliente_email: cliente_email,
+      valorTotal: cliente_valorTotal,
       rifas_compradas: rifas_compradas,
     });
   } catch (e) {

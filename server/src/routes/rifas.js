@@ -8,7 +8,7 @@ router.route("/")
 router.route("/crear/:cantidad")
     .post(crear_rifas);
 
-router.route("/comprar/:cantidad")
+router.route("/comprar")
     .put(comprar_rifas);
 
 module.exports = router;

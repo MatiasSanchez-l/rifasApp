@@ -19,9 +19,9 @@ rifasCtrl.obtener_rifas = async (req, res) => {
 rifasCtrl.crear_rifas = async (req, res) => {
   try {
     const cantidad_rifas = req.params.cantidad;
-    let resultado  = "";
+    let resultado = "";
     for (let i = 0; i < cantidad_rifas; i++) {
-        resultado  = await db.query(
+      resultado = await db.query(
         "INSERT INTO rifa(disponible) VALUES(TRUE) RETURNING *"
       );
     }
@@ -46,40 +46,60 @@ rifasCtrl.comprar_rifas = async (req, res) => {
     const cliente_apellido = req.body.apellido;
     const cliente_telefono = req.body.telefono;
     const cliente_email = req.body.email;
-    const cliente_valorTotal = req.body.valorTotal;
-    
+    const monto = req.body.valorTotal;
+    const fecha = new Date();
 
     //obtener rifas disponibles
-    const rifas_disponibles = await db.query("SELECT rifa_id FROM rifa WHERE disponible = TRUE");
+    const rifas_disponibles = await db.query(
+      "SELECT rifa_id FROM rifa WHERE disponible = TRUE"
+    );
     const cantidad_rifas_disponibles = rifas_disponibles.rows.length;
-    
+
     let rifas_compradas = [];
 
+     //registrar cliente
+     const cliente_id_json = await db.query(
+      "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
+      [cliente_nombre, cliente_apellido, cliente_email, cliente_telefono]
+    );
+    const cliente_id = cliente_id_json.rows[0].cliente_id;
+
+    //registrar compra
+    const compra_id_json = await db.query(
+      "INSERT INTO compra(monto, cantidad, fecha) VALUES($1, $2, $3) returning compra_id;",
+      [monto, cantidad_rifas_comprar, fecha]
+    );
+    const compra_id = compra_id_json.rows[0].compra_id;
+
     //comprar rifas aleatorias
-   for (let i = 0; i < cantidad_rifas_comprar; i++) {
-      const numero_ramdon = Math.floor(Math.random() * cantidad_rifas_disponibles);
+    for (let i = 0; i < cantidad_rifas_comprar; i++) {
+      const numero_ramdon = Math.floor(
+        Math.random() * cantidad_rifas_disponibles
+      );
 
       const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
 
       rifas_compradas.push(rifa_a_comprar);
-      
+
       //sacar disponibilida de rifa
-      await db.query("UPDATE rifa SET disponible = false::boolean WHERE rifa_id = $1;", [rifa_a_comprar]);
+      await db.query(
+        "UPDATE rifa SET disponible = false::boolean, cliente_id = $1, compra_id = $2 WHERE rifa_id = $3;",
+        [cliente_id, compra_id, rifa_a_comprar]
+      );
     }
-    
+
     res.status(200).json({
       cantidad: cantidad_rifas_comprar,
       cliente_nombre: cliente_nombre,
       cliente_apellido: cliente_apellido,
       cliente_telefono: cliente_telefono,
       cliente_email: cliente_email,
-      valorTotal: cliente_valorTotal,
+      valorTotal: monto,
       rifas_compradas: rifas_compradas,
     });
   } catch (e) {
     console.error(e.message);
   }
 };
-
 
 module.exports = rifasCtrl;

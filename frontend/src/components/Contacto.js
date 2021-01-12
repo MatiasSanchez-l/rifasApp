@@ -1,5 +1,6 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
+import swal from 'sweetalert';
 
 
 export default function Contacto() {
@@ -10,7 +11,12 @@ export default function Contacto() {
         emailjs.sendForm('service_myznhyg', 'template_0ox8qt3', e.target, 'user_BZzmPmLVZ1sJ2alDio8vi')
             .then((result) => {
                 console.log(result.text);
-                alert(result.text)
+                swal({
+                    title: "Consulta realizada con exito",
+                    text: "Este es el texto",
+                    icon: "success"
+
+                })
             }, (error) => {
                 console.log(error.text);
             });

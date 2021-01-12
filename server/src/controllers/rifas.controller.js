@@ -64,6 +64,7 @@ rifasCtrl.comprar_rifas = async (req, res) => {
       rifas_compradas.push(rifa_a_comprar);
       
       //sacar disponibilida de rifa
+      await db.query("INSERT INTO cliente", [rifa_a_comprar]);
       await db.query("UPDATE rifa SET disponible = false::boolean WHERE rifa_id = $1;", [rifa_a_comprar]);
     }
     

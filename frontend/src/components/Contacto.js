@@ -49,7 +49,6 @@ export default class Contacto extends Component {
                             <div className="col-6">
                                 <label className="form-label">Apellido</label>
                                 <input className="form-control" type="text" name="user_lastname" />
-
                             </div>
                         </div>
                         <div className="row mt-1">

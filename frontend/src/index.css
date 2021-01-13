@@ -44,3 +44,7 @@ body {
 .formulario-datos input:focus {
     background: none;
 }
+
+.lista-contacto li {
+    background: transparent!important;
+}

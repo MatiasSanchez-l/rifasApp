@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import swal from 'sweetalert';
+//import emailjs from 'emailjs-com';
+
 
 export default class CompraRifa extends Component {
     state = {
@@ -69,6 +72,11 @@ export default class CompraRifa extends Component {
             valorTotal: this.state.valorTotal
         };
         this.setState({ compras: newCompra });
+        swal({
+            title: "Gracias por tu colaboracion",
+            text: "Tu cantidad de rifas son " + this.state.cantidadRifas,
+            icon: "success"
+        })
     }
 
     render() {

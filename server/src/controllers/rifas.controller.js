@@ -60,7 +60,7 @@ rifasCtrl.comprar_rifas = async (req, res) => {
       !monto ||
       !fecha
     ) {
-      errores.push({ message: "Por favor llene todos los campos." });
+      errores.push({ mensaje: "Por favor llene todos los campos." });
     }
 
     if (errores.length > 0) {

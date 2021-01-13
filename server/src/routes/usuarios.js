@@ -10,6 +10,12 @@ router.route("/")
 router.route("/:id")
     .get(obtener_usuario);
 
+router.route("/login")
+    .post();
+
+router.route("/logout")
+    .get();
+
 
 
 module.exports = router;

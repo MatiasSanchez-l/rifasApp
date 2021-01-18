@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
+import axios from 'axios';
 //import emailjs from 'emailjs-com';
 
 
@@ -11,7 +12,7 @@ export default class CompraRifa extends Component {
         apellido: '',
         email: '',
         telefono: '',
-        compras: []
+        compras: {}
     }
 
     sumarCantidadRifas = e => {
@@ -22,7 +23,7 @@ export default class CompraRifa extends Component {
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
         });
-        console.log(e.target.value);
+
     };
 
     restarCantidadRifas = e => {
@@ -33,7 +34,7 @@ export default class CompraRifa extends Component {
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
         });
-        console.log(e.target.value);
+
     };
 
     sumarCantidad = () => {
@@ -61,21 +62,49 @@ export default class CompraRifa extends Component {
         });
     }
 
-    registrarUsuarioYCompra = e => {
+    registrarUsuarioYCompra = async e => {
         e.preventDefault();
         const newCompra = {
             nombre: this.state.nombre,
             apellido: this.state.apellido,
             email: this.state.email,
             telefono: this.state.telefono,
-            cantidadRifas: this.state.cantidadRifas,
+            cantidad: this.state.cantidadRifas,
             valorTotal: this.state.valorTotal
         };
         this.setState({ compras: newCompra });
-        swal({
-            title: "Gracias por tu colaboracion",
-            text: "Tu cantidad de rifas son " + this.state.cantidadRifas,
-            icon: "success"
+
+        const res = await axios.put('http://localhost:5000/rifas/comprar', newCompra);
+
+        console.log(res.data.rifas_compradas);
+        if (res.data.errores !== undefined) {
+            swal({
+                title: "Ocurrio un error en la compra de sus rifas",
+                text: res.data.errores[0].mensaje,
+                icon: "error"
+            })
+        }
+        else {
+            swal({
+                title: "Gracias por tu colaboracion",
+                text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: ",
+                icon: "success"
+            })
+            this.vaciarState();
+            e.target.reset();
+        }
+
+    }
+
+    vaciarState = () => {
+        this.setState({
+            cantidadRifas: 0,
+            valorTotal: 0,
+            nombre: '',
+            apellido: '',
+            email: '',
+            telefono: '',
+            compras: {}
         })
     }
 
@@ -120,14 +149,14 @@ export default class CompraRifa extends Component {
                         <h5 htmlFor="cantidadRifas" className="form-label">Cantidad especifica</h5>
                         <div className="d-flex c-espe justify-content-between">
                             <button onClick={this.restarCantidad} className="btn"><i className="fas fa-minus"></i></button>
-                            <input className="form-control" type="number" name="cantidadRifas" id="cantidadRifas" placeholder="Ingrese una cantidad especifica de rifas" onChange={this.sumarCantidadRifas} />
+                            <div>
+                                <h3 className="text-center">Cantidad de rifas elegidas: {this.state.cantidadRifas}</h3>
+                                <h3 className="text-center">Valor total: ${this.state.valorTotal}</h3>
+                            </div>
                             <button onClick={this.sumarCantidad} className="btn"><i className="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div>
-                        <h3 className="text-center">Cantidad de rifas elegidas: {this.state.cantidadRifas}</h3>
-                        <h3 className="text-center">Valor total: ${this.state.valorTotal}</h3>
-                    </div>
+
                 </div>
                 <hr />
                 <div>
@@ -176,7 +205,7 @@ export default class CompraRifa extends Component {
                                 <th>{this.state.compras.apellido !== undefined ? (this.state.compras.apellido) : "Sin valor asignado"}</th>
                                 <th>{this.state.compras.email !== undefined ? (this.state.compras.email) : "Sin valor asignado"}</th>
                                 <th>{this.state.compras.telefono !== undefined ? (this.state.compras.telefono) : "Sin valor asignado"}</th>
-                                <th>{this.state.compras.cantidadRifas !== undefined ? (this.state.compras.cantidadRifas) : "Sin valor asignado"}</th>
+                                <th>{this.state.compras.cantidad !== undefined ? (this.state.compras.cantidad) : "Sin valor asignado"}</th>
                                 <th>{this.state.compras.valorTotal !== undefined ? ("$" + this.state.compras.valorTotal) : "Sin valor asignado"}</th>
                             </tr>
 

@@ -41,21 +41,30 @@ export default class Admin extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="mt-3">
                 <h3 className="text-center">
                     Bienvenido a la Seccion Admin
                 </h3>
-                <div className="p-2">
-                    <ul>
-                        <li>Generar Rifas</li>
-                    </ul>
-                    <form onSubmit={this.generarRifas}>
-                        <div className="row">
-                            <label htmlFor="cantidadRifasAGenerar" className="col-6 form-label">Ingrese la cantidad de rifas que desea generar</label>
-                            <input type="number" name="cantidadRifasAGenerar" className=" form-control col-6" onChange={this.onInputChange} defaultValue={this.state.cantidadRifasAGenerar} />
-                        </div>
-                        <button type="submit" className="mt-3 btn btn-success">Generar Rifas</button>
-                    </form>
+                <div className="row p-2">
+                    <div className="col-12 col-md-4">
+                        <h3><i className="fas fa-caret-right"></i> Generar Rifas</h3>
+                    </div>
+
+                    <div className="col-12 col-md-8">
+                        <form onSubmit={this.generarRifas}>
+                            <div className="row">
+                                <div className="col-6">
+                                    <label htmlFor="cantidadRifasAGenerar" className="form-label"><span className="fs-6"> Ingrese la cantidad de rifas que desea generar</span></label>
+                                </div>
+                                <div className="col-6">
+                                    <input type="number" name="cantidadRifasAGenerar" className="form-control" onChange={this.onInputChange} defaultValue={this.state.cantidadRifasAGenerar} />
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <button type="submit" className="mt-3 btn btn-success">Generar Rifas</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         )

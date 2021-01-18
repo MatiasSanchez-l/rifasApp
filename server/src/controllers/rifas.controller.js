@@ -49,54 +49,74 @@ rifasCtrl.comprar_rifas = async (req, res) => {
     const monto = req.body.valorTotal;
     const fecha = new Date();
 
-    //obtener rifas disponibles
-    const rifas_disponibles = await db.query(
-      "SELECT rifa_id FROM rifa WHERE disponible = TRUE"
-    );
-    const cantidad_rifas_disponibles = rifas_disponibles.rows.length;
+    let errores = [];
 
-    let rifas_compradas = [];
-
-     //registrar cliente
-     const cliente_id_json = await db.query(
-      "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
-      [cliente_nombre, cliente_apellido, cliente_email, cliente_telefono]
-    );
-    const cliente_id = cliente_id_json.rows[0].cliente_id;
-
-    //registrar compra
-    const compra_id_json = await db.query(
-      "INSERT INTO compra(monto, cantidad, fecha) VALUES($1, $2, $3) returning compra_id;",
-      [monto, cantidad_rifas_comprar, fecha]
-    );
-    const compra_id = compra_id_json.rows[0].compra_id;
-
-    //comprar rifas aleatorias
-    for (let i = 0; i < cantidad_rifas_comprar; i++) {
-      const numero_ramdon = Math.floor(
-        Math.random() * cantidad_rifas_disponibles
-      );
-
-      const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
-
-      rifas_compradas.push(rifa_a_comprar);
-
-      //sacar disponibilida de rifa
-      await db.query(
-        "UPDATE rifa SET disponible = false::boolean, cliente_id = $1, compra_id = $2 WHERE rifa_id = $3;",
-        [cliente_id, compra_id, rifa_a_comprar]
-      );
+    if (
+      !cantidad_rifas_comprar ||
+      !cliente_nombre ||
+      !cliente_apellido ||
+      !cliente_telefono ||
+      !cliente_email ||
+      !monto ||
+      !fecha
+    ) {
+      errores.push({ mensaje: "Por favor llene todos los campos." });
     }
 
-    res.status(200).json({
-      cantidad: cantidad_rifas_comprar,
-      cliente_nombre: cliente_nombre,
-      cliente_apellido: cliente_apellido,
-      cliente_telefono: cliente_telefono,
-      cliente_email: cliente_email,
-      valorTotal: monto,
-      rifas_compradas: rifas_compradas,
-    });
+    if (errores.length > 0) {
+      res.status(200).json({
+        errores: errores,
+      });
+    } else {
+      //obtener rifas disponibles
+      const rifas_disponibles = await db.query(
+        "SELECT rifa_id FROM rifa WHERE disponible = TRUE"
+      );
+      const cantidad_rifas_disponibles = rifas_disponibles.rows.length;
+
+      let rifas_compradas = [];
+
+      //registrar cliente
+      const cliente_id_json = await db.query(
+        "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
+        [cliente_nombre, cliente_apellido, cliente_email, cliente_telefono]
+      );
+      const cliente_id = cliente_id_json.rows[0].cliente_id;
+
+      //registrar compra
+      const compra_id_json = await db.query(
+        "INSERT INTO compra(monto, cantidad, fecha) VALUES($1, $2, $3) returning compra_id;",
+        [monto, cantidad_rifas_comprar, fecha]
+      );
+      const compra_id = compra_id_json.rows[0].compra_id;
+
+      //comprar rifas aleatorias
+      for (let i = 0; i < cantidad_rifas_comprar; i++) {
+        const numero_ramdon = Math.floor(
+          Math.random() * cantidad_rifas_disponibles
+        );
+
+        const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
+
+        rifas_compradas.push(rifa_a_comprar);
+
+        //sacar disponibilida de rifa
+        await db.query(
+          "UPDATE rifa SET disponible = false::boolean, cliente_id = $1, compra_id = $2 WHERE rifa_id = $3;",
+          [cliente_id, compra_id, rifa_a_comprar]
+        );
+      }
+
+      res.status(200).json({
+        cantidad: cantidad_rifas_comprar,
+        cliente_nombre: cliente_nombre,
+        cliente_apellido: cliente_apellido,
+        cliente_telefono: cliente_telefono,
+        cliente_email: cliente_email,
+        valorTotal: monto,
+        rifas_compradas: rifas_compradas,
+      });
+    }
   } catch (e) {
     console.error(e.message);
   }

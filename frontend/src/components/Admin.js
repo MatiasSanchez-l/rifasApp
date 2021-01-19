@@ -10,19 +10,19 @@ const columnas = [
         sortable: true
     },
     {
-        name:"Disponibilidad",
-        selector:"disponible",
-        sortable:true
+        name: "Disponibilidad",
+        selector: "disponible",
+        sortable: true
     },
     {
-        name:"Cliente Id",
-        selector:"cliente_id",
-        sortable:true
+        name: "Cliente Id",
+        selector: "cliente_id",
+        sortable: true
     },
     {
-        name:"Numero de Compra",
-        selector:"compra_id",
-        sortable:true
+        name: "Numero de Compra",
+        selector: "compra_id",
+        sortable: true
     }
 ]
 
@@ -34,9 +34,35 @@ export default class Admin extends Component {
     }
     async componentDidMount() {
         const res = await axios.get('http://localhost:5000/rifas');
+        const arrayNuevo = this.verificarCamposVacios(res.data.data.rifas);
         this.setState({
-            rifas: res.data.data.rifas
+            rifas: arrayNuevo
         })
+    }
+    verificarCamposVacios = (arreglo) => {
+        if (arreglo instanceof Array) {
+            const arrayNuevo = [];
+            for (let i = 0; i < arreglo.length; i++) {
+                arrayNuevo[i] = arreglo[i];
+
+                if (arrayNuevo[i].disponible) {
+                    arrayNuevo[i].disponible = "Esta disponible";
+                } else {
+                    arrayNuevo[i].disponible = "No esta disponible";
+                }
+
+                if (arrayNuevo[i].compra_id === null) {
+                    arrayNuevo[i].compra_id = "No hay una compra hecha";
+                }
+
+                if (arrayNuevo[i].cliente_id === null) {
+                    arrayNuevo[i].cliente_id = "Ningun cliente compro esta rifa";
+                }
+            }
+            return arrayNuevo;
+        } else {
+            TypeError("No es un array")
+        }
     }
     generarRifas = async e => {
         e.preventDefault();
@@ -54,7 +80,9 @@ export default class Admin extends Component {
                     title: "Creadas Correctamente",
                     text: "Cantidad de rifas creadas " + this.state.cantidadRifasAGenerar,
                     icon: "success"
-                })
+                });
+                e.target.reset();
+
             } else {
                 swal({
                     title: "Ocurrio un error",
@@ -63,7 +91,6 @@ export default class Admin extends Component {
                 })
             }
         }
-        e.target.reset();
     }
     onInputChange = (e) => {
         this.setState({
@@ -103,14 +130,14 @@ export default class Admin extends Component {
                         <h3><i className="fas fa-caret-right"></i> Rifas</h3>
                     </div>
                     <div className="col-12 table-responsive">
-                        <DataTable 
-                        columns={columnas}
-                        data={this.state.rifas}
-                        title="Informacion Sobre Las Rifas"
-                        pagination
-                        fixedHeader
-                        theme="dark"
-                        fixedHeaderScrollHeight="500px"
+                        <DataTable
+                            columns={columnas}
+                            data={this.state.rifas}
+                            title="Informacion Sobre Las Rifas"
+                            pagination
+                            fixedHeader
+                            theme="dark"
+                            fixedHeaderScrollHeight="500px"
                         />
                     </div>
                 </div>

@@ -85,9 +85,10 @@ export default class CompraRifa extends Component {
             })
         }
         else {
+            console.log(res)
             swal({
                 title: "Gracias por tu colaboracion",
-                text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: ",
+                text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: "+ res.data.rifas_compradas.map(rifa => rifa),
                 icon: "success"
             })
             this.vaciarState();

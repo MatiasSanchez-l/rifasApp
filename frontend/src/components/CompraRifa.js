@@ -23,7 +23,6 @@ export default class CompraRifa extends Component {
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
         });
-
     };
 
     restarCantidadRifas = e => {
@@ -34,7 +33,6 @@ export default class CompraRifa extends Component {
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
         });
-
     };
 
     sumarCantidad = () => {
@@ -88,13 +86,12 @@ export default class CompraRifa extends Component {
             console.log(res)
             swal({
                 title: "Gracias por tu colaboracion",
-                text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: "+ res.data.rifas_compradas.map(rifa => rifa),
+                text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: " + res.data.rifas_compradas.map(rifa => rifa),
                 icon: "success"
-            })
+            });
             this.vaciarState();
             e.target.reset();
         }
-
     }
 
     vaciarState = () => {
@@ -186,34 +183,6 @@ export default class CompraRifa extends Component {
                             <button type="submit" className="btn btn-outline-secondary"> Proceder a realizar el pago</button>
                         </div>
                     </form>
-                </div>
-                <div className="my-5">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Email</th>
-                                <th>Telefono</th>
-                                <th>Cantidad Rifas</th>
-                                <th>Valor Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <th>{this.state.compras.nombre !== undefined ? (this.state.compras.nombre) : "Sin valor asignado"}</th>
-                                <th>{this.state.compras.apellido !== undefined ? (this.state.compras.apellido) : "Sin valor asignado"}</th>
-                                <th>{this.state.compras.email !== undefined ? (this.state.compras.email) : "Sin valor asignado"}</th>
-                                <th>{this.state.compras.telefono !== undefined ? (this.state.compras.telefono) : "Sin valor asignado"}</th>
-                                <th>{this.state.compras.cantidad !== undefined ? (this.state.compras.cantidad) : "Sin valor asignado"}</th>
-                                <th>{this.state.compras.valorTotal !== undefined ? ("$" + this.state.compras.valorTotal) : "Sin valor asignado"}</th>
-                            </tr>
-
-                        </tbody>
-
-
-                    </table>
                 </div>
             </div>
         )

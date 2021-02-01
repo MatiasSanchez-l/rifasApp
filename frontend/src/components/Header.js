@@ -7,7 +7,7 @@ export default class Header extends Component {
     render() {
         return (
             <header className="border-bottom">
-                <Navbar className="p-2 nav-bg" collapseOnSelect bg="light" expand="lg">
+                <Navbar className="p-2 nav-bg" collapseOnSelect expand="lg">
                     <div className="container">
                         <Navbar.Brand href="#home">ODF</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />

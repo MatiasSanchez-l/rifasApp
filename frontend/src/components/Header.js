@@ -9,7 +9,9 @@ export default class Header extends Component {
             <header className="border-bottom">
                 <Navbar className="p-2 nav-bg" collapseOnSelect expand="lg">
                     <div className="container">
-                        <Navbar.Brand href="#home">ODF</Navbar.Brand>
+                        <Navbar.Brand href="#home">
+                            <img src="/helper/casa.png" alt="" className="img-fluid"/>
+                            </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Nav className="mr-auto">

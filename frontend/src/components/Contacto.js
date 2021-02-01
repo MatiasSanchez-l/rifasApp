@@ -75,19 +75,19 @@ export default class Contacto extends Component {
                     <h3 className="text-center mt-3">Tambien podes contactarnos a traves de</h3>
                     <div className="row">
                         <div className="col-12 mt-2">
-                            <i class="fas fa-phone-alt"></i> <span className="fw-bold text-uppercase mx-1">Telefono Fijo:</span> 4444-4444
+                            <i className="fas fa-phone-alt"></i> <span className="fw-bold text-uppercase mx-1">Telefono Fijo:</span> 4444-4444
                         </div>
                         <div className="col-12 mt-2">
-                            <i class="fas fa-envelope"></i> <span className="fw-bold text-uppercase mx-1">Email:</span> email@email.com
+                            <i className="fas fa-envelope"></i> <span className="fw-bold text-uppercase mx-1">Email:</span> email@email.com
                         </div>
                         <div className="col-12 mt-2">
-                            <i class="fab fa-whatsapp"></i> <span className="fw-bold text-uppercase mx-1">Whatsapp:</span> 11-4444-4444
+                            <i className="fab fa-whatsapp"></i> <span className="fw-bold text-uppercase mx-1">Whatsapp:</span> 11-4444-4444
                         </div>
                         <div className="col-12 mt-2">
-                            <i class="fab fa-facebook-f"></i> <span className="fw-bold text-uppercase mx-1">Facebook:</span> rifasapp
+                            <i className="fab fa-facebook-f"></i> <span className="fw-bold text-uppercase mx-1">Facebook:</span> rifasapp
                         </div>
                         <div className="col-12 mt-2">
-                            <i class="fab fa-instagram"></i> <span className="fw-bold text-uppercase mx-1">Instagram:</span> @rifasApp
+                            <i className="fab fa-instagram"></i> <span className="fw-bold text-uppercase mx-1">Instagram:</span> @rifasApp
                         </div>
                     </div>
                 </div>

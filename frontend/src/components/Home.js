@@ -45,7 +45,7 @@ export default class Home extends Component {
                                 max={400000}
                                 marks={marks}
                             />
-                            <i class="p-1 fas fa-home"></i>
+                            <i className="p-1 fas fa-home"></i>
                         </div>
                         <div>
                             <p className="text-center">${this.state.recaudado}</p>
@@ -57,15 +57,15 @@ export default class Home extends Component {
                             title="video papa"
                             width="560" height="315"
                             src="https://www.youtube.com/embed/vdE_cZgx_L0"
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
+                            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
                             className="videoHome"></iframe>
                     </div>
                 </div>
                 <hr />
                 <div >
                     <h5 className="text-center">Premios a sortear</h5>
-                    <div className="row">
+                    <div className="row p-2">
                         <div className="col-4">
                             <div className="row premio">
                                 <div>s</div>

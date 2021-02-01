@@ -31,6 +31,20 @@
     color: #fff;
 }
 
+.c-espe .datos {
+    padding-left: 14em;
+}
+
+@media screen and (max-width:982px) {
+    .c-espe .datos {
+        padding-left: 10em;
+    }
+}@media screen and (max-width:768px) {
+    .c-espe .datos {
+        padding-left: 2em;
+    }
+}
+
 .formulario-datos input {
     background: #d9d9d9;
     border-radius: 15px;

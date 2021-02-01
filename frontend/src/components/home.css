@@ -18,10 +18,10 @@
 }
 
 .premio{
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     background: no-repeat center;
-    background-image: url("premio.svg");
+    background-image: url("./helper/premio.svg");
     margin: auto;
     color:transparent;
 }

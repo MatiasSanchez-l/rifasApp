@@ -148,7 +148,7 @@ export default class CompraRifa extends Component {
                     </div>
                     <div className="p-2 mt-3">
                         <div className="row justify-content-center c-espe">
-                            <div className="col-6">
+                            <div className="col-6 datos">
                                 <h3 className="">Rifas: {this.state.cantidadRifas}</h3>
                                 <h3 className="">Valor total: ${this.state.valorTotal}</h3>
                             </div>
@@ -180,7 +180,7 @@ export default class CompraRifa extends Component {
                             <label htmlFor="apellido" className="form-label m-auto ">Apellido</label>
                             </div>
                             <div className="col-9">
-                            <input name="apellido" id="apellido" type="text" className="form-control ms-4" onChange={this.onInputChange} value={this.state.apellido} />
+                            <input name="apellido" id="apellido" type="text" className="form-control" onChange={this.onInputChange} value={this.state.apellido} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
@@ -188,7 +188,7 @@ export default class CompraRifa extends Component {
                             <label htmlFor="email" className="form-label m-auto ">Email</label>
                             </div>
                             <div className="col-9">
-                            <input name="email" id="email" type="email" className="form-control ms-4" onChange={this.onInputChange} value={this.state.email} />
+                            <input name="email" id="email" type="email" className="form-control" onChange={this.onInputChange} value={this.state.email} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
@@ -196,7 +196,7 @@ export default class CompraRifa extends Component {
                             <label htmlFor="telefono" className="form-label m-auto ">Telefono</label>
                             </div>
                             <div className="col-9">
-                            <input name="telefono" id="telefono" type="number" className="form-control ms-4" onChange={this.onInputChange} value={this.state.telefono} />
+                            <input name="telefono" id="telefono" type="number" className="form-control" onChange={this.onInputChange} value={this.state.telefono} />
                             </div>
                         </div>
                         <div className="text-end">

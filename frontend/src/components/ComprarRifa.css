@@ -1,7 +1,8 @@
-.botones button{
+.botones button {
     width: 66px!important;
     height: 38px!important;
 }
+
 .c-espe input {
     width: 80%;
     background: none;
@@ -28,4 +29,13 @@
 .c-espe button:hover {
     background-color: #000;
     color: #fff;
+}
+
+.formulario-datos input {
+    background: #d9d9d9;
+    border-radius: 15px;
+}
+
+.formulario-datos input:focus {
+    background: #d9d9d9;
 }

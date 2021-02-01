@@ -12,14 +12,6 @@ header {
     background-color: #f0f0ea!important;
 }
 
-.formulario-datos input {
-    background: none;
-}
-
-.formulario-datos input:focus {
-    background: none;
-}
-
 .lista-contacto li {
     background: transparent!important;
 }

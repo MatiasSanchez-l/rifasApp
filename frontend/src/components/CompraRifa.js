@@ -111,7 +111,7 @@ export default class CompraRifa extends Component {
         return (
             <div className="compraRifa mb-5">
                 <div className="mt-2">
-                    <h3 className="text-center">¿Como comprar tu rifa?</h3>
+                    <h2 className="text-center">¿COMO COMPRAR TU RIFA?</h2>
                     <div className="row">
                         <div className="col-12 col-md-6 ">
                             <h5 className="fw-bold"><i class="fas fa-caret-right"></i> Primer paso</h5>
@@ -147,42 +147,60 @@ export default class CompraRifa extends Component {
                         <button onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark mx-1 rounded">- 100</button>
                     </div>
                     <div className="p-2 mt-3">
-                        <div className="d-flex c-espe justify-content-between">
-                            <div>
+                        <div className="row c-espe">
+                            <div className="col-6">
                                 <h3 className="">Rifas: {this.state.cantidadRifas}</h3>
                                 <h3 className="">Valor total: ${this.state.valorTotal}</h3>
                             </div>
-                            <button onClick={this.restarCantidad} className="btn"><i className="fas fa-minus"></i></button>
-                            <button onClick={this.sumarCantidad} className="btn"><i className="fas fa-plus"></i></button>
+                            <div className="col-6">
+                                <button onClick={this.restarCantidad} className="btn mx-3"><i className="fas fa-minus"></i></button>
+                                <button onClick={this.sumarCantidad} className="btn mx-3"><i className="fas fa-plus"></i></button>
+                            </div>
                         </div>
                     </div>
 
                 </div>
-                <hr />
+                <hr className="hr my-3" />
                 <div>
                     <div>
-                        <h5>Formulario de datos</h5>
-                        <p><span className="text-decoration-underline">Indicaciones: </span> <br /> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod error, voluptatem repudiandae vero inventore itaque praesentium et, consectetur pariatur reiciendis similique quos excepturi doloremque placeat? Perspiciatis sapiente ratione provident rerum!</p>
+                        <h5 className="fw-bold text-center">Formulario de datos</h5>
                     </div>
                     <form onSubmit={this.registrarUsuarioYCompra} className="formulario-datos">
-                        <div className="d-flex justify-content-between my-3">
-                            <label htmlFor="nombre" className="form-label m-auto ">Nombre</label>
-                            <input name="nombre" id="nombre" type="text" className="form-control ms-4" onChange={this.onInputChange} value={this.state.nombre} />
+                        <div className="row justify-content-between my-3">
+                            <div className="col-3">
+                                <label htmlFor="nombre" className="form-label m-auto ">Nombre</label>
+                            </div>
+                            <div className="col-9">
+                                <input name="nombre" id="nombre" type="text" className="form-control" onChange={this.onInputChange} value={this.state.nombre} />
+                            </div>
                         </div>
-                        <div className="d-flex justify-content-between my-3">
+
+                        <div className="row justify-content-between my-3">
+                            <div className="col-3">
                             <label htmlFor="apellido" className="form-label m-auto ">Apellido</label>
+                            </div>
+                            <div className="col-9">
                             <input name="apellido" id="apellido" type="text" className="form-control ms-4" onChange={this.onInputChange} value={this.state.apellido} />
+                            </div>
                         </div>
-                        <div className="d-flex justify-content-between my-3">
+                        <div className="row justify-content-between my-3">
+                            <div className="col-3">
                             <label htmlFor="email" className="form-label m-auto ">Email</label>
+                            </div>
+                            <div className="col-9">
                             <input name="email" id="email" type="email" className="form-control ms-4" onChange={this.onInputChange} value={this.state.email} />
+                            </div>
                         </div>
-                        <div className="d-flex justify-content-between my-3">
+                        <div className="row justify-content-between my-3">
+                            <div className="col-3">
                             <label htmlFor="telefono" className="form-label m-auto ">Telefono</label>
+                            </div>
+                            <div className="col-9">
                             <input name="telefono" id="telefono" type="number" className="form-control ms-4" onChange={this.onInputChange} value={this.state.telefono} />
+                            </div>
                         </div>
                         <div className="text-end">
-                            <button type="submit" className="btn btn-outline-secondary"> Proceder a realizar el pago</button>
+                            <button type="submit" className="btn btn-outline-dark"> Proceder a realizar el pago</button>
                         </div>
                     </form>
                 </div>

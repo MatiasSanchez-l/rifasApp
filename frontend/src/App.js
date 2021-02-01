@@ -7,6 +7,7 @@ import Home from './components/Home';
 import CompraRifa from './components/CompraRifa';
 import Contacto from './components/Contacto';
 import Admin from './components/Admin';
+import Premios from './components/Premios';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/comprarRifa" component={CompraRifa} />
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/admin" component={Admin} />
+        <Route exact path="/premios" component={Premios} />
       </div>
     </Router>
   );

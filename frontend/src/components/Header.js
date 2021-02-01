@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
-
+import logo from './helper/casa.png';
 
 export default class Header extends Component {
+
     render() {
         return (
             <header className="border-bottom">
                 <Navbar className="p-2 nav-bg" collapseOnSelect expand="lg">
                     <div className="container">
                         <Navbar.Brand href="#home">
-                            <img src="/helper/casa.png" alt="" className="img-fluid"/>
-                            </Navbar.Brand>
+                            <img src={logo} className="img-fluid img-header" alt="" />
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Nav className="mr-auto">

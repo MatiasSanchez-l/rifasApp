@@ -11,7 +11,9 @@ body {
 header {
     background-color: #f0f0ea!important;
 }
-
+.img-header{
+    width: 20px;
+}
 
 .hr {
     width: 200px;

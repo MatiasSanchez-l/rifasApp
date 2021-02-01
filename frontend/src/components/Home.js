@@ -86,7 +86,7 @@ export default class Home extends Component {
                         </div>
                     </div>
                     <div className="text-center">
-                        <Link className="btn btn-dark" to="/">Ver premios</Link>
+                        <Link className="btn btn-dark" to="/premios">Ver premios</Link>
                     </div>
                 </div>
             </div>

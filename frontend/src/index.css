@@ -1,40 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 body {
-    font-family: 'Bitter', serif;
-    background: #bdc3c7;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #648bb3, #bdc3c7);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #648bb3, #bdc3c7);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Montserrat', sans-serif!important;
+    background: #f0f0ea!important;
 }
 
-.c-espe input {
-    width: 80%;
-    background: none;
-    border: none;
-    border-radius: 0;
-    border-bottom: #000 1px solid;
+.nav-bg {
+    background-color: #f0f0ea!important;
 }
 
-.c-espe input::placeholder {
-    color: #3a3939;
-}
-
-.c-espe input:focus {
-    background: none;
-}
-
-.c-espe button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    transition: 0.5s;
-}
-
-.c-espe button:hover {
-    background-color: #000;
-    color: #fff;
+header {
+    background-color: #f0f0ea!important;
 }
 
 .formulario-datos input {
@@ -47,4 +22,9 @@ body {
 
 .lista-contacto li {
     background: transparent!important;
+}
+
+.hr {
+    width: 200px;
+    margin: auto;
 }

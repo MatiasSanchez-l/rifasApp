@@ -1,0 +1,31 @@
+.botones button{
+    width: 66px!important;
+    height: 38px!important;
+}
+.c-espe input {
+    width: 80%;
+    background: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: #000 1px solid;
+}
+
+.c-espe input::placeholder {
+    color: #3a3939;
+}
+
+.c-espe input:focus {
+    background: none;
+}
+
+.c-espe button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.c-espe button:hover {
+    background-color: #000;
+    color: #fff;
+}

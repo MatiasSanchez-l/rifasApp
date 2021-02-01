@@ -6,18 +6,17 @@ import { Nav, Navbar } from 'react-bootstrap';
 export default class Header extends Component {
     render() {
         return (
-            <header className="">
-                <Navbar className="p-2" collapseOnSelect bg="light" expand="lg">
+            <header className="border-bottom">
+                <Navbar className="p-2 nav-bg" collapseOnSelect bg="light" expand="lg">
                     <div className="container">
-                        <Navbar.Brand href="#home">Rifas App</Navbar.Brand>
+                        <Navbar.Brand href="#home">ODF</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Nav className="mr-auto">
-                                <Nav.Link eventKey="1" as={Link} to="/">Home</Nav.Link>
-                                <Nav.Link eventKey="2" as={Link} to="/">Acerca de Oscar</Nav.Link>
-                                <Nav.Link eventKey="3" as={Link} to="/comprarRifa">Comprar Rifas</Nav.Link>
-                                <Nav.Link eventKey="4" as={Link} to="/contacto">Contacto</Nav.Link>
-                                <Nav.Link eventKey="5" as={Link} to="/admin">Admin</Nav.Link>
+                                <Nav.Link eventKey="1" as={Link} to="/">Inicio</Nav.Link>
+                                <Nav.Link eventKey="2" as={Link} to="/comprarRifa">Comprar Rifas</Nav.Link>
+                                <Nav.Link eventKey="3" as={Link} to="/contacto">Contacto</Nav.Link>
+                                <Nav.Link eventKey="4" as={Link} to="/admin">Admin</Nav.Link>
 
                             </Nav>
 

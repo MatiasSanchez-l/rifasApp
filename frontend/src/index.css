@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 body {
-    font-family: 'Bitter', serif;
-    background: #bdc3c7;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #648bb3, #bdc3c7);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #648bb3, #bdc3c7);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Montserrat', sans-serif!important;
+    background: #f4f4ec;
+}
+
+.nav-bg {
+    background-color: #f4f4ec!important;
 }
 
 .c-espe input {

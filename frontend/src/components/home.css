@@ -8,6 +8,24 @@
     height: 300px;
     border-radius: 50%;
 }
-.img-3{
+
+.img-3 {
     padding: 3em!important;
+}
+
+.MuiSlider-root {
+    color: red!important;
+}
+.hr{
+    width: 200px;
+    margin: auto;
+}
+
+.premio{
+    width: 150px;
+    height: 150px;
+    background: no-repeat center;
+    background-image: url("premio.svg");
+    margin: auto;
+    color:transparent;
 }

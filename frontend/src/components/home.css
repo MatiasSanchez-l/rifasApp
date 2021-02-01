@@ -1,0 +1,13 @@
+.videoHome {
+    max-width: 100%;
+}
+
+.img-premio img {
+    padding: 2em;
+    width: 330px;
+    height: 300px;
+    border-radius: 50%;
+}
+.img-3{
+    padding: 3em!important;
+}

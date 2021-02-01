@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import emailjs from 'emailjs-com';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
+import './Contacto.css';
 
 export default class Contacto extends Component {
     sendEmail = (e) => {
@@ -29,17 +30,16 @@ export default class Contacto extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-
     };
-
 
     render() {
         return (
-            <div>
-                <div className="container">
-                    <h3 className="text-center mt-3">Cont&aacute;ctanos</h3>
-                    <p>Ante cualquier duda o consulta que nos quieras realizar podes completar el siguiente formulario y se lo resolveremos lo antes posible</p>
-                    <form className="contact-form mt-3 " onSubmit={this.sendEmail}>
+            <div className="container">
+                <div>
+                    <h2 className="text-center mt-3">¿TENES DUDAS?</h2>
+                    <h3 className="text-center ">Cont&aacute;ctanos</h3>
+                    <p>Ante cualquier duda o consulta que nos quieras realizar podes completar el siguiente formulario y se lo resolveremos lo antes posible.</p>
+                    <form className="contact-form mt-3 formulario-datos" onSubmit={this.sendEmail}>
                         <div className="row  mt-1">
                             <div className="col-6">
                                 <label className="form-label">Nombre</label>
@@ -65,21 +65,32 @@ export default class Contacto extends Component {
                             <label className="form-label">Mensaje o consulta</label>
                             <textarea className="form-control" name="message" />
                         </div>
-                        <input className="form-control mt-5 bg-dark text-white" type="submit" value="Enviar" />
+                        <div className="text-center">
+                            <button className="btn btn-dark mt-4 text-white" type="submit">Enviar</button>
+                        </div>
                     </form>
                 </div>
-                <div className="container">
-                    <h3 className="text-center mt-3">Otros medios para contactarnos</h3>
-                    <ul class="list-group list-group-flush lista-contacto">
-                        <li class="list-group-item"> <i class="fas fa-phone-alt"></i> <span className="fw-bold ">Telefono Fijo:</span> 4444-4444</li>
-                        <li class="list-group-item"> <i class="fas fa-envelope"></i> <span className="fw-bold ">Email:</span> email@email.com</li>
-                        <li class="list-group-item"> <i class="fab fa-whatsapp"></i> <span className="fw-bold ">Whatsapp:</span> 11-4444-4444</li>
-                        <li class="list-group-item"> <i class="fab fa-facebook-f"></i> <span className="fw-bold ">Facebook:</span> rifasapp</li>
-                        <li class="list-group-item"> <i class="fab fa-instagram"></i> <span className="fw-bold ">Instagram:</span> @rifasApp</li>
-                    </ul>
-
+                <hr className="mt-4 hr" />
+                <div>
+                    <h3 className="text-center mt-3">Tambien podes contactarnos a traves de</h3>
+                    <div className="row">
+                        <div className="col-12 mt-2">
+                            <i class="fas fa-phone-alt"></i> <span className="fw-bold text-uppercase mx-1">Telefono Fijo:</span> 4444-4444
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i class="fas fa-envelope"></i> <span className="fw-bold text-uppercase mx-1">Email:</span> email@email.com
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i class="fab fa-whatsapp"></i> <span className="fw-bold text-uppercase mx-1">Whatsapp:</span> 11-4444-4444
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i class="fab fa-facebook-f"></i> <span className="fw-bold text-uppercase mx-1">Facebook:</span> rifasapp
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i class="fab fa-instagram"></i> <span className="fw-bold text-uppercase mx-1">Instagram:</span> @rifasApp
+                        </div>
+                    </div>
                 </div>
-
             </div>
         )
     }

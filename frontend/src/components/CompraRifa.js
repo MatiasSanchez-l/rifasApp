@@ -111,18 +111,18 @@ export default class CompraRifa extends Component {
         return (
             <div className="compraRifa mb-5">
                 <div className="mt-2">
-                    <h2 className="text-center">¿COMO COMPRAR TU RIFA?</h2>
+                    <h2 className="text-center mb-3">¿COMO COMPRAR TU RIFA?</h2>
                     <div className="row">
-                        <div className="col-12 col-md-6 ">
-                            <h5 className="fw-bold"><i class="fas fa-caret-right"></i> Primer paso</h5>
+                        <div className="col-12 text-center">
+                            <h5 className="fw-bold"> Primer paso</h5>
                             <p>Seleccione la cantidad de rifas que deseas comprar.</p>
                         </div>
-                        <div className="col-12 col-md-6 ">
-                            <h5 className="fw-bold"><i class="fas fa-caret-right"></i> Segundo paso</h5>
+                        <div className="col-12 text-center">
+                            <h5 className="fw-bold"> Segundo paso</h5>
                             <p>Complete el formulario con los datos correspondientes.</p>
                         </div>
-                        <div className="col-12 col-md-6 ">
-                            <h5 className="fw-bold"><i class="fas fa-caret-right"></i> Tercer paso</h5>
+                        <div className="col-12 text-center">
+                            <h5 className="fw-bold"> Tercer paso</h5>
                             <p>Seleccione el boton 'continuar' para efectuar el pago de su contribucion.</p>
                         </div>
                     </div>
@@ -147,7 +147,7 @@ export default class CompraRifa extends Component {
                         <button onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark mx-1 rounded">- 100</button>
                     </div>
                     <div className="p-2 mt-3">
-                        <div className="row c-espe">
+                        <div className="row justify-content-center c-espe">
                             <div className="col-6">
                                 <h3 className="">Rifas: {this.state.cantidadRifas}</h3>
                                 <h3 className="">Valor total: ${this.state.valorTotal}</h3>
@@ -163,7 +163,7 @@ export default class CompraRifa extends Component {
                 <hr className="hr my-3" />
                 <div>
                     <div>
-                        <h5 className="fw-bold text-center">Formulario de datos</h5>
+                        <h5 className="fw-bold text-center mb-4">Formulario de datos</h5>
                     </div>
                     <form onSubmit={this.registrarUsuarioYCompra} className="formulario-datos">
                         <div className="row justify-content-between my-3">

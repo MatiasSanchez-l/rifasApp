@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './home.css';
-import { Link } from 'react-router-dom';
+import { Link as button } from 'react-router-dom';
 import { Slider } from '@material-ui/core';
 import regaloVerde from './helper/cajaVerde.png';
 
@@ -22,6 +22,10 @@ const marks = [
 export default class Home extends Component {
     state = {
         recaudado: 250000
+    }
+    irAlInstagram = () => {
+        let win = window.open("https://www.instagram.com/ProyectoOscar/", '_blank');
+        win.focus();
     }
     render() {
         return (
@@ -51,10 +55,11 @@ export default class Home extends Component {
                         <div className="d-flex justify-content-center fs-5">
                             <p className="p-1 m-auto">SI QUIERES SEGUIR EL PROCESO DEL PROYECTO HAZ CLICK EN EL LOGO</p>
                             <div className="p-1 m-auto logo-instagram">
-                                <Link 
-                                to="/instagram">
+                                <a
+                                    className="pointer"
+                                    onClick={this.irAlInstagram}>
                                     <i className="fab fa-instagram fs-1"></i>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +100,7 @@ export default class Home extends Component {
                         </div>
                     </div>
                     <div className="text-center">
-                        <Link className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</Link>
+                        <button className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</button>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import CompraRifa from './components/CompraRifa';
 import Contacto from './components/Contacto';
 import Admin from './components/Admin';
 import Premios from './components/Premios';
+import Instagram from './components/Instagram';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/premios" component={Premios} />
-        <Route exact path="/instagram" render={() => (window.location = "https://www.instagram.com")} />
+        <Route exact path="/instagram" component={Instagram} />
       </div>
     </Router>
   );

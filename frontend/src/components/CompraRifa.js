@@ -19,7 +19,7 @@ export default class CompraRifa extends Component {
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)
         let nuevaCantidad = this.state.cantidadRifas + cantidad;
-        let nuevoValor = (nuevaCantidad * 100);
+        let nuevoValor = (nuevaCantidad * 200);
         this.setState({
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
@@ -29,7 +29,7 @@ export default class CompraRifa extends Component {
     restarCantidadRifas = e => {
         let cantidad = Number(e.target.value)
         let nuevaCantidad = this.state.cantidadRifas - cantidad;
-        let nuevoValor = (nuevaCantidad * 100);
+        let nuevoValor = (nuevaCantidad * 200);
         this.setState({
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
@@ -38,7 +38,7 @@ export default class CompraRifa extends Component {
 
     sumarCantidad = () => {
         let cantidad = this.state.cantidadRifas += 1;
-        let nuevoValor = (cantidad * 100);
+        let nuevoValor = (cantidad * 200);
         this.setState({
             cantidadRifas: cantidad,
             valorTotal: nuevoValor
@@ -47,7 +47,7 @@ export default class CompraRifa extends Component {
 
     restarCantidad = () => {
         let cantidad = this.state.cantidadRifas -= 1;
-        let nuevoValor = (cantidad * 100);
+        let nuevoValor = (cantidad * 200);
 
         this.setState({
             cantidadRifas: cantidad,
@@ -107,6 +107,7 @@ export default class CompraRifa extends Component {
         })
     }
 
+  
     render() {
         return (
             <div className="compraRifa mb-5">
@@ -177,26 +178,26 @@ export default class CompraRifa extends Component {
 
                         <div className="row justify-content-between my-3">
                             <div className="col-3">
-                            <label htmlFor="apellido" className="form-label m-auto ">Apellido</label>
+                                <label htmlFor="apellido" className="form-label m-auto ">Apellido</label>
                             </div>
                             <div className="col-9">
-                            <input name="apellido" id="apellido" type="text" className="form-control" onChange={this.onInputChange} value={this.state.apellido} />
+                                <input name="apellido" id="apellido" type="text" className="form-control" onChange={this.onInputChange} value={this.state.apellido} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
                             <div className="col-3">
-                            <label htmlFor="email" className="form-label m-auto ">Email</label>
+                                <label htmlFor="email" className="form-label m-auto ">Email</label>
                             </div>
                             <div className="col-9">
-                            <input name="email" id="email" type="email" className="form-control" onChange={this.onInputChange} value={this.state.email} />
+                                <input name="email" id="email" type="email" className="form-control" onChange={this.onInputChange} value={this.state.email} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
                             <div className="col-3">
-                            <label htmlFor="telefono" className="form-label m-auto ">Tel&eacute;fono</label>
+                                <label htmlFor="telefono" className="form-label m-auto ">Tel&eacute;fono</label>
                             </div>
                             <div className="col-9">
-                            <input name="telefono" id="telefono" type="number" className="form-control" onChange={this.onInputChange} value={this.state.telefono} />
+                                <input name="telefono" id="telefono" type="number" className="form-control" onChange={this.onInputChange} value={this.state.telefono} />
                             </div>
                         </div>
                         <div className="text-end">

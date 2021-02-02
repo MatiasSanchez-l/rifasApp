@@ -55,11 +55,11 @@ export default class Home extends Component {
                         <div className="d-flex justify-content-center fs-5">
                             <p className="p-1 m-auto">SI QUIERES SEGUIR EL PROCESO DEL PROYECTO HAZ CLICK EN EL LOGO</p>
                             <div className="p-1 m-auto logo-instagram">
-                                <a
+                                <p
                                     className="pointer"
                                     onClick={this.irAlInstagram}>
                                     <i className="fab fa-instagram fs-1"></i>
-                                </a>
+                                </p>
                             </div>
                         </div>
                     </div>

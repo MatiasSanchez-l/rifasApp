@@ -1,21 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 body {
     font-family: 'Montserrat', sans-serif!important;
-    background: #f0f0ea!important;
+    background: #eaf0ea!important;
 }
 
 .nav-bg {
-    background-color: #f0f0ea!important;
+    background-color: #255f25bb!important;
 }
 
-header {
-    background-color: #f0f0ea!important;
-}
-.img-header{
+.img-header {
     width: 20px;
 }
 
 .hr {
     width: 200px;
     margin: auto;
+}
+.fondo-home1{
 }

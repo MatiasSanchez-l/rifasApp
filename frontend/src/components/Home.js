@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './home.css';
 import { Link } from 'react-router-dom';
 import { Slider } from '@material-ui/core';
+import regaloVerde from './helper/cajaVerde.png';
 
 const marks = [
     {
@@ -47,8 +48,14 @@ export default class Home extends Component {
                             />
                             <i className="p-1 fas fa-home"></i>
                         </div>
-                        <div>
-                            <p className="text-center">${this.state.recaudado}</p>
+                        <div className="d-flex justify-content-center fs-5">
+                            <p className="p-1 m-auto">SI QUIERES SEGUIR EL PROCESO DEL PROYECTO HAZ CLICK EN EL LOGO</p>
+                            <div className="p-1 m-auto logo-instagram">
+                                <Link 
+                                to="/instagram">
+                                    <i className="fab fa-instagram fs-1"></i>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
@@ -63,9 +70,40 @@ export default class Home extends Component {
                     </div>
                 </div>
                 <hr />
-                <div >
+                <div className="fondo-home1" >
                     <h5 className="text-center">Premios a sortear</h5>
                     <div className="row p-2">
+                    </div>
+                    <div className="row p-2">
+                        <div className="col-4">
+                            <div className="row premio-verde">
+                                <img src={regaloVerde} alt="" />
+                            </div>
+                            <p className="text-center">1° premio</p>
+                        </div>
+                        <div className="col-4">
+                            <div className="row premio-verde">
+                                <img src={regaloVerde} alt="" />
+                            </div>
+                            <p className="text-center">2° premio</p>
+                        </div>
+                        <div className="col-4">
+                            <div className="row premio-verde">
+                                <img src={regaloVerde} alt="" />
+                            </div>
+                            <p className="text-center">3° premio</p>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <Link className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</Link>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+/*
+
                         <div className="col-4">
                             <div className="row premio">
                                 <div>s</div>
@@ -84,12 +122,4 @@ export default class Home extends Component {
                             </div>
                             <p className="text-center">3° premio</p>
                         </div>
-                    </div>
-                    <div className="text-center">
-                        <Link className="btn btn-dark" to="/premios">Ver premios</Link>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
+*/

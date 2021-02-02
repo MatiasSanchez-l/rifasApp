@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/premios" component={Premios} />
+        <Route exact path="/instagram" render={() => (window.location = "https://www.instagram.com")} />
       </div>
     </Router>
   );

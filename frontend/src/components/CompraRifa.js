@@ -111,11 +111,11 @@ export default class CompraRifa extends Component {
         return (
             <div className="compraRifa mb-5">
                 <div className="mt-2">
-                    <h2 className="text-center mb-3">¿COMO COMPRAR TU RIFA?</h2>
+                    <h2 className="text-center mb-3">¿C&Oacute;MO COMPRAR TU BONO?</h2>
                     <div className="row">
                         <div className="col-12 text-center">
                             <h5 className="fw-bold"> Primer paso</h5>
-                            <p>Seleccione la cantidad de rifas que deseas comprar.</p>
+                            <p>Seleccione la cantidad de bonos que deseas comprar.</p>
                         </div>
                         <div className="col-12 text-center">
                             <h5 className="fw-bold"> Segundo paso</h5>
@@ -123,38 +123,38 @@ export default class CompraRifa extends Component {
                         </div>
                         <div className="col-12 text-center">
                             <h5 className="fw-bold"> Tercer paso</h5>
-                            <p>Seleccione el boton 'continuar' para efectuar el pago de su contribucion.</p>
+                            <p>Seleccione el bot&oacute;n 'continuar' para efectuar el pago de su contribuci&oacute;n.</p>
                         </div>
                     </div>
                 </div>
                 <hr className="hr my-3" />
                 <div>
                     <div>
-                        <h5 className="fw-bold text-center m-1">Elija la cantidad de rifas</h5>
+                        <h5 className="fw-bold text-center m-1">Elija la cantidad de bonos</h5>
                         <div className="mt-3 text-center botones">
-                            <button onClick={this.sumarCantidadRifas} value="1" className="btn btn-outline-dark mx-1 rounded">+ 1</button>
-                            <button onClick={this.sumarCantidadRifas} value="10" className="btn btn-outline-dark mx-1 rounded">+ 10</button>
-                            <button onClick={this.sumarCantidadRifas} value="20" className="btn btn-outline-dark mx-1 rounded">+ 20</button>
-                            <button onClick={this.sumarCantidadRifas} value="50" className="btn btn-outline-dark mx-1 rounded">+ 50</button>
-                            <button onClick={this.sumarCantidadRifas} value="100" className="btn btn-outline-dark mx-1 rounded">+ 100</button>
+                            <button onClick={this.sumarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 1</button>
+                            <button onClick={this.sumarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 10</button>
+                            <button onClick={this.sumarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 20</button>
+                            <button onClick={this.sumarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 50</button>
+                            <button onClick={this.sumarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 100</button>
                         </div>
                     </div>
                     <div className="mt-3 text-center botones">
-                        <button onClick={this.restarCantidadRifas} value="1" className="btn btn-outline-dark mx-1 rounded">- 1</button>
-                        <button onClick={this.restarCantidadRifas} value="10" className="btn btn-outline-dark mx-1 rounded">- 10</button>
-                        <button onClick={this.restarCantidadRifas} value="20" className="btn btn-outline-dark mx-1 rounded">- 20</button>
-                        <button onClick={this.restarCantidadRifas} value="50" className="btn btn-outline-dark mx-1 rounded">- 50</button>
-                        <button onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark mx-1 rounded">- 100</button>
+                        <button onClick={this.restarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 1</button>
+                        <button onClick={this.restarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 10</button>
+                        <button onClick={this.restarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 20</button>
+                        <button onClick={this.restarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 50</button>
+                        <button onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 100</button>
                     </div>
                     <div className="p-2 mt-3">
                         <div className="row justify-content-center c-espe">
                             <div className="col-6 datos">
-                                <h3 className="">Rifas: {this.state.cantidadRifas}</h3>
+                                <h3 className="">Bonos: {this.state.cantidadRifas}</h3>
                                 <h3 className="">Valor total: ${this.state.valorTotal}</h3>
                             </div>
                             <div className="col-6">
-                                <button onClick={this.restarCantidad} className="btn mx-3"><i className="fas fa-minus"></i></button>
-                                <button onClick={this.sumarCantidad} className="btn mx-3"><i className="fas fa-plus"></i></button>
+                                <button onClick={this.restarCantidad} className="btn btn-outline-verde-signos mx-3"><i className="fas fa-minus"></i></button>
+                                <button onClick={this.sumarCantidad} className="btn btn-outline-verde-signos mx-3"><i className="fas fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
@@ -193,14 +193,14 @@ export default class CompraRifa extends Component {
                         </div>
                         <div className="row justify-content-between my-3">
                             <div className="col-3">
-                            <label htmlFor="telefono" className="form-label m-auto ">Telefono</label>
+                            <label htmlFor="telefono" className="form-label m-auto ">Tel&eacute;fono</label>
                             </div>
                             <div className="col-9">
                             <input name="telefono" id="telefono" type="number" className="form-control" onChange={this.onInputChange} value={this.state.telefono} />
                             </div>
                         </div>
                         <div className="text-end">
-                            <button type="submit" className="btn btn-outline-dark"> Proceder a realizar el pago</button>
+                            <button type="submit" className="btn btn-outline-dark btn-outline-verde">Proceder a realizar el pago</button>
                         </div>
                     </form>
                 </div>

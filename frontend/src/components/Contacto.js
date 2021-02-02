@@ -36,9 +36,9 @@ export default class Contacto extends Component {
         return (
             <div className="container">
                 <div>
-                    <h2 className="text-center mt-3">¿TENES DUDAS?</h2>
+                    <h2 className="text-center mt-3">¿TEN&Eacute;S DUDAS?</h2>
                     <h3 className="text-center ">Cont&aacute;ctanos</h3>
-                    <p>Ante cualquier duda o consulta que nos quieras realizar podes completar el siguiente formulario y se lo resolveremos lo antes posible.</p>
+                    <p>Si ten&eacute;s dudas o consultas, complet&aacute; este formulario y te responderemos a la brevedad.</p>
                     <form className="contact-form mt-3 formulario-datos" onSubmit={this.sendEmail}>
                         <div className="row  mt-1">
                             <div className="col-6">
@@ -57,7 +57,7 @@ export default class Contacto extends Component {
                                 <input className="form-control" type="email" name="user_email" />
                             </div>
                             <div className="col-6">
-                                <label className="form-label">Numero de telefono</label>
+                                <label className="form-label">N&uacute;mero de tel&eacute;fono</label>
                                 <input className="form-control" type="number" name="user_number" />
                             </div>
                         </div>
@@ -66,16 +66,16 @@ export default class Contacto extends Component {
                             <textarea className="form-control" name="message" />
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-dark mt-4 text-white" type="submit">Enviar</button>
+                            <button className="btn btn-dark btn-outline-verde-contacto mt-4 text-white" type="submit">Enviar</button>
                         </div>
                     </form>
                 </div>
                 <hr className="mt-4 hr" />
                 <div>
-                    <h3 className="text-center mt-3">Tambien podes contactarnos a traves de</h3>
+                    <h3 className="text-center mt-3">Tambi&eacute;n pod&eacute;s contactarnos a trav&eacute;s de:</h3>
                     <div className="row">
                         <div className="col-12 mt-2">
-                            <i className="fas fa-phone-alt"></i> <span className="fw-bold text-uppercase mx-1">Telefono Fijo:</span> 4444-4444
+                            <i className="fas fa-phone-alt"></i> <span className="fw-bold text-uppercase mx-1">Tel&eacute;fono Fijo:</span> 4444-4444
                         </div>
                         <div className="col-12 mt-2">
                             <i className="fas fa-envelope"></i> <span className="fw-bold text-uppercase mx-1">Email:</span> email@email.com

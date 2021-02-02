@@ -11,13 +11,14 @@ export default class Header extends Component {
                 <Navbar className="p-2 nav-bg" collapseOnSelect expand="lg">
                     <div className="container">
                         <Navbar.Brand href="#home">
-                            <img src={logo} className="img-fluid img-header" alt="" />
+                            <img src={logo} className="img-fluid img-header mx-2" alt="Logo | Pagina " />
+                            Proyecto Oscar
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Nav className="mr-auto">
                                 <Nav.Link eventKey="1" as={Link} to="/">Inicio</Nav.Link>
-                                <Nav.Link eventKey="2" as={Link} to="/comprarRifa">Comprar Rifas</Nav.Link>
+                                <Nav.Link eventKey="2" as={Link} to="/comprarRifa">Comprar Bonos</Nav.Link>
                                 <Nav.Link eventKey="3" as={Link} to="/contacto">Contacto</Nav.Link>
                                 <Nav.Link eventKey="4" as={Link} to="/admin">Admin</Nav.Link>
 

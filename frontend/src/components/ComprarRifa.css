@@ -39,7 +39,9 @@
     .c-espe .datos {
         padding-left: 10em;
     }
-}@media screen and (max-width:768px) {
+}
+
+@media screen and (max-width:768px) {
     .c-espe .datos {
         padding-left: 2em;
     }
@@ -52,4 +54,16 @@
 
 .formulario-datos input:focus {
     background: #d9d9d9;
+}
+
+.btn-outline-verde {
+    border-color: #255f25!important;
+}
+
+.btn-outline-verde:hover {
+    background-color: #255f25bb!important;
+}
+
+.btn-outline-verde-signos:hover {
+    background-color: #255f25bb!important;
 }

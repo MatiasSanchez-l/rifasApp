@@ -14,14 +14,28 @@
 }
 
 .MuiSlider-root {
-    color: red!important;
+    color: rgba(37, 95, 37, 0.733)!important;
 }
 
-.premio{
+.premio {
     width: 120px;
     height: 120px;
     background: no-repeat center;
     background-image: url("./helper/premio.svg");
     margin: auto;
-    color:transparent;
+    color: transparent;
+}
+
+.premio-verde {
+    width: 200px;
+    height: auto;
+    margin: auto;
+}
+
+.btn-outline-verde-home {
+    background-color: #255f25bb!important;
+    border-color: #255f25!important;
+}
+.logo-instagram i{
+    color:#255f25bb!important
 }

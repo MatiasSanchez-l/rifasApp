@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import emailjs from 'emailjs-com';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
+import './Contacto.css';
 
 export default class Contacto extends Component {
     sendEmail = (e) => {
@@ -29,17 +30,16 @@ export default class Contacto extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-
     };
-
 
     render() {
         return (
-            <div>
-                <div className="container">
-                    <h3 className="text-center mt-3">Cont&aacute;ctanos</h3>
-                    <p>Ante cualquier duda o consulta que nos quieras realizar podes completar el siguiente formulario y se lo resolveremos lo antes posible</p>
-                    <form className="contact-form mt-3 " onSubmit={this.sendEmail}>
+            <div className="container">
+                <div>
+                    <h2 className="text-center mt-3">¿TEN&Eacute;S DUDAS?</h2>
+                    <h3 className="text-center ">Cont&aacute;ctanos</h3>
+                    <p>Si ten&eacute;s dudas o consultas, complet&aacute; este formulario y te responderemos a la brevedad.</p>
+                    <form className="contact-form mt-3 formulario-datos" onSubmit={this.sendEmail}>
                         <div className="row  mt-1">
                             <div className="col-6">
                                 <label className="form-label">Nombre</label>
@@ -57,7 +57,7 @@ export default class Contacto extends Component {
                                 <input className="form-control" type="email" name="user_email" />
                             </div>
                             <div className="col-6">
-                                <label className="form-label">Numero de telefono</label>
+                                <label className="form-label">N&uacute;mero de tel&eacute;fono</label>
                                 <input className="form-control" type="number" name="user_number" />
                             </div>
                         </div>
@@ -65,21 +65,32 @@ export default class Contacto extends Component {
                             <label className="form-label">Mensaje o consulta</label>
                             <textarea className="form-control" name="message" />
                         </div>
-                        <input className="form-control mt-5 bg-dark text-white" type="submit" value="Enviar" />
+                        <div className="text-center">
+                            <button className="btn btn-dark btn-outline-verde-contacto mt-4 text-white" type="submit">Enviar</button>
+                        </div>
                     </form>
                 </div>
-                <div className="container">
-                    <h3 className="text-center mt-3">Otros medios para contactarnos</h3>
-                    <ul class="list-group list-group-flush lista-contacto">
-                        <li class="list-group-item"> <i class="fas fa-phone-alt"></i> <span className="fw-bold ">Telefono Fijo:</span> 4444-4444</li>
-                        <li class="list-group-item"> <i class="fas fa-envelope"></i> <span className="fw-bold ">Email:</span> email@email.com</li>
-                        <li class="list-group-item"> <i class="fab fa-whatsapp"></i> <span className="fw-bold ">Whatsapp:</span> 11-4444-4444</li>
-                        <li class="list-group-item"> <i class="fab fa-facebook-f"></i> <span className="fw-bold ">Facebook:</span> rifasapp</li>
-                        <li class="list-group-item"> <i class="fab fa-instagram"></i> <span className="fw-bold ">Instagram:</span> @rifasApp</li>
-                    </ul>
-
+                <hr className="mt-4 hr" />
+                <div>
+                    <h3 className="text-center mt-3">Tambi&eacute;n pod&eacute;s contactarnos a trav&eacute;s de:</h3>
+                    <div className="row">
+                        <div className="col-12 mt-2">
+                            <i className="fas fa-phone-alt"></i> <span className="fw-bold text-uppercase mx-1">Tel&eacute;fono Fijo:</span> 4444-4444
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i className="fas fa-envelope"></i> <span className="fw-bold text-uppercase mx-1">Email:</span> email@email.com
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i className="fab fa-whatsapp"></i> <span className="fw-bold text-uppercase mx-1">Whatsapp:</span> 11-4444-4444
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i className="fab fa-facebook-f"></i> <span className="fw-bold text-uppercase mx-1">Facebook:</span> rifasapp
+                        </div>
+                        <div className="col-12 mt-2">
+                            <i className="fab fa-instagram"></i> <span className="fw-bold text-uppercase mx-1">Instagram:</span> @rifasApp
+                        </div>
+                    </div>
                 </div>
-
             </div>
         )
     }

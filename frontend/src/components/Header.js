@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
-
+import logo from './helper/casa.png';
 
 export default class Header extends Component {
+
     render() {
         return (
             <header className="border-bottom">
                 <Navbar className="p-2 nav-bg" collapseOnSelect expand="lg">
                     <div className="container">
-                        <Navbar.Brand href="#home">ODF</Navbar.Brand>
+                        <Navbar.Brand href="#home">
+                            <img src={logo} className="img-fluid img-header mx-2" alt="Logo | Pagina " />
+                            Proyecto Oscar
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Nav className="mr-auto">
                                 <Nav.Link eventKey="1" as={Link} to="/">Inicio</Nav.Link>
-                                <Nav.Link eventKey="2" as={Link} to="/comprarRifa">Comprar Rifas</Nav.Link>
+                                <Nav.Link eventKey="2" as={Link} to="/comprarRifa">Comprar Bonos</Nav.Link>
                                 <Nav.Link eventKey="3" as={Link} to="/contacto">Contacto</Nav.Link>
                                 <Nav.Link eventKey="4" as={Link} to="/admin">Admin</Nav.Link>
 

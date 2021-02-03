@@ -1,7 +1,8 @@
-.botones button{
+.botones button {
     width: 66px!important;
     height: 38px!important;
 }
+
 .c-espe input {
     width: 80%;
     background: none;
@@ -28,4 +29,41 @@
 .c-espe button:hover {
     background-color: #000;
     color: #fff;
+}
+
+.c-espe .datos {
+    padding-left: 14em;
+}
+
+@media screen and (max-width:982px) {
+    .c-espe .datos {
+        padding-left: 10em;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .c-espe .datos {
+        padding-left: 2em;
+    }
+}
+
+.formulario-datos input {
+    background: #d9d9d9;
+    border-radius: 15px;
+}
+
+.formulario-datos input:focus {
+    background: #d9d9d9;
+}
+
+.btn-outline-verde {
+    border-color: #255f25!important;
+}
+
+.btn-outline-verde:hover {
+    background-color: #255f25bb!important;
+}
+
+.btn-outline-verde-signos:hover {
+    background-color: #255f25bb!important;
 }

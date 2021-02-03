@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './home.css';
-import { Link } from 'react-router-dom';
+import { Link as button } from 'react-router-dom';
 import { Slider } from '@material-ui/core';
+import regaloVerde from './helper/cajaVerde.png';
 
 const marks = [
     {
@@ -21,6 +22,10 @@ const marks = [
 export default class Home extends Component {
     state = {
         recaudado: 250000
+    }
+    irAlInstagram = () => {
+        let win = window.open("https://www.instagram.com/ProyectoOscar/", '_blank');
+        win.focus();
     }
     render() {
         return (
@@ -45,10 +50,17 @@ export default class Home extends Component {
                                 max={400000}
                                 marks={marks}
                             />
-                            <i class="p-1 fas fa-home"></i>
+                            <i className="p-1 fas fa-home"></i>
                         </div>
-                        <div>
-                            <p className="text-center">${this.state.recaudado}</p>
+                        <div className="d-flex justify-content-center fs-5">
+                            <p className="p-1 m-auto">SI QUIERES SEGUIR EL PROCESO DEL PROYECTO HAZ CLICK EN EL LOGO</p>
+                            <div className="p-1 m-auto logo-instagram">
+                                <p
+                                    className="pointer"
+                                    onClick={this.irAlInstagram}>
+                                    <i className="fab fa-instagram fs-1"></i>
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
@@ -57,15 +69,46 @@ export default class Home extends Component {
                             title="video papa"
                             width="560" height="315"
                             src="https://www.youtube.com/embed/vdE_cZgx_L0"
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
+                            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
                             className="videoHome"></iframe>
                     </div>
                 </div>
                 <hr />
-                <div >
+                <div className="fondo-home1" >
                     <h5 className="text-center">Premios a sortear</h5>
-                    <div className="row">
+                    <div className="row p-2">
+                    </div>
+                    <div className="row p-2">
+                        <div className="col-4">
+                            <div className="row premio-verde">
+                                <img src={regaloVerde} alt="" />
+                            </div>
+                            <p className="text-center">1° premio</p>
+                        </div>
+                        <div className="col-4">
+                            <div className="row premio-verde">
+                                <img src={regaloVerde} alt="" />
+                            </div>
+                            <p className="text-center">2° premio</p>
+                        </div>
+                        <div className="col-4">
+                            <div className="row premio-verde">
+                                <img src={regaloVerde} alt="" />
+                            </div>
+                            <p className="text-center">3° premio</p>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <button className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+/*
+
                         <div className="col-4">
                             <div className="row premio">
                                 <div>s</div>
@@ -84,12 +127,4 @@ export default class Home extends Component {
                             </div>
                             <p className="text-center">3° premio</p>
                         </div>
-                    </div>
-                    <div className="text-center">
-                        <Link className="btn btn-dark" to="/">Ver premios</Link>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
+*/

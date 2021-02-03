@@ -6,7 +6,7 @@ import DataTable from 'react-data-table-component';
 const columnas = [
     {
         name: "Id rifa",
-        selector: "rifa_id",
+        selector: "numero_rifa",
         sortable: true
     },
     {
@@ -15,8 +15,23 @@ const columnas = [
         sortable: true
     },
     {
-        name: "Cliente Id",
-        selector: "cliente_id",
+        name: "Cliente Nombre",
+        selector: "cliente_nombre",
+        sortable: true
+    },
+    {
+        name: "Cliente Apellido",
+        selector: "cliente_apellido",
+        sortable: true
+    },
+    {
+        name: "Cliente Email",
+        selector: "cliente_email",
+        sortable: true
+    },
+    {
+        name: "Cliente Telefono",
+        selector: "cliente_telefono",
         sortable: true
     },
     {
@@ -55,9 +70,15 @@ export default class Admin extends Component {
                     arrayNuevo[i].compra_id = "No hay una compra hecha";
                 }
 
-                if (arrayNuevo[i].cliente_id === null) {
-                    arrayNuevo[i].cliente_id = "Ningun cliente compro esta rifa";
+                if (arrayNuevo[i].cliente_nombre === null && arrayNuevo[i].cliente_email === null &&
+                    arrayNuevo[i].cliente_telefono === null && arrayNuevo[i].cliente_apellido === null) {
+
+                    arrayNuevo[i].cliente_nombre = "No comprada";
+                    arrayNuevo[i].cliente_apellido = "No comprada";
+                    arrayNuevo[i].cliente_email = "No comprada";
+                    arrayNuevo[i].cliente_telefono = "No comprada";
                 }
+
             }
             return arrayNuevo;
         } else {

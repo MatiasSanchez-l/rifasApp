@@ -3,7 +3,7 @@ const rifasCtrl = {};
 
 rifasCtrl.obtener_rifas = async (req, res) => {
   try {
-    const resultado = await db.query("SELECT * FROM rifa");
+    const resultado = await db.query("select rifa_id as numero_rifa, disponible, nombre as cliente_nombre, apellido as cliente_apellido, email as cliente_email, telefono as cliente_telefono, compra_id from rifa r left join cliente cl on cl.cliente_id = r.cliente_id;");
     res.status(200).json({
       status: "success",
       resultado: resultado.rows.length,

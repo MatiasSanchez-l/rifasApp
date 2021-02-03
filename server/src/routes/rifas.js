@@ -3,7 +3,7 @@ const router = Router();
 const { obtener_rifas, crear_rifas, comprar_rifas } = require('../controllers/rifas.controller');
 
 router.route("/")
-    .get(obtener_rifas)
+    .get(obtener_rifas);
 
 router.route("/crear/:cantidad")
     .post(crear_rifas);

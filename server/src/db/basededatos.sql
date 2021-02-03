@@ -1,10 +1,14 @@
 /*DROP DATABASE rifas;
 CREATE DATABASE rifas;*/
 
+/* create extension if not exists "uuid-ossp";
+usuario_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+contraseña (admin) encriptada = $2b$10$V7ieSdV/.Fu8MK7.8ky9gub83OB2/UDz/Hju62X.khFhUbkQS6ARe*/
+
 CREATE TABLE IF NOT EXISTS usuario(
     usuario_id SERIAL PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL,
-    contrasenia VARCHAR ( 50 ) NOT NULL
+    contrasenia VARCHAR ( 250 ) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS cliente (

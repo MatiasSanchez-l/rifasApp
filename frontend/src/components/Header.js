@@ -12,7 +12,7 @@ export default class Header extends Component {
                     <div className="container">
                         <Navbar.Brand href="#home">
                             <img src={logo} className="img-fluid img-header mx-2" alt="Logo | Pagina " />
-                            Proyecto Oscar
+                            #JuntosxOscar
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './home.css';
-import { Link as button } from 'react-router-dom';
+import './css/home.css';
+import { Link } from 'react-router-dom';
 import { Slider } from '@material-ui/core';
 import regaloVerde from './helper/cajaVerde.png';
 
@@ -24,7 +24,7 @@ export default class Home extends Component {
         recaudado: 250000
     }
     irAlInstagram = () => {
-        let win = window.open("https://www.instagram.com/ProyectoOscar/", '_blank');
+        let win = window.open("https://www.instagram.com/juntosxoscar/", '_blank');
         win.focus();
     }
     render() {
@@ -37,11 +37,43 @@ export default class Home extends Component {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <h3>Nuestra Historia</h3>
-                        <p className="lh-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Earum fuga dolorum aspernatur consequatur exercitationem?
-                        Blanditiis dolor sunt modi quam totam iure ipsa veritatis soluta at, vel voluptatibus eveniet, quod fugit.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quia, labore ducimus animi sapiente
-                        sed tempore laborum omnis ipsum, assumenda quo unde, optio laboriosam minus voluptas soluta! Quia, quidem minima.</p>
+                        <div className="texto_inicio">
+                            <p>
+                                -“Che, Cabezón, tenemos que pensar en hacerte un cuarto abajo…
+                            </p>
+                            <p>
+                                - No sé… Vemos…. Cualquier cosa cuando no pueda subir y bajar más, me quedo arriba y listo
+                            </p>
+                            <p>
+                                - Cabezón! ¿Vos sos b…?
+                            </p>
+                            <p>
+                                El cabezón es Oscar Fagliano, un hombre de 55 años que el 11 de septiembre de 2020 fue diagnosticado con ELA (Esclerosis Lateral Amiotrófica). Un balde de agua fría que le anticipó que sus músculos se iban a ir perdiendo, y con ellos, todas sus posibilidades de moverse y valerse por sí mismo.
+                            </p>
+                            <p>
+                                El diálogo con el que empieza este texto lo tuvo Oscar con sus amigos de la infancia, los del Fiat 600. Ellos arrancaron esta idea que hoy es una necesidad concreta. Vivimos en un dúplex, nuestro cuarto está arriba y la escalera es cada vez más imposible. Queremos hacer una habitación abajo. Somos gente de trabajo y no nos sobra nada. Por eso nos atrevemos a pedir ayuda.
+                            </p>
+                            <p>
+                                La ELA cambió la vida de Oscar y también la de toda la familia, los amigos y las comunidades a las que pertenecemos. Armamos entre todos una red de amor que sostiene y contiene, y ayuda a encontrar alegría y esperanza, incluso en estos momentos.
+                            </p>
+                            <p>
+                                Tenemos una profunda fe en Dios. Oscar más que nadie. Sabemos que estamos en sus manos, y que no nos va a dejar solos. Por eso, estamos convencidos que Dios obrará a través de cada uno de ustedes ayudando a cumplir esta necesidad.
+                            </p>
+                            <p>
+                                Creemos que tenemos que defender la alegría porque la vida de Oscar, hijo, hermano, esposo, padre, tío, sobrino, amigo, merece ser celebrada y vencida. Y porque “delante nunca está la muerte. Delante siempre está la vida”
+                            </p>
+                        </div>
+
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h3>Proyecto</h3>
+                        <iframe
+                            title="video papa"
+                            width="100%" height="315"
+                            src="https://www.youtube.com/embed/vdE_cZgx_L0"
+                            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="videoHome"></iframe>
                         <div className="d-flex justify-content-between p-2">
                             <Slider
                                 valueLabelDisplay="off"
@@ -53,25 +85,13 @@ export default class Home extends Component {
                             <i className="p-1 fas fa-home"></i>
                         </div>
                         <div className="d-flex justify-content-center fs-5">
-                            <p className="p-1 m-auto">SI QUIERES SEGUIR EL PROCESO DEL PROYECTO HAZ CLICK EN EL LOGO</p>
-                            <div className="p-1 m-auto logo-instagram">
-                                <p
-                                    className="pointer"
-                                    onClick={this.irAlInstagram}>
-                                    <i className="fab fa-instagram fs-1"></i>
-                                </p>
-                            </div>
+                            <p className="p-1 m-auto text-center">Para poder acompañarnos durante el proceso del proyecto seguinos en
+                                <span
+                                    className="pointer p-1 instagram-home"
+                                    onClick={this.irAlInstagram}> <i className="fab fa-instagram "></i> @juntosxoscar
+                                </span>
+                            </p>
                         </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <h3>Proyecto</h3>
-                        <iframe
-                            title="video papa"
-                            width="560" height="315"
-                            src="https://www.youtube.com/embed/vdE_cZgx_L0"
-                            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="videoHome"></iframe>
                     </div>
                 </div>
                 <hr />
@@ -100,7 +120,7 @@ export default class Home extends Component {
                         </div>
                     </div>
                     <div className="text-center">
-                        <button className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</button>
+                        <Link className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</Link>
                     </div>
                 </div>
             </div>

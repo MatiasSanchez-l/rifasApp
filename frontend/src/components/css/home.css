@@ -21,7 +21,7 @@
     width: 120px;
     height: 120px;
     background: no-repeat center;
-    background-image: url("./helper/premio.svg");
+    background-image: url("../helper/premio.svg");
     margin: auto;
     color: transparent;
 }
@@ -36,6 +36,28 @@
     background-color: #255f25bb!important;
     border-color: #255f25!important;
 }
-.logo-instagram i{
-    color:#255f25bb!important
+
+.logo-instagram i {
+    color: #255f25bb!important
+}
+
+.texto_inicio {
+    text-align: justify;
+}
+
+.texto_inicio p {
+    margin: 8px;
+}
+
+.instagram-home {
+    /*border-bottom: 1px #255f25 solid;*/
+    transition: 0.5s;
+    margin-left: 2px;
+    color: #2f772f;
+}
+
+.instagram-home:hover {
+    background-color: #255f25cc;
+    border-radius: 12px;
+    color: #fff;
 }

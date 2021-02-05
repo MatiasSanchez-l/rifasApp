@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
-import './ComprarRifa.css';
+import './css/ComprarRifa.css';
 //import emailjs from 'emailjs-com';
 
 
@@ -28,7 +28,8 @@ export default class CompraRifa extends Component {
 
     restarCantidadRifas = e => {
         let cantidad = Number(e.target.value)
-        let nuevaCantidad = this.state.cantidadRifas - cantidad;
+
+        let nuevaCantidad = this.state.cantidadRifas - cantidad <= 0 ? 0 : this.state.cantidadRifas - cantidad;
         let nuevoValor = (nuevaCantidad * 200);
         this.setState({
             cantidadRifas: nuevaCantidad,
@@ -46,7 +47,7 @@ export default class CompraRifa extends Component {
     };
 
     restarCantidad = () => {
-        let cantidad = this.state.cantidadRifas -= 1;
+        let cantidad = this.state.cantidadRifas === 0 ? 0 : this.state.cantidadRifas -= 1;
         let nuevoValor = (cantidad * 200);
 
         this.setState({
@@ -107,7 +108,7 @@ export default class CompraRifa extends Component {
         })
     }
 
-  
+
     render() {
         return (
             <div className="compraRifa mb-5">

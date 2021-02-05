@@ -4,28 +4,6 @@ const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
 const usuariosCtrl = {};
 
-usuariosCtrl.crear_usuario = (req, res) => {
-  console.log("creando usuario");
-};
-
-usuariosCtrl.obtener_usuario = async (req, res) => {
-  try {
-    const resultado = await db.query(
-      "SELECT * FROM usuario where usuario_id = $1",
-      [req.params.id]
-    );
-
-    res.status(200).json({
-      status: "success",
-      data: {
-        usuario: resultado.rows[0],
-      },
-    });
-  } catch (e) {
-    console.error(e.message);
-  }
-};
-
 usuariosCtrl.loguear_usuario = async (req, res) => {
   try {
     //1. destructure the req.body

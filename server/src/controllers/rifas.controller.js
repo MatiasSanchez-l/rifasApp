@@ -18,13 +18,19 @@ rifasCtrl.obtener_rifas = async (req, res) => {
 
 rifasCtrl.crear_rifas = async (req, res) => {
   try {
+
+    await db.query('BEGIN');
+
     const cantidad_rifas = req.params.cantidad;
     let resultado = "";
+
     for (let i = 0; i < cantidad_rifas; i++) {
       resultado = await db.query(
         "INSERT INTO rifa(disponible) VALUES(TRUE) RETURNING *"
       );
     }
+
+    await db.query('COMMIT');
 
     res.status(200).json({
       status: "success",
@@ -34,6 +40,7 @@ rifasCtrl.crear_rifas = async (req, res) => {
       },
     });
   } catch (e) {
+    await db.query('ROLLBACK');
     console.error(e.message);
   }
 };
@@ -41,13 +48,16 @@ rifasCtrl.crear_rifas = async (req, res) => {
 rifasCtrl.comprar_rifas = async (req, res) => {
   try {
     // cantidad de rifas a comprar
+    const precio_rifa = 200;
     const cantidad_rifas_comprar = req.body.cantidad;
+    const monto = cantidad_rifas_comprar * precio_rifa;
     const cliente_nombre = req.body.nombre;
     const cliente_apellido = req.body.apellido;
     const cliente_telefono = req.body.telefono;
     const cliente_email = req.body.email;
-    const monto = req.body.valorTotal;
     const fecha = new Date();
+    const estado = "pago";
+    
 
     let errores = [];
 
@@ -57,7 +67,6 @@ rifasCtrl.comprar_rifas = async (req, res) => {
       !cliente_apellido ||
       !cliente_telefono ||
       !cliente_email ||
-      !monto ||
       !fecha
     ) {
       errores.push({ mensaje: "Por favor llene todos los campos." });
@@ -68,6 +77,7 @@ rifasCtrl.comprar_rifas = async (req, res) => {
         errores: errores,
       });
     } else {
+      await db.query('BEGIN');
       //obtener rifas disponibles
       const rifas_disponibles = await db.query(
         "SELECT rifa_id FROM rifa WHERE disponible = TRUE"
@@ -85,8 +95,8 @@ rifasCtrl.comprar_rifas = async (req, res) => {
 
       //registrar compra
       const compra_id_json = await db.query(
-        "INSERT INTO compra(monto, cantidad, fecha) VALUES($1, $2, $3) returning compra_id;",
-        [monto, cantidad_rifas_comprar, fecha]
+        "INSERT INTO compra(monto, cantidad, estado, fecha) VALUES($1, $2, $3, $4) returning compra_id;",
+        [monto, cantidad_rifas_comprar, estado,fecha]
       );
       const compra_id = compra_id_json.rows[0].compra_id;
 
@@ -107,6 +117,8 @@ rifasCtrl.comprar_rifas = async (req, res) => {
         );
       }
 
+      await db.query('COMMIT');
+
       res.status(200).json({
         cantidad: cantidad_rifas_comprar,
         cliente_nombre: cliente_nombre,
@@ -118,6 +130,7 @@ rifasCtrl.comprar_rifas = async (req, res) => {
       });
     }
   } catch (e) {
+    await db.query('ROLLBACK');
     console.error(e.message);
   }
 };

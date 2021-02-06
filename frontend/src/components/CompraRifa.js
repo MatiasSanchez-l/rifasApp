@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import './css/ComprarRifa.css';
@@ -13,7 +13,8 @@ export default class CompraRifa extends Component {
         apellido: '',
         email: '',
         telefono: '',
-        compras: {}
+        compras: {},
+        isWaiting: false
     }
 
     sumarCantidadRifas = e => {
@@ -64,28 +65,31 @@ export default class CompraRifa extends Component {
 
     registrarUsuarioYCompra = async e => {
         e.preventDefault();
+        this.setState({
+            isWaiting: true
+        });
         const newCompra = {
             nombre: this.state.nombre,
             apellido: this.state.apellido,
             email: this.state.email,
             telefono: this.state.telefono,
             cantidad: this.state.cantidadRifas,
-            valorTotal: this.state.valorTotal
         };
         this.setState({ compras: newCompra });
 
         const res = await axios.put('http://localhost:5000/rifas/comprar', newCompra);
 
-        console.log(res.data.rifas_compradas);
         if (res.data.errores !== undefined) {
             swal({
                 title: "Ocurrio un error en la compra de sus rifas",
                 text: res.data.errores[0].mensaje,
                 icon: "error"
             })
+            this.setState({
+                isWaiting: false
+            });
         }
         else {
-            console.log(res)
             swal({
                 title: "Gracias por tu colaboracion",
                 text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: " + res.data.rifas_compradas.map(rifa => rifa),
@@ -93,6 +97,9 @@ export default class CompraRifa extends Component {
             });
             this.vaciarState();
             e.target.reset();
+            this.setState({
+                isWaiting: false
+            });
         }
     }
 
@@ -134,19 +141,19 @@ export default class CompraRifa extends Component {
                     <div>
                         <h5 className="fw-bold text-center m-1">Elija la cantidad de bonos</h5>
                         <div className="mt-3 text-center botones">
-                            <button onClick={this.sumarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 1</button>
-                            <button onClick={this.sumarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 10</button>
-                            <button onClick={this.sumarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 20</button>
-                            <button onClick={this.sumarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 50</button>
-                            <button onClick={this.sumarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 100</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 1</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 10</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 20</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 50</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 100</button>
                         </div>
                     </div>
                     <div className="mt-3 text-center botones">
-                        <button onClick={this.restarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 1</button>
-                        <button onClick={this.restarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 10</button>
-                        <button onClick={this.restarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 20</button>
-                        <button onClick={this.restarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 50</button>
-                        <button onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 100</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 1</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 10</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 20</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 50</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 100</button>
                     </div>
                     <div className="p-2 mt-3">
                         <div className="row justify-content-center c-espe">
@@ -155,8 +162,8 @@ export default class CompraRifa extends Component {
                                 <h3 className="">Valor total: ${this.state.valorTotal}</h3>
                             </div>
                             <div className="col-6">
-                                <button onClick={this.restarCantidad} className="btn btn-outline-verde-signos mx-3"><i className="fas fa-minus"></i></button>
-                                <button onClick={this.sumarCantidad} className="btn btn-outline-verde-signos mx-3"><i className="fas fa-plus"></i></button>
+                                <button disabled={this.state.isWaiting} onClick={this.restarCantidad} className="btn btn-outline-verde-signos mx-3"><i className="fas fa-minus"></i></button>
+                                <button disabled={this.state.isWaiting} onClick={this.sumarCantidad} className="btn btn-outline-verde-signos mx-3"><i className="fas fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
@@ -202,7 +209,7 @@ export default class CompraRifa extends Component {
                             </div>
                         </div>
                         <div className="text-end">
-                            <button type="submit" className="btn btn-outline-dark btn-outline-verde">Proceder a realizar el pago</button>
+                            <button disabled={this.state.isWaiting} type="submit" className="btn btn-outline-dark btn-outline-verde">Proceder a realizar el pago</button>
                         </div>
                     </form>
                 </div>

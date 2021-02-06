@@ -4,7 +4,13 @@ import swal from 'sweetalert';
 import './css/Contacto.css';
 
 export default class Contacto extends Component {
+    state = {
+        isWaiting: false
+    }
     sendEmail = (e) => {
+        this.setState({
+            isWaiting: true
+        });
         e.preventDefault();
         emailjs.sendForm('service_myznhyg', 'template_0ox8qt3', e.target, 'user_BZzmPmLVZ1sJ2alDio8vi')
             .then((result) => {
@@ -15,6 +21,9 @@ export default class Contacto extends Component {
                     icon: "success"
 
                 })
+                this.setState({
+                    isWaiting: false
+                });
             }, (error) => {
                 swal({
                     title: error,
@@ -22,6 +31,9 @@ export default class Contacto extends Component {
                     icon: "error"
 
                 })
+                this.setState({
+                    isWaiting: false
+                });
             });
         e.target.reset();
     }
@@ -66,7 +78,7 @@ export default class Contacto extends Component {
                             <textarea className="form-control" name="message" />
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-dark btn-outline-verde-contacto mt-4 text-white" type="submit">Enviar</button>
+                            <button disabled={this.state.isWaiting} className="btn btn-dark btn-outline-verde-contacto mt-4 text-white" type="submit">Enviar</button>
                         </div>
                     </form>
                 </div>

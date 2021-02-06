@@ -49,6 +49,8 @@ const Dashboard = ({ setAuth }) => {
     });
     const [rifas, setRifas] = useState([]);
 
+    let [isWaiting, setWaiting] = useState(false)
+
     async function getName() {
         try {
             const response = await fetch("http://localhost:5000/dashboard/", {
@@ -136,6 +138,7 @@ const Dashboard = ({ setAuth }) => {
     }, []);
     const generarRifas = async e => {
         e.preventDefault();
+        setWaiting(true);
         try {
             if (cantidadRifasAGenerar.cantidadRifasAGenerar === "" || cantidadRifasAGenerar.cantidadRifasAGenerar === '0') {
                 swal({
@@ -143,6 +146,7 @@ const Dashboard = ({ setAuth }) => {
                     text: "Ocurrio un error al crear las rifas, por favor intentelo de nuevo",
                     icon: "error"
                 })
+                setWaiting(false);
             } else {
                 console.log(cantidadRifasAGenerar.cantidadRifasAGenerar)
                 const res = await fetch('http://localhost:5000/rifas/crear/' + cantidadRifasAGenerar.cantidadRifasAGenerar, {
@@ -156,14 +160,16 @@ const Dashboard = ({ setAuth }) => {
                         icon: "success"
                     });
                     e.target.reset();
-
+                    setWaiting(false);
                 } else {
                     swal({
                         title: "Ocurrio un error",
                         text: "Ocurrio un error al crear las rifas, por favor intentelo de nuevo",
                         icon: "error"
                     })
+                    setWaiting(false);
                 }
+                setWaiting(false);
             }
         } catch (err) {
             console.error(err.message);
@@ -193,7 +199,7 @@ const Dashboard = ({ setAuth }) => {
                                 </div>
                             </div>
                             <div className="text-center">
-                                <button type="submit" className="mt-3 btn btn-success">Generar Rifas</button>
+                                <button disabled={isWaiting} type="submit" className="mt-3 btn btn-success">Generar Rifas</button>
                             </div>
                         </form>
                     </div>

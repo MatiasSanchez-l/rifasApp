@@ -9,7 +9,7 @@ dashboardCtrl.algo = async (req, res) => {
             [req.user]
           );
 
-          //res.json(user.rows[0]);
+          res.json(user.rows[0]);
       
           res.status(200).json({
             status: "success",

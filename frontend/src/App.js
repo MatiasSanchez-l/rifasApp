@@ -1,29 +1,67 @@
 import './App.css';
-import React from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Home from './components/Home';
 import CompraRifa from './components/CompraRifa';
 import Contacto from './components/Contacto';
-import Admin from './components/Admin';
+import Dashboard from './components/Dashboard';
 import Premios from './components/Premios';
+import Login from './components/Login';
+import Admin from './components/Admin';
 //import Footer from './components/Footer';
 
+toast.configure();
 
 function App() {
-  return (
-    <Router>
-      <Header />
-      <div className="container">
-        <Route exact path="/" component={Home} />
-        <Route exact path="/comprarRifa" component={CompraRifa} />
-        <Route exact path="/contacto" component={Contacto} />
-        <Route exact path="/admin" component={Admin} />
-        <Route exact path="/premios" component={Premios} />
-      </div>
 
-    </Router>
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const setAuth = boolean => {
+    setIsAuthenticated(boolean);
+  }
+
+  async function isAuth() {
+    try {
+      const response = await fetch("http://localhost:5000/usuarios/verificado", {
+        method: "GET",
+        headers: { token: localStorage.token }
+      });
+
+      const parseRes = await response.json();
+
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  }
+
+  useEffect(() => {
+    isAuth()
+  })
+
+  return (
+    <Fragment>
+      <Router>
+        <Header />
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/comprarRifa" component={CompraRifa} />
+            <Route exact path="/contacto" component={Contacto} />
+            <Route exact path="/premios" component={Premios} />
+            <Route exact path="/admin" component={Admin} />
+            <Route exact path="/login" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)} />
+            <Route exact path="/dashboard" render={props => isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/login" />} />
+          </Switch>
+        </div>
+      </Router>
+    </Fragment>
   );
 }
 

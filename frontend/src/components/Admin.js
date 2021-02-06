@@ -118,7 +118,7 @@ export default class Admin extends Component {
             [e.target.name]: e.target.value
         });
     }
-    guardar
+
     render() {
         return (
             <div className="mt-3">

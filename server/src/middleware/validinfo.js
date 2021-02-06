@@ -1,5 +1,5 @@
 module.exports = function(req, res, next) {
-    const { nombre_usuario, contrasenia, email } = req.body;
+    const { telefono, email } = req.body;
 
     function validEmail(userEmail) {
       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail);
@@ -7,6 +7,10 @@ module.exports = function(req, res, next) {
 
     if (!validEmail(email)) {
       return res.status(401).json("Email no es correcto.");
+    }
+
+    if(isNaN(telefono)){
+      return res.status(401).json("Numero de telefono no es correcto.");
     }
   
     next();

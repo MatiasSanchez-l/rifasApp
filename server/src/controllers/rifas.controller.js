@@ -20,8 +20,10 @@ rifasCtrl.crear_rifas = async (req, res) => {
   try {
 
     await db.query('BEGIN');
-
     const cantidad_rifas = req.params.cantidad;
+    if(isNaN(cantidad_rifas) || cantidad_rifas <= 0){
+      res.status(401).json("Debe completar la cantidad de rifas a crear.");
+    }else{
     let resultado = "";
 
     for (let i = 0; i < cantidad_rifas; i++) {
@@ -39,6 +41,7 @@ rifasCtrl.crear_rifas = async (req, res) => {
         rifas: resultado.rows,
       },
     });
+  }
   } catch (e) {
     await db.query('ROLLBACK');
     console.error(e.message);

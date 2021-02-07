@@ -60,7 +60,7 @@ export default class Home extends Component {
                                 Tenemos una profunda fe en Dios. Oscar más que nadie. Sabemos que estamos en sus manos, y que no nos va a dejar solos. Por eso, estamos convencidos que Dios obrará a través de cada uno de ustedes ayudando a cumplir esta necesidad.
                             </p>
                             <p>
-                                Creemos que tenemos que defender la alegría porque la vida de Oscar, hijo, hermano, esposo, padre, tío, sobrino, amigo, merece ser celebrada y vencida. Y porque “delante nunca está la muerte. Delante siempre está la vida”
+                                Creemos que tenemos que defender la alegría porque la vida de Oscar, hijo, hermano, esposo, padre, tío, sobrino, amigo, merece ser celebrada y bendecida. Y porque “delante nunca está la muerte. Delante siempre está la vida”
                             </p>
                         </div>
 

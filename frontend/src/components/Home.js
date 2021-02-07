@@ -3,6 +3,7 @@ import './css/home.css';
 import { Link } from 'react-router-dom';
 import { Slider } from '@material-ui/core';
 import regaloVerde from './helper/cajaVerde.png';
+import axios from 'axios';
 
 const marks = [
     {
@@ -27,6 +28,12 @@ export default class Home extends Component {
         let win = window.open("https://www.instagram.com/juntosxoscar/", '_blank');
         win.focus();
     }
+
+    async componentDidMount() {
+        const res = await axios.get('http://localhost:5000/rifas/total');
+        console.log(res.data.data.monto[0])
+    }
+
     render() {
         return (
             <div className="container mt-3 mb-3">

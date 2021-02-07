@@ -78,7 +78,7 @@ export default class CompraRifa extends Component {
         this.setState({ compras: newCompra });
 
         const res = await axios.put('http://localhost:5000/rifas/comprar', newCompra);
-
+        console.log(res)
         if (res.data.errores !== undefined) {
             swal({
                 title: "Ocurrio un error en la compra de sus rifas",

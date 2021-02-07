@@ -30,7 +30,7 @@ export default class Home extends Component {
     render() {
         return (
             <div className="container mt-3 mb-3">
-                <h2 className="text-center">BONO CONTRIBUCI&Oacute;N</h2>
+                <h2 className="text-center">BONO a CONTRIBUCI&Oacute;N</h2>
                 <div className="text-center my-4">
                     <hr className="hr" />
                 </div>

@@ -10,7 +10,7 @@ router.route("/crear/:cantidad")
     .post(crear_rifas);
 
 router.route("/comprar")
-    .get(validInfo, comprar_rifas);
+    .put(validInfo, comprar_rifas);
 
 router.route("/total")
     .get(obtener_total);

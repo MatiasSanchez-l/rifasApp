@@ -53,7 +53,7 @@ const Dashboard = ({ setAuth }) => {
 
     async function getName() {
         try {
-            const response = await fetch("http://157.230.218.72:5000/dashboard/", {
+            const response = await fetch("http://localhost:5000/dashboard/", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -146,6 +146,7 @@ const Dashboard = ({ setAuth }) => {
                     icon: "error"
                 })
                 setWaiting(false);
+                setInputs({ ...inputs, cantidadRifasAGenerar: "" });
             } else {
                 console.log(cantidadRifasAGenerar.cantidadRifasAGenerar)
                 const res = await fetch('http://localhost:5000/rifas/crear/' + cantidadRifasAGenerar.cantidadRifasAGenerar, {
@@ -160,6 +161,7 @@ const Dashboard = ({ setAuth }) => {
                     });
                     e.target.reset();
                     setWaiting(false);
+                    setInputs({ ...inputs, cantidadRifasAGenerar: "" });
                 } else {
                     swal({
                         title: "Ocurrio un error",
@@ -167,8 +169,10 @@ const Dashboard = ({ setAuth }) => {
                         icon: "error"
                     })
                     setWaiting(false);
+                    setInputs({ ...inputs, cantidadRifasAGenerar: "" });
                 }
                 setWaiting(false);
+                setInputs({ ...inputs, cantidadRifasAGenerar: "" });
             }
         } catch (err) {
             console.error(err.message);

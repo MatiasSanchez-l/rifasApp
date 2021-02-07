@@ -48,6 +48,22 @@ rifasCtrl.crear_rifas = async (req, res) => {
   }
 };
 
+rifasCtrl.obtener_total = async (req, res) => {
+  try {
+    const resultado = await db.query("SELECT SUM(monto) as total FROM compra;");
+    
+    res.status(200).json({
+      status: "success",
+      data: {
+        monto: resultado.rows,
+      },
+    });
+    
+  } catch (e) {
+    console.error(e.message);
+  }
+};
+
 rifasCtrl.comprar_rifas = async (req, res) => {
   try {
     // cantidad de rifas a comprar

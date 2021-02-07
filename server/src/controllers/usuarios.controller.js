@@ -46,7 +46,7 @@ usuariosCtrl.loguear_usuario = async (req, res) => {
 
     const token = jwtGenerator(user.rows[0].usuario_id);
 
-    res.json({ token });
+    res.status(200).json({ token });
   } catch (e) {
     console.error(e.message);
   }

@@ -53,7 +53,7 @@ const Dashboard = ({ setAuth }) => {
 
     async function getName() {
         try {
-            const response = await fetch("http://localhost:5000/dashboard/", {
+            const response = await fetch("http://157.230.218.72:5000/dashboard/", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -62,7 +62,6 @@ const Dashboard = ({ setAuth }) => {
         } catch (err) {
             console.error(err.message);
         }
-
     }
 
     function verificarCamposVacios(arreglo) {

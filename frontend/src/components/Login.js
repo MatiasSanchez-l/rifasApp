@@ -19,7 +19,7 @@ const Login = ({ setAuth }) => {
         e.preventDefault();
         try {
             const body = { nombre_usuario, contrasenia };
-            const response = await fetch("http://localhost:5000/usuarios/login", {
+            const response = await fetch("http://157.230.218.72:5000/usuarios/login", {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(body)

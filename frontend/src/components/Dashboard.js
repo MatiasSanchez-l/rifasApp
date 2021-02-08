@@ -49,7 +49,9 @@ const Dashboard = ({ setAuth }) => {
     });
     const [rifas, setRifas] = useState([]);
 
-    let [isWaiting, setWaiting] = useState(false)
+    const [recaudado, setRecaudado] = useState("");
+
+    let [isWaiting, setWaiting] = useState(false);
 
     async function getName() {
         try {
@@ -59,6 +61,19 @@ const Dashboard = ({ setAuth }) => {
             });
             const parseRes = await response.json();
             setName(parseRes.nombre_usuario);
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
+    async function getRecaudado() {
+        try {
+            const response = await fetch("http://localhost:5000/rifas/total", {
+                method: "GET",
+
+            });
+            const parseRes = await response.json();
+            setRecaudado(parseRes.data.monto[0].total);
         } catch (err) {
             console.error(err.message);
         }
@@ -111,14 +126,6 @@ const Dashboard = ({ setAuth }) => {
         }
     }
 
-    /*async function componentDidMount() {
-        const res = await axios.get('http://localhost:5000/rifas');
-        const arrayNuevo = this.verificarCamposVacios(res.data.data.rifas);
-        this.setState({
-            rifas: arrayNuevo
-        })
-    }*/
-
     const logout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
@@ -134,6 +141,7 @@ const Dashboard = ({ setAuth }) => {
     useEffect(() => {
         getName();
         getRifas();
+        getRecaudado();
     }, []);
     const generarRifas = async e => {
         e.preventDefault();
@@ -185,6 +193,9 @@ const Dashboard = ({ setAuth }) => {
                 <div className="row mt-3">
                     <h1 className="col-6">Dashboard {name}</h1>
                     <button onClick={e => logout(e)} className="btn btn-outline-danger col-6">Logout</button>
+                </div>
+                <div className="mt-3">
+                    <h5>Recaudado : ${recaudado}</h5>
                 </div>
                 <div className="row p-2 mt-3">
                     <div className="col-12 col-md-4">

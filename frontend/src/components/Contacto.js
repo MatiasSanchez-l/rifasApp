@@ -46,7 +46,7 @@ export default class Contacto extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container mb-3">
                 <div>
                     <h2 className="text-center mt-3">¿TEN&Eacute;S DUDAS?</h2>
                     <h3 className="text-center ">Cont&aacute;ctanos</h3>
@@ -56,7 +56,6 @@ export default class Contacto extends Component {
                             <div className="col-6">
                                 <label className="form-label">Nombre</label>
                                 <input className="form-control" type="text" name="user_name" />
-
                             </div>
                             <div className="col-6">
                                 <label className="form-label">Apellido</label>

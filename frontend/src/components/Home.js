@@ -30,7 +30,7 @@ export default class Home extends Component {
     }
 
     async componentDidMount() {
-        const res = await axios.get('http://localhost:5000/rifas/total');
+        const res = await axios.get('http://157.230.218.72:5000/rifas/total');
         let cantidad = (res.data.data.monto[0].total * 100) / 1000000;
         this.setState({ recaudado: cantidad });
     }

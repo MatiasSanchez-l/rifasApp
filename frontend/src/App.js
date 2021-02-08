@@ -25,7 +25,7 @@ function App() {
 
   async function isAuth() {
     try {
-      const response = await fetch("http://localhost:5000/usuarios/verificado", {
+      const response = await fetch("http://157.230.218.72:5000/usuarios/verificado", {
         method: "GET",
         headers: { token: localStorage.token }
       });

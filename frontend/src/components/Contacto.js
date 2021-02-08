@@ -12,6 +12,7 @@ export default class Contacto extends Component {
             isWaiting: true
         });
         e.preventDefault();
+        console.log(e.target)
         emailjs.sendForm('service_myznhyg', 'template_0ox8qt3', e.target, 'user_BZzmPmLVZ1sJ2alDio8vi')
             .then((result) => {
                 console.log(result.text);
@@ -86,16 +87,10 @@ export default class Contacto extends Component {
                     <h3 className="text-center mt-3">Tambi&eacute;n pod&eacute;s contactarnos a trav&eacute;s de:</h3>
                     <div className="row">
                         <div className="col-12 mt-2">
-                            <i className="fas fa-phone-alt"></i> <span className="fw-bold text-uppercase mx-1">Tel&eacute;fono Fijo:</span> 5292-8780
-                        </div>
-                        <div className="col-12 mt-2">
                             <i className="fas fa-envelope"></i> <span className="fw-bold text-uppercase mx-1">Email:</span> juntosxoscar@gmail.com
                         </div>
                         <div className="col-12 mt-2">
-                            <i className="fab fa-whatsapp"></i> <span className="fw-bold text-uppercase mx-1">Whatsapp:</span> 11-4444-4444
-                        </div>
-                        <div className="col-12 mt-2">
-                            <i className="fab fa-facebook-f"></i> <span className="fw-bold text-uppercase mx-1">Facebook:</span> rifasapp
+                            <i className="fab fa-facebook-f"></i> <span className="fw-bold text-uppercase mx-1">Facebook:</span> JuntosxOscar
                         </div>
                         <div className="col-12 mt-2">
                             <i className="fab fa-instagram"></i> <span className="fw-bold text-uppercase mx-1">Instagram:</span> @juntosxoscar

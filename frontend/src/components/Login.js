@@ -24,6 +24,7 @@ const Login = ({ setAuth }) => {
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(body)
             });
+            console.log(response)
             const parseRes = await response.json();
 
             if (parseRes.token) {

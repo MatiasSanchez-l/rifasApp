@@ -22,7 +22,7 @@ const marks = [
 
 export default class Home extends Component {
     state = {
-        recaudado: 250000
+        recaudado: ""
     }
     irAlInstagram = () => {
         let win = window.open("https://www.instagram.com/juntosxoscar/", '_blank');
@@ -31,7 +31,8 @@ export default class Home extends Component {
 
     async componentDidMount() {
         const res = await axios.get('http://localhost:5000/rifas/total');
-        console.log(res.data.data.monto[0])
+        let cantidad = (res.data.data.monto[0].total * 100) / 1000000;
+        this.setState({ recaudado: cantidad });
     }
 
     render() {
@@ -77,7 +78,7 @@ export default class Home extends Component {
                         <iframe
                             title="video papa"
                             width="100%" height="315"
-                            src="https://www.youtube.com/embed/vdE_cZgx_L0"
+                            src="https://www.youtube.com/embed/UwRIsl4G72c"
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className="videoHome"></iframe>

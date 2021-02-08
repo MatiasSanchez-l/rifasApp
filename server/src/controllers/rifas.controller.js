@@ -1,4 +1,5 @@
 const db = require("../db/index");
+const mercadopago = require('mercadopago');
 const rifasCtrl = {};
 
 rifasCtrl.obtener_rifas = async (req, res) => {
@@ -102,7 +103,7 @@ rifasCtrl.comprar_rifas = async (req, res) => {
         "SELECT rifa_id FROM rifa WHERE disponible = TRUE;"
       );
       const cantidad_rifas_disponibles = rifas_disponibles.rows.length;
-      
+
       //verificar que la cantidad de rifas a comprar sea menor a la cantidad de rifas disponibles
       if (cantidad_rifas_disponibles > cantidad_rifas_comprar) {
         let rifas_compradas = [];
@@ -145,8 +146,114 @@ rifasCtrl.comprar_rifas = async (req, res) => {
           valorTotal: monto,
           rifas_compradas: rifas_compradas,
         });
-      }else{
-        return res.status(401).json("No hay disponible esa cantidad de rifas. Solo quedan: " + cantidad_rifas_disponibles + ".");
+      } else {
+        return res
+          .status(401)
+          .json(
+            "No hay disponible esa cantidad de rifas. Solo quedan: " +
+              cantidad_rifas_disponibles +
+              "."
+          );
+      }
+    }
+  } catch (e) {
+    await db.query("ROLLBACK");
+    console.error(e.message);
+  }
+};
+
+rifasCtrl.comprar_rifas_mp = async (req, res) => {
+  try {
+    // cantidad de rifas a comprar
+    const precio_rifa = 200;
+    const cantidad_rifas_comprar = req.body.cantidad;
+    const monto = cantidad_rifas_comprar * precio_rifa;
+    const cliente_nombre = req.body.nombre;
+    const cliente_apellido = req.body.apellido;
+    const cliente_telefono = req.body.telefono;
+    const cliente_email = req.body.email;
+    const fecha = new Date();
+    const estado = "pago";
+
+    let errores = [];
+
+    if (
+      !cantidad_rifas_comprar ||
+      !cliente_nombre ||
+      !cliente_apellido ||
+      !cliente_telefono ||
+      !cliente_email ||
+      !fecha
+    ) {
+      errores.push({ mensaje: "Por favor llene todos los campos." });
+    }
+
+    if (errores.length > 0) {
+      res.status(200).json({
+        errores: errores,
+      });
+    } else {
+      await db.query("BEGIN");
+
+      //obtener rifas disponibles
+      const rifas_disponibles = await db.query(
+        "SELECT rifa_id FROM rifa WHERE disponible = TRUE;"
+      );
+      const cantidad_rifas_disponibles = rifas_disponibles.rows.length;
+
+      //verificar que la cantidad de rifas a comprar sea menor a la cantidad de rifas disponibles
+      if (cantidad_rifas_disponibles > cantidad_rifas_comprar) {
+        // Crea un objeto de preferencia
+        let preference = {
+          items: [
+            {
+              title: "JuntosXOscar - Bono contribucion",
+              currency_id: "ARS",
+              description: "Cantidad rifas: " + cantidad_rifas_disponibles,
+              quantity: cantidad_rifas_comprar,
+              unit_price: precio_rifa,
+            },
+          ],
+          payment_methods: {
+            excluded_payment_types: [
+              {
+                id: "ticket",
+              },
+              {
+                id: "atm",
+              },
+            ],
+          },
+          external_reference: "Reference_1234",
+          expires: true,
+          binary_mode: true,
+        };
+
+        mercadopago.preferences
+          .create(preference)
+          .then(function (response) {
+            
+            res.send({
+              data:{
+                preference_id: response.body.id,
+                init_point: response.body.init_point,
+              },
+            });
+            
+            // Este valor reemplazará el string "<%= global.id %>" en tu HTML
+            //global.id = response.body.id;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }else {
+        return res
+          .status(401)
+          .json(
+            "No hay disponible esa cantidad de rifas. Solo quedan: " +
+              cantidad_rifas_disponibles +
+              "."
+          );
       }
     }
   } catch (e) {

@@ -142,15 +142,11 @@ rifasCtrl.comprar_rifas = async (req, res) => {
 
         res.status(200).json({
           cantidad: cantidad_rifas_comprar,
-          cliente_nombre: cliente_nombre,
-          cliente_apellido: cliente_apellido,
-          cliente_telefono: cliente_telefono,
-          cliente_email: cliente_email,
           valorTotal: monto,
           rifas_compradas: rifas_compradas,
         });
       }else{
-        return res.status(401).json("No hay disponible esa cantidad de rifas.");
+        return res.status(401).json("No hay disponible esa cantidad de rifas. Solo quedan: " + cantidad_rifas_disponibles + ".");
       }
     }
   } catch (e) {

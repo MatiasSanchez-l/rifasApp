@@ -3,7 +3,9 @@ const rifasCtrl = {};
 
 rifasCtrl.obtener_rifas = async (req, res) => {
   try {
-    const resultado = await db.query("select rifa_id as numero_rifa, disponible, nombre as cliente_nombre, apellido as cliente_apellido, email as cliente_email, telefono as cliente_telefono, compra_id from rifa r left join cliente cl on cl.cliente_id = r.cliente_id;");
+    const resultado = await db.query(
+      "select rifa_id as numero_rifa, disponible, nombre as cliente_nombre, apellido as cliente_apellido, email as cliente_email, telefono as cliente_telefono, compra_id from rifa r left join cliente cl on cl.cliente_id = r.cliente_id;"
+    );
     res.status(200).json({
       status: "success",
       resultado: resultado.rows.length,
@@ -18,32 +20,31 @@ rifasCtrl.obtener_rifas = async (req, res) => {
 
 rifasCtrl.crear_rifas = async (req, res) => {
   try {
-
-    await db.query('BEGIN');
+    await db.query("BEGIN");
     const cantidad_rifas = req.params.cantidad;
-    if(isNaN(cantidad_rifas) || cantidad_rifas <= 0){
+    if (isNaN(cantidad_rifas) || cantidad_rifas <= 0) {
       res.status(401).json("Debe completar la cantidad de rifas a crear.");
-    }else{
-    let resultado = "";
+    } else {
+      let resultado = "";
 
-    for (let i = 0; i < cantidad_rifas; i++) {
-      resultado = await db.query(
-        "INSERT INTO rifa(disponible) VALUES(TRUE) RETURNING *"
-      );
+      for (let i = 0; i < cantidad_rifas; i++) {
+        resultado = await db.query(
+          "INSERT INTO rifa(disponible) VALUES(TRUE) RETURNING *"
+        );
+      }
+
+      await db.query("COMMIT");
+
+      res.status(200).json({
+        status: "success",
+        resultado: resultado.rows.length,
+        data: {
+          rifas: resultado.rows,
+        },
+      });
     }
-
-    await db.query('COMMIT');
-
-    res.status(200).json({
-      status: "success",
-      resultado: resultado.rows.length,
-      data: {
-        rifas: resultado.rows,
-      },
-    });
-  }
   } catch (e) {
-    await db.query('ROLLBACK');
+    await db.query("ROLLBACK");
     console.error(e.message);
   }
 };
@@ -51,14 +52,13 @@ rifasCtrl.crear_rifas = async (req, res) => {
 rifasCtrl.obtener_total = async (req, res) => {
   try {
     const resultado = await db.query("SELECT SUM(monto) as total FROM compra;");
-    
+
     res.status(200).json({
       status: "success",
       data: {
         monto: resultado.rows,
       },
     });
-    
   } catch (e) {
     console.error(e.message);
   }
@@ -76,7 +76,6 @@ rifasCtrl.comprar_rifas = async (req, res) => {
     const cliente_email = req.body.email;
     const fecha = new Date();
     const estado = "pago";
-    
 
     let errores = [];
 
@@ -96,60 +95,66 @@ rifasCtrl.comprar_rifas = async (req, res) => {
         errores: errores,
       });
     } else {
-      await db.query('BEGIN');
+      await db.query("BEGIN");
+
       //obtener rifas disponibles
       const rifas_disponibles = await db.query(
-        "SELECT rifa_id FROM rifa WHERE disponible = TRUE"
+        "SELECT rifa_id FROM rifa WHERE disponible = TRUE;"
       );
       const cantidad_rifas_disponibles = rifas_disponibles.rows.length;
+      
+      //verificar que la cantidad de rifas a comprar sea menor a la cantidad de rifas disponibles
+      if (cantidad_rifas_disponibles > cantidad_rifas_comprar) {
+        let rifas_compradas = [];
 
-      let rifas_compradas = [];
-
-      //registrar cliente
-      const cliente_id_json = await db.query(
-        "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
-        [cliente_nombre, cliente_apellido, cliente_email, cliente_telefono]
-      );
-      const cliente_id = cliente_id_json.rows[0].cliente_id;
-
-      //registrar compra
-      const compra_id_json = await db.query(
-        "INSERT INTO compra(monto, cantidad, estado, fecha) VALUES($1, $2, $3, $4) returning compra_id;",
-        [monto, cantidad_rifas_comprar, estado,fecha]
-      );
-      const compra_id = compra_id_json.rows[0].compra_id;
-
-      //comprar rifas aleatorias
-      for (let i = 0; i < cantidad_rifas_comprar; i++) {
-        const numero_ramdon = Math.floor(
-          Math.random() * cantidad_rifas_disponibles
+        //registrar cliente
+        const cliente_id_json = await db.query(
+          "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
+          [cliente_nombre, cliente_apellido, cliente_email, cliente_telefono]
         );
+        const cliente_id = cliente_id_json.rows[0].cliente_id;
 
-        const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
-
-        rifas_compradas.push(rifa_a_comprar);
-
-        //sacar disponibilida de rifa
-        await db.query(
-          "UPDATE rifa SET disponible = false::boolean, cliente_id = $1, compra_id = $2 WHERE rifa_id = $3;",
-          [cliente_id, compra_id, rifa_a_comprar]
+        //registrar compra
+        const compra_id_json = await db.query(
+          "INSERT INTO compra(monto, cantidad, estado, fecha) VALUES($1, $2, $3, $4) returning compra_id;",
+          [monto, cantidad_rifas_comprar, estado, fecha]
         );
+        const compra_id = compra_id_json.rows[0].compra_id;
+
+        //comprar rifas aleatorias
+        for (let i = 0; i < cantidad_rifas_comprar; i++) {
+          const numero_ramdon = Math.floor(
+            Math.random() * cantidad_rifas_disponibles
+          );
+
+          const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
+
+          rifas_compradas.push(rifa_a_comprar);
+
+          //sacar disponibilida de rifa
+          await db.query(
+            "UPDATE rifa SET disponible = false::boolean, cliente_id = $1, compra_id = $2 WHERE rifa_id = $3;",
+            [cliente_id, compra_id, rifa_a_comprar]
+          );
+        }
+
+        await db.query("COMMIT");
+
+        res.status(200).json({
+          cantidad: cantidad_rifas_comprar,
+          cliente_nombre: cliente_nombre,
+          cliente_apellido: cliente_apellido,
+          cliente_telefono: cliente_telefono,
+          cliente_email: cliente_email,
+          valorTotal: monto,
+          rifas_compradas: rifas_compradas,
+        });
+      }else{
+        return res.status(401).json("No hay disponible esa cantidad de rifas.");
       }
-
-      await db.query('COMMIT');
-
-      res.status(200).json({
-        cantidad: cantidad_rifas_comprar,
-        cliente_nombre: cliente_nombre,
-        cliente_apellido: cliente_apellido,
-        cliente_telefono: cliente_telefono,
-        cliente_email: cliente_email,
-        valorTotal: monto,
-        rifas_compradas: rifas_compradas,
-      });
     }
   } catch (e) {
-    await db.query('ROLLBACK');
+    await db.query("ROLLBACK");
     console.error(e.message);
   }
 };

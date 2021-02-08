@@ -107,24 +107,30 @@ export default class Home extends Component {
                     <h5 className="text-center">Premios a sortear</h5>
                     <div className="row p-2">
                     </div>
-                    <div className="row p-2">
-                        <div className="col-4">
+                    <div className="row justify-content-center p-2">
+                        <div className="col-12 col-md-4">
                             <div className="row premio-verde">
                                 <img src={regaloVerde} alt="" />
                             </div>
                             <p className="text-center">1° premio</p>
                         </div>
-                        <div className="col-4">
+                        <div className="col-12 col-md-4">
                             <div className="row premio-verde">
                                 <img src={regaloVerde} alt="" />
                             </div>
                             <p className="text-center">2° premio</p>
                         </div>
-                        <div className="col-4">
+                        <div className="col-12 col-md-4">
                             <div className="row premio-verde">
                                 <img src={regaloVerde} alt="" />
                             </div>
                             <p className="text-center">3° premio</p>
+                        </div>
+                        <div className="col-12 col-md-4">
+                            <div className="row premio-verde">
+                                <img src={regaloVerde} alt="" />
+                            </div>
+                            <p className="text-center">4° premio</p>
                         </div>
                     </div>
                     <div className="text-center">

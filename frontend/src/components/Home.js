@@ -137,6 +137,9 @@ export default class Home extends Component {
                         <Link className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</Link>
                     </div>
                 </div>
+                <div className="p-2 text-end">
+                    <Link to="/login">Login</Link>
+                </div>
             </div>
         )
     }

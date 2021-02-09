@@ -6,6 +6,7 @@ const mercadopago = require('mercadopago');
 const app = express();
 
 //middlewares
+app.use('/', express.static('../frontend/build'));
 app.use(express.json());
 app.use(cors());
 

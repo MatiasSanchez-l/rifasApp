@@ -225,6 +225,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             ],
           },
           external_reference: "Reference_1234",
+          notification_url: "",
           expires: true,
           binary_mode: true,
         };
@@ -240,8 +241,6 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
               },
             });
             
-            // Este valor reemplazará el string "<%= global.id %>" en tu HTML
-            //global.id = response.body.id;
           })
           .catch(function (error) {
             console.log(error);

@@ -15,6 +15,9 @@ router.route("/comprar")
 router.route("/comprar_mp")
     .put(validInfo, comprar_rifas_mp);
 
+/*router.route("/notificaciones")
+    .post(comprar_rifas);*/
+
 router.route("/total")
     .get(obtener_total);
 

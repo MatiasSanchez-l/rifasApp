@@ -253,7 +253,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             {
               title: "JuntosXOscar - Bono contribucion",
               currency_id: "ARS",
-              description: rifas_compradas,
+              description: "rifa",
               quantity: cantidad_rifas_comprar,
               unit_price: precio_rifa,
             },
@@ -325,6 +325,7 @@ rifasCtrl.notificacion = async (req, res) => {
     console.log("pago ", pago);
 
     await db.query("BEGIN");
+    const rifas_compradas = pago.description;
 
     if (pago.status == "approved") {
       const cliente_nombre = pago.payer.first_name;
@@ -350,9 +351,6 @@ rifasCtrl.notificacion = async (req, res) => {
         [monto, cantidad_rifas_comprar, estado, fecha]
       );
       const compra_id = compra_id_json.rows[0].compra_id;
-
-      const rifas_compradas = pago.description;
-
       
       for (let i = 0; i < rifas_compradas.length; index++) {
         const rifa_a_comprar = rifas_compradas[i];

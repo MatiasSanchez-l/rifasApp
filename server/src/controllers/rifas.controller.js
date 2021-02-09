@@ -1,5 +1,5 @@
 const db = require("../db/index");
-const mercadopago = require('mercadopago');
+const mercadopago = require("mercadopago");
 const rifasCtrl = {};
 
 rifasCtrl.obtener_rifas = async (req, res) => {
@@ -12,6 +12,30 @@ rifasCtrl.obtener_rifas = async (req, res) => {
       resultado: resultado.rows.length,
       data: {
         rifas: resultado.rows,
+      },
+    });
+  } catch (e) {
+    console.error(e.message);
+  }
+};
+
+rifasCtrl.obtener_rifa_random = async (req, res) => {
+  try {
+    const rifas_compradas = await db.query(
+      "SELECT rifa_id FROM rifa WHERE disponible = FALSE;"
+    );
+    const cantidad_rifas = rifas_compradas.rows.length;
+
+    //rifa aleatorias
+    const numero_ramdon = Math.floor(
+      Math.random() * cantidad_rifas
+    );
+
+    const rifa = rifas_compradas.rows[numero_ramdon].rifa_id;
+
+    res.status(200).json({
+      data: {
+        rifa: rifa,
       },
     });
   } catch (e) {
@@ -173,7 +197,6 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
     const cliente_telefono = req.body.telefono;
     const cliente_email = req.body.email;
     const fecha = new Date();
-    const estado = "pago";
 
     let errores = [];
 
@@ -203,17 +226,46 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
 
       //verificar que la cantidad de rifas a comprar sea menor a la cantidad de rifas disponibles
       if (cantidad_rifas_disponibles > cantidad_rifas_comprar) {
+        let rifas_compradas = [];
+
+        //comprar rifas aleatorias
+        for (let i = 0; i < cantidad_rifas_comprar; i++) {
+          const numero_ramdon = Math.floor(
+            Math.random() * cantidad_rifas_disponibles
+          );
+
+          const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
+
+          rifas_compradas.push(rifa_a_comprar);
+
+          //sacar disponibilida de rifa
+          await db.query(
+            "UPDATE rifa SET disponible = false::boolean WHERE rifa_id = $1;",
+            [rifa_a_comprar]
+          );
+        }
+
+        await db.query("COMMIT");
+
         // Crea un objeto de preferencia
         let preference = {
           items: [
             {
               title: "JuntosXOscar - Bono contribucion",
               currency_id: "ARS",
-              description: "Cantidad rifas: " + cantidad_rifas_disponibles,
+              description: rifas_compradas,
               quantity: cantidad_rifas_comprar,
               unit_price: precio_rifa,
             },
           ],
+          payer: {
+            name: cliente_nombre,
+            surname: cliente_apellido,
+            email: cliente_email,
+            phone: {
+              number: cliente_telefono,
+            },
+          },
           payment_methods: {
             excluded_payment_types: [
               {
@@ -233,19 +285,17 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
         mercadopago.preferences
           .create(preference)
           .then(function (response) {
-            
             res.send({
-              data:{
+              data: {
                 preference_id: response.body.id,
                 init_point: response.body.init_point,
               },
             });
-            
           })
           .catch(function (error) {
             console.log(error);
           });
-      }else {
+      } else {
         return res
           .status(401)
           .json(
@@ -254,6 +304,78 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
               "."
           );
       }
+    }
+  } catch (e) {
+    await db.query("ROLLBACK");
+    console.error(e.message);
+  }
+};
+
+/*necesito saber como guardar las rifas que se sacaron su disponibilidad para cuando me llegue la notificacion 
+devolverle la disponibilidad en caso de que ocurrio un error en el pago o registrar la compra en caso de que se aprovo el pago*/
+
+rifasCtrl.notificacion = async (req, res) => {
+  try {
+    const { body } = req;
+    const { data } = body;
+
+    console.log("body", body);
+
+    const pago = await mercadopago.payment.get(data.id);
+    console.log("pago ", pago);
+
+    await db.query("BEGIN");
+
+    if (pago.status == "approved") {
+      const cliente_nombre = pago.payer.first_name;
+      const cliente_apellido = pago.payer.last_name;
+      const cliente_telefono = pago.payer.phone.number;
+      const cliente_email = pago.payer.email;
+      const fecha = new Date();
+      const estado = "pago";
+      const cantidad_rifas_comprar = pago.aditional_info.quantity;
+      const precio = pago.aditional_info.unit_price;
+      const monto = cantidad_rifas_comprar * precio;
+
+      //registrar cliente
+      const cliente_id_json = await db.query(
+        "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
+        [cliente_nombre, cliente_apellido, cliente_email, cliente_telefono]
+      );
+      const cliente_id = cliente_id_json.rows[0].cliente_id;
+
+      //registrar compra
+      const compra_id_json = await db.query(
+        "INSERT INTO compra(monto, cantidad, estado, fecha) VALUES($1, $2, $3, $4) returning compra_id;",
+        [monto, cantidad_rifas_comprar, estado, fecha]
+      );
+      const compra_id = compra_id_json.rows[0].compra_id;
+
+      const rifas_compradas = pago.description;
+
+      
+      for (let i = 0; i < rifas_compradas.length; index++) {
+        const rifa_a_comprar = rifas_compradas[i];
+
+        await db.query(
+          "UPDATE rifa SET cliente_id = $1, compra_id = $2 WHERE rifa_id = $3;",
+          [cliente_id, compra_id, rifa_a_comprar]
+        );
+      }
+
+      await db.query("COMMIT");
+    } else {
+      //volver a poner las rifas en disponibles
+      for (let i = 0; i < rifas_compradas.length; index++) {
+        const rifa_a_comprar = rifas_compradas[i];
+
+        await db.query(
+          "UPDATE rifa SET disponible = true::boolean WHERE rifa_id = $1;",
+          [rifa_a_comprar]
+        );
+      }
+
+      await db.query("COMMIT");
     }
   } catch (e) {
     await db.query("ROLLBACK");

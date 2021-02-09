@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.daa1e7eb.chunk.css",
+    "main.js": "/static/js/main.4b2c41ab.chunk.js",
+    "main.js.map": "/static/js/main.4b2c41ab.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c60b7f5c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c60b7f5c.js.map",
+    "static/css/2.9c1952fe.chunk.css": "/static/css/2.9c1952fe.chunk.css",
+    "static/js/2.b714e0f9.chunk.js": "/static/js/2.b714e0f9.chunk.js",
+    "static/js/2.b714e0f9.chunk.js.map": "/static/js/2.b714e0f9.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.9c1952fe.chunk.css.map": "/static/css/2.9c1952fe.chunk.css.map",
+    "static/css/main.daa1e7eb.chunk.css.map": "/static/css/main.daa1e7eb.chunk.css.map",
+    "static/js/2.b714e0f9.chunk.js.LICENSE.txt": "/static/js/2.b714e0f9.chunk.js.LICENSE.txt",
+    "static/media/cajaVerde.41ed15f3.png": "/static/media/cajaVerde.41ed15f3.png",
+    "static/media/home.css": "/static/media/premio.658e2c62.svg",
+    "static/media/premio3.ea8f39f4.jpeg": "/static/media/premio3.ea8f39f4.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c60b7f5c.js",
+    "static/css/2.9c1952fe.chunk.css",
+    "static/js/2.b714e0f9.chunk.js",
+    "static/css/main.daa1e7eb.chunk.css",
+    "static/js/main.4b2c41ab.chunk.js"
+  ]
+}

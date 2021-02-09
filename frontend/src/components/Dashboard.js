@@ -75,7 +75,7 @@ const Dashboard = ({ setAuth }) => {
             const parseRes = await response.json();
             setRecaudado(parseRes.data.monto[0].total);
         } catch (err) {
-            console.error(err.message);
+            console.error(err.message + "recaudado");
         }
     }
 

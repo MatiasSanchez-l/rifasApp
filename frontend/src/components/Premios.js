@@ -19,7 +19,7 @@ export default class Premios extends Component {
                         <h5>Tostadora Electrica Kanjihome.</h5>
                         <p>Tostadora Electrica Kanjihome Kjh-tm900sec01 900w Plata</p>
                         <p>
-                        Producto: Tostadora Eléctrica <br />
+                            Producto: Tostadora Eléctrica <br />
                         Marca: Kanji<br />
                         Modelo: KJH-TM900SEC01<br />
                         Color: Plateado
@@ -42,7 +42,7 @@ export default class Premios extends Component {
                         <p>La pava eléctrica Kanji de acero inoxidable posee una de capacidad de 1,8 lts y viene con corte automático de temperatura, indicador luminoso de encendido. Su estilo clásico la hace ideal para todo tipo de bebidas.</p>
 
                         <p>
-                        Producto: Pava Eléctrica <br />
+                            Producto: Pava Eléctrica <br />
                         Marca: Kanji<br />
                         Modelo: KJH-PE0159S<br />
                         Color: Rojo
@@ -90,6 +90,34 @@ export default class Premios extends Component {
                         <p>Las cremas estan hechas con ingredientes 100% naturales y son veganas.</p>
                         <p>Crema manos contiene : aceite de almendras, karite, extracto de manzanilla (super calmante), vitamina E y esencial lemongrass</p>
                         <p>Crema exfoliante contiene: aceite de coco, karite, vitamina e y esencial de lavanda.</p>
+                    </div>
+                </div>
+                <hr className="hr my-3" />
+
+                <div className="row">
+                    <div className="col-6">
+                        <h5>Parlante Portatil Inalambrico Bluetooth Bt25.</h5>
+                        <p>
+                            Producto: Parlante Portatil <br />
+                        Marca: NogaNet<br />
+                        Modelo: NG-BT25<br />
+                        Color: Negro
+                        </p>
+                        <p>• CARACTERÍSTICAS •</p>
+                        <ul>
+                            <li>Potencia de salida (RMS): 10 W</li>
+                            <li>Cantidad de parlantes: 1</li>
+                            <li>Configuración de canales: Stereo</li>
+                            <li>Formato del parlante: Caja</li>
+                            
+                        </ul>
+                    </div>
+                    <div className="col-6 text-center parlante">
+                        <img
+                            className="img-fluid img-thumbnail"
+                            src="https://http2.mlstatic.com/parlante-portatil-inalambrico-bluetooth-bt25-led-rgb-D_NQ_NP_868745-MLA43073032259_082020-F.webp%202x"
+                            alt="Premio tostadora" />
+                        <p className="text-center mt-3">3° Premio</p>
                     </div>
                 </div>
             </div>

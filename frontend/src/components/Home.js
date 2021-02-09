@@ -137,8 +137,19 @@ export default class Home extends Component {
                         <Link className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</Link>
                     </div>
                 </div>
-                <div className="p-2 text-end">
-                    <Link to="/login">Login</Link>
+                <hr />
+                <div>
+                    <h3 className="text-center">¿C&oacute;mo funciona el sorteo?</h3>
+                    <div className="p-5 text-center">
+                        CADA RIFA COMPRADA TIENE UN NÚMERO ÚNICO
+                        E IRREPETIBLE, TODOS LOS NÚMEROS SERAN
+                        SORTEADOS EL DIA __________ . HABRA TRES
+                        FUTUROS GANADORES, QUE SERÁN CONTACTADOS
+                        PARA OBTENER SU PREMIO.
+                    </div>
+                </div>
+                <div className="p-2 text-end ">
+                    <Link className="login-home" to="/login">Login</Link>
                 </div>
             </div>
         )

@@ -1,24 +1,24 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config;
 
-module.exports = async(req, res, next) => {
+module.exports = async (req, res, next) => {
     try {
 
         const jwtToken = req.header("token");
 
-        if(!jwtToken){
+        if (!jwtToken) {
             return res.status(403).json("No autorizado");
         }
 
         const payload = jwt.verify(jwtToken, process.env.jwtSecret);
-        
+
         req.user = payload.user;
 
         next();
-    }  catch (e) {
+    } catch (e) {
         console.error(e.message);
 
         return res.status(403).json("No autorizado");
-      }
-      
+    }
+
 };

@@ -29,13 +29,18 @@ function App() {
         method: "GET",
         headers: { token: localStorage.token }
       });
+      try {
+        const parseRes = await response.json();
 
-      const parseRes = await response.json();
+        parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      } catch (error) {
+        setIsAuthenticated(false);
+      }
 
-      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
 
     } catch (err) {
       console.error(err.message);
+
     }
 
   }
@@ -56,7 +61,7 @@ function App() {
             <Route exact path="/premios" component={Premios} />
             <Route exact path="/login" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)} />
             <Route exact path="/dashboard" render={props => isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/login" />} />
-            <Route render={() => <Redirect to={{pathname: "/"}} />} />
+            <Route render={() => <Redirect to={{ pathname: "/" }} />} />
           </Switch>
         </div>
       </Router>

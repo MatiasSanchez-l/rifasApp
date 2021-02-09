@@ -9,7 +9,6 @@ const app = express();
 app.use('/', express.static('../frontend/build'));
 app.use(express.json());
 app.use(cors());
-
 // Agrega credenciales
 mercadopago.configure({
   access_token: process.env.ACCESS_TOKEN

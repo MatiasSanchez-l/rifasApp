@@ -1,41 +1,79 @@
 import React, { Component } from 'react'
-import emailjs from 'emailjs-com';
 import swal from 'sweetalert';
 import './css/Contacto.css';
+import axios from 'axios';
 
 export default class Contacto extends Component {
     state = {
-        isWaiting: false
+        isWaiting: false,
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        consulta: ""
+
     }
-    sendEmail = (e) => {
+    sendEmail = async e => {
+        e.preventDefault();
+
         this.setState({
             isWaiting: true
         });
-        e.preventDefault();
-        console.log(e.target)
-        emailjs.sendForm('service_myznhyg', 'template_0ox8qt3', e.target, 'user_BZzmPmLVZ1sJ2alDio8vi')
-            .then((result) => {
-                console.log(result.text);
+
+        const newConsulta = {
+            nombre: this.state.nombre,
+            apellido: this.state.apellido,
+            email: this.state.email,
+            telefono: this.state.telefono,
+            consulta: this.state.consulta
+        }
+
+        try {
+            const res = await axios.post("http://localhost:5000/nodemailer/contacto", newConsulta);
+
+            if (res.data.status === "success") {
                 swal({
                     title: "Consulta realizada con exito",
-                    text: "Este es el texto",
+                    text: "Le responderemos a la brevedad dejandole un mensaje en la casilla de su email",
                     icon: "success"
-
                 })
                 this.setState({
                     isWaiting: false
                 });
-            }, (error) => {
+                console.log("if de que salio todo bien");
+                this.vaciarState();
+                e.target.reset();
+            }
+            if (res.data.status === "errorCampos") {
                 swal({
-                    title: error,
-                    text: "Ocurrio un error en el envio del email, por favor intente de nuevo.",
+                    title: "Ocurrio un error al enviar su consulta!",
+                    text: res.data.text,
                     icon: "error"
-
                 })
                 this.setState({
                     isWaiting: false
                 });
+                console.log("if de que salio todo mal")
+                this.vaciarState();
+                e.target.reset();
+            }
+        } catch (err) {
+            swal({
+                title: "Ocurrio un error al enviar su consulta!",
+                text: "Por favor intente de nuevo",
+                icon: "error"
+            })
+            this.setState({
+                isWaiting: false
             });
+            this.vaciarState();
+            e.target.reset();
+        }
+
+        this.setState({
+            isWaiting: false
+        });
+        this.vaciarState();
         e.target.reset();
     }
 
@@ -44,7 +82,15 @@ export default class Contacto extends Component {
             [e.target.name]: e.target.value
         })
     };
-
+    vaciarState = () => {
+        this.setState({
+            nombre: "",
+            apellido: "",
+            email: "",
+            telefono: "",
+            consulta: ""
+        })
+    }
     render() {
         return (
             <div className="container mb-3">
@@ -56,26 +102,26 @@ export default class Contacto extends Component {
                         <div className="row  mt-1">
                             <div className="col-6">
                                 <label className="form-label">Nombre</label>
-                                <input className="form-control" type="text" name="user_name" />
+                                <input className="form-control" type="text" name="nombre" value={this.state.nombre} onChange={this.onChange} />
                             </div>
                             <div className="col-6">
                                 <label className="form-label">Apellido</label>
-                                <input className="form-control" type="text" name="user_lastname" />
+                                <input className="form-control" type="text" name="apellido" value={this.state.apellido} onChange={this.onChange} />
                             </div>
                         </div>
                         <div className="row mt-1">
                             <div className="col-6">
                                 <label className="form-label">Email</label>
-                                <input className="form-control" type="email" name="user_email" />
+                                <input className="form-control" type="email" name="email" value={this.state.email} onChange={this.onChange} />
                             </div>
                             <div className="col-6">
                                 <label className="form-label">N&uacute;mero de tel&eacute;fono</label>
-                                <input className="form-control" type="number" name="user_number" />
+                                <input className="form-control" type="number" name="telefono" value={this.state.telefono} onChange={this.onChange} />
                             </div>
                         </div>
                         <div className="mt-1">
                             <label className="form-label">Mensaje o consulta</label>
-                            <textarea className="form-control" name="message" />
+                            <textarea className="form-control" name="consulta" value={this.state.consulta} onChange={this.onChange} />
                         </div>
                         <div className="text-center">
                             <button disabled={this.state.isWaiting} className="btn btn-dark btn-outline-verde-contacto mt-4 text-white" type="submit">Enviar</button>

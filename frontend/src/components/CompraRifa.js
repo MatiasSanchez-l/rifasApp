@@ -78,6 +78,7 @@ export default class CompraRifa extends Component {
         this.setState({ compras: newCompra });
 
         const res = await axios.put('http://localhost:5000/rifas/comprar', newCompra);
+
         if (res.data.errores !== undefined) {
             swal({
                 title: "Ocurrio un error en la compra de sus rifas",
@@ -87,13 +88,19 @@ export default class CompraRifa extends Component {
             this.setState({
                 isWaiting: false
             });
-        }
-        else {
+        } else {
             swal({
                 title: "Gracias por tu colaboracion",
                 text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: " + res.data.rifas_compradas.map(rifa => rifa),
                 icon: "success"
             });
+            const newRifasConsulta = {
+                rifas: res.data.rifas_compradas,
+                email: this.state.email,
+                nombre: this.state.nombre,
+                apellido: this.state.apellido
+            }
+            await axios.post("http://localhost:5000/nodemailer/rifas", newRifasConsulta);
             this.vaciarState();
             e.target.reset();
             this.setState({

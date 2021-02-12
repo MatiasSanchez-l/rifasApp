@@ -51,6 +51,8 @@ const Dashboard = ({ setAuth }) => {
 
     const [recaudado, setRecaudado] = useState("");
 
+    const [rifaAleatoria, setRifaAleatoria] = useState("");
+
     let [isWaiting, setWaiting] = useState(false);
 
     async function getName() {
@@ -142,7 +144,19 @@ const Dashboard = ({ setAuth }) => {
         getName();
         getRifas();
         getRecaudado();
+
     }, []);
+    async function onClick() {
+        try {
+            const response = await fetch("http://localhost:5000/rifas/rifa_rand", {
+                method: "GET",
+            });
+            const parseRes = await response.json();
+            setRifaAleatoria(parseRes.data.rifa);
+        } catch (err) {
+            console.error(err.message + "recaudado");
+        }
+    }
     const generarRifas = async e => {
         e.preventDefault();
         setWaiting(true);
@@ -156,7 +170,6 @@ const Dashboard = ({ setAuth }) => {
                 setWaiting(false);
                 setInputs({ ...inputs, cantidadRifasAGenerar: "" });
             } else {
-                console.log(cantidadRifasAGenerar.cantidadRifasAGenerar)
                 const res = await fetch('http://localhost:5000/rifas/crear/' + cantidadRifasAGenerar.cantidadRifasAGenerar, {
                     method: "POST",
                 });
@@ -196,6 +209,10 @@ const Dashboard = ({ setAuth }) => {
                 </div>
                 <div className="mt-3">
                     <h5>Recaudado : ${recaudado}</h5>
+                </div>
+                <div>
+                    <button className="btn btn-primary" onClick={onClick}>Generar rifa aleatoria</button>
+                    <p className="p-3"><b>{rifaAleatoria}</b></p>
                 </div>
                 <div className="row p-2 mt-3">
                     <div className="col-12 col-md-4">

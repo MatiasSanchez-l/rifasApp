@@ -30,7 +30,7 @@ export default class Home extends Component {
     }
 
     async componentDidMount() {
-        const res = await axios.get('https://juntosxoscar.com.ar/rifas/total');
+        const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/total');
         let cantidad = (res.data.data.monto[0].total * 100) / 1000000;
         this.setState({ recaudado: cantidad });
     }

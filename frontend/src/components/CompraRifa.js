@@ -77,7 +77,7 @@ export default class CompraRifa extends Component {
         };
         this.setState({ compras: newCompra });
             
-        const res = await axios.put('https://juntosxoscar.com.ar/rifas/comprar', newCompra);
+        const res = await axios.put('https://www.juntosxoscar.com.ar/rifas/comprar', newCompra);
 
         if (res.data.errores !== undefined) {
             swal({
@@ -100,7 +100,7 @@ export default class CompraRifa extends Component {
                 nombre: this.state.nombre,
                 apellido: this.state.apellido
             }
-            await axios.post("https://juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
+            await axios.post("https://www.juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
             this.vaciarState();
             e.target.reset();
             this.setState({

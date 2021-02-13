@@ -57,7 +57,7 @@ const Dashboard = ({ setAuth }) => {
 
     async function getName() {
         try {
-            const response = await fetch("https://juntosxoscar.com.ar/dashboard/", {
+            const response = await fetch("https://www.juntosxoscar.com.ar/dashboard/", {
                 method: "GET",
                 headers: { token: localStorage.token }
             });
@@ -70,7 +70,7 @@ const Dashboard = ({ setAuth }) => {
 
     async function getRecaudado() {
         try {
-            const response = await fetch("https://juntosxoscar.com.ar/rifas/total", {
+            const response = await fetch("https://www.juntosxoscar.com.ar/rifas/total", {
                 method: "GET",
 
             });
@@ -115,7 +115,7 @@ const Dashboard = ({ setAuth }) => {
 
     async function getRifas() {
         try {
-            const res = await fetch("https://juntosxoscar.com.ar/rifas", {
+            const res = await fetch("https://www.juntosxoscar.com.ar/rifas", {
                 method: "GET"
             });
             const parseRes = await res.json();
@@ -148,7 +148,7 @@ const Dashboard = ({ setAuth }) => {
     }, []);
     async function onClick() {
         try {
-            const response = await fetch("https://juntosxoscar.com.ar/rifas/rifa_rand", {
+            const response = await fetch("https://www.juntosxoscar.com.ar/rifas/rifa_rand", {
                 method: "GET",
             });
             const parseRes = await response.json();
@@ -170,7 +170,7 @@ const Dashboard = ({ setAuth }) => {
                 setWaiting(false);
                 setInputs({ ...inputs, cantidadRifasAGenerar: "" });
             } else {
-                const res = await fetch('https://juntosxoscar.com.ar/rifas/crear/' + cantidadRifasAGenerar.cantidadRifasAGenerar, {
+                const res = await fetch('https://www.juntosxoscar.com.ar/rifas/crear/' + cantidadRifasAGenerar.cantidadRifasAGenerar, {
                     method: "POST",
                 });
                 if (res.status === 200) {

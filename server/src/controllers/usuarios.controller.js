@@ -15,7 +15,7 @@ usuariosCtrl.loguear_usuario = async (req, res) => {
 
     //2. check if user doesn't exist(If not then we throw error)
     const user = await db.query(
-      'SELECT * FROM "usuario" WHERE nombre_usuario = $1',
+      "SELECT * FROM usuario WHERE nombre_usuario = $1",
       [nombre_usuario]
     );
 

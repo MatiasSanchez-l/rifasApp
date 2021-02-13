@@ -30,7 +30,7 @@ export default class Home extends Component {
     }
 
     async componentDidMount() {
-        const res = await axios.get('http://localhost:5000/rifas/total');
+        const res = await axios.get('https://juntosxoscar.com.ar/rifas/total');
         let cantidad = (res.data.data.monto[0].total * 100) / 1000000;
         this.setState({ recaudado: cantidad });
     }
@@ -95,7 +95,7 @@ export default class Home extends Component {
                         <div className="d-flex justify-content-center fs-5">
                             <p className="p-1 m-auto text-center">Para poder acompañarnos durante el proceso del proyecto seguinos en
                                 <span
-                                    className="pointer p-1 instagram-home"
+                                    className="pointer p-1 mx-1 instagram-home"
                                     onClick={this.irAlInstagram}> <i className="fab fa-instagram "></i> @juntosxoscar
                                 </span>
                             </p>

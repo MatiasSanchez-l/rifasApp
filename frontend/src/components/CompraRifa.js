@@ -76,8 +76,8 @@ export default class CompraRifa extends Component {
             cantidad: this.state.cantidadRifas,
         };
         this.setState({ compras: newCompra });
-
-        const res = await axios.put('http://localhost:5000/rifas/comprar', newCompra);
+            
+        const res = await axios.put('https://juntosxoscar.com.ar/rifas/comprar', newCompra);
 
         if (res.data.errores !== undefined) {
             swal({
@@ -100,7 +100,7 @@ export default class CompraRifa extends Component {
                 nombre: this.state.nombre,
                 apellido: this.state.apellido
             }
-            await axios.post("http://localhost:5000/nodemailer/rifas", newRifasConsulta);
+            await axios.post("https://juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
             this.vaciarState();
             e.target.reset();
             this.setState({
@@ -147,19 +147,19 @@ export default class CompraRifa extends Component {
                     <div>
                         <h5 className="fw-bold text-center m-1">Elija la cantidad de bonos</h5>
                         <div className="mt-3 text-center botones">
-                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 1</button>
-                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 10</button>
-                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 20</button>
-                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 50</button>
-                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">+ 100</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">+ 1</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">+ 10</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">+ 20</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">+ 50</button>
+                            <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">+ 100</button>
                         </div>
                     </div>
                     <div className="mt-3 text-center botones">
-                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 1</button>
-                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 10</button>
-                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 20</button>
-                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 50</button>
-                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 rounded">- 100</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">- 1</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">- 10</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="20" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">- 20</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="50" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">- 50</button>
+                        <button disabled={this.state.isWaiting} onClick={this.restarCantidadRifas} value="100" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">- 100</button>
                     </div>
                     <div className="p-2 mt-3">
                         <div className="row justify-content-center c-espe">

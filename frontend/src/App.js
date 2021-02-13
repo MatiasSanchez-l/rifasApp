@@ -25,7 +25,7 @@ function App() {
 
   async function isAuth() {
     try {
-      const response = await fetch("http://localhost:5000/usuarios/verificado", {
+      const response = await fetch("https://juntosxoscar.com.ar/usuarios/verificado", {
         method: "GET",
         headers: { token: localStorage.token }
       });

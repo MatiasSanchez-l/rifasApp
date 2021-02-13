@@ -29,7 +29,7 @@ export default class Contacto extends Component {
         }
 
         try {
-            const res = await axios.post("http://localhost:5000/nodemailer/contacto", newConsulta);
+            const res = await axios.post("https://juntosxoscar.com.ar/nodemailer/contacto", newConsulta);
 
             if (res.data.status === "success") {
                 swal({

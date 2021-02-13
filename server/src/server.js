@@ -4,7 +4,6 @@ const cors = require("cors");
 // SDK de Mercado Pago
 const mercadopago = require('mercadopago');
 const app = express();
-const db = require("./db/index")
 
 //middlewares
 app.use('/', express.static('../frontend/build'));
@@ -16,17 +15,6 @@ app.use('/premios', express.static('../frontend/build'));
 
 app.use(express.json());
 app.use(cors());
-
-db.connect()
-    .then(obj => {
-        // Can check the server version here (pg-promise v10.1.0+):
-        const serverVersion = obj.client.serverVersion;
-
-        obj.done(); // success, release the connection;
-    })
-    .catch(error => {
-        console.log('ERROR:', error.message || error);
-});
 
 // Agrega credenciales
 mercadopago.configure({

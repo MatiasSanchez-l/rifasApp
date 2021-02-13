@@ -18,12 +18,11 @@ CREATE TABLE IF NOT EXISTS cliente (
     email VARCHAR(255) NOT NULL,
     telefono INT NOT NULL
 );
-
+/*id_mercado_pago VARCHAR(255),*/
 CREATE TABLE IF NOT EXISTS compra(
     compra_id SERIAL PRIMARY KEY,
     monto INT NOT NULL,
     cantidad INT NOT NULL,
-    id_mercado_pago VARCHAR(255),
     estado VARCHAR(50) NOT NULL,
     fecha DATE NOT NULL DEFAULT CURRENT_DATE
 );

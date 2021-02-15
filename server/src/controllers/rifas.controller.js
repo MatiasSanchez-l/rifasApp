@@ -327,9 +327,10 @@ devolverle la disponibilidad en caso de que ocurrio un error en el pago o regist
 
 rifasCtrl.notificacion = async (req, res) => {
   try {
+    console.log("<<<<<<<<<<" + req.body)
     const { body } = req;
     const { data } = body;
-    console.log("<<<<<<<<<<" + data)
+    console.log("<<<<<<<<<<" + req)
     console.log("body", body);
 
     const pago = await mercadopago.payment.get(data.id);

@@ -32,7 +32,7 @@ export default class CompraRifa extends Component {
                         text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
                         icon: "success"
                     });
-                    console.log(response.rifas_compradas)
+                    console.log(this.state)
                 } catch (error) {
                     console.log(error.message)
                 }
@@ -120,11 +120,7 @@ export default class CompraRifa extends Component {
             /*
             ESTO VA DESPUES DE QUE SE PAGUE TODO Y DE TODO OK
             SE ABRE EL MODAL Y TAMBIEN SE MANDA EL EMAIL CON LOS DATOS ANASHE
-            swal({
-                title: "Gracias por tu colaboracion",
-                text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: " + res.data.rifas_compradas.map(rifa => rifa),
-                icon: "success"
-            });
+
             const newRifasConsulta = {
                 rifas: res.data.rifas_compradas,
                 email: this.state.email,

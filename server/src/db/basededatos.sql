@@ -11,6 +11,12 @@ CREATE TABLE IF NOT EXISTS usuario(
     contrasenia VARCHAR ( 250 ) NOT NULL
 );
 
+drop table cliente;
+drop table compra;
+drop table rifas;
+
+
+
 CREATE TABLE IF NOT EXISTS cliente (
     cliente_id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,

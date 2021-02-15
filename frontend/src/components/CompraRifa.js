@@ -17,7 +17,10 @@ export default class CompraRifa extends Component {
         compras: {},
         isWaiting: false
     }
-
+    componentDidMount(){
+        let urlElements = window.location.href.split('/')
+        console.log(urlElements);
+    }
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)
         let nuevaCantidad = this.state.cantidadRifas + cantidad;

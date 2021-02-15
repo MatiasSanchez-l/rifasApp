@@ -17,11 +17,12 @@ export default class CompraRifa extends Component {
         compras: {},
         isWaiting: false
     }
-    componentDidMount() {
+    async componentDidMount() {
         let urlElements = window.location.href.split('&')
         if (urlElements[2]) {
             if (urlElements[3].split('=')[1] === "approved") {
-                console.log("aprobado")
+                const res = await axios.get("https://juntosxoscar.com.ar/rifas/obtener_rifas_compra/", urlElements[4].split('=')[1]);
+                console.log(res)
             } else {
                 console.log("desaprobado")
             }

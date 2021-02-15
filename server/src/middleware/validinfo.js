@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
   }
 
   if (!validEmail(email)) {
-    return res.status(200).json({ errores: { mensaje: "Email no es correcto." } });
+    return res.status(200).json({ errores: [{ mensaje: "Email no es correcto." }] });
   }
 
   if (isNaN(telefono)) {

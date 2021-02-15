@@ -36,10 +36,8 @@ function App() {
       } catch (error) {
         setIsAuthenticated(false);
       }
-
-
     } catch (err) {
-      console.error(err.message);
+      console.error(">>>>>>>>><<<<<<<<<<<<<is auth"+err.message);
 
     }
 

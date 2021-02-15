@@ -402,7 +402,7 @@ rifasCtrl.obtener_rifas_compra = async (req, res) => {
     const compra_id = req.params.external_reference;
 
     const resultado = await db.query(
-      "select rifa_id from rifa where compra_id = $1;",
+      "select rifa_id, nombre, apellido, email FROM rifa r JOIN cliente c ON c.cliente_id = r.cliente_id WHERE compra_id = $1;",
       [compra_id]
     );
     const rifas_compradas = [];
@@ -413,6 +413,9 @@ rifasCtrl.obtener_rifas_compra = async (req, res) => {
 
     res.status(200).json({
       rifas_compradas: rifas_compradas,
+      email: resultado.rows[0].email,
+      nombre:resultado.rows[0].nombre,
+      apellido: resultado.rows[0].apellido
     });
   } catch (e) {
     console.error(e.message);

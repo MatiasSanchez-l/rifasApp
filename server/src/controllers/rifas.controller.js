@@ -334,7 +334,7 @@ rifasCtrl.notificacion = async (req, res) => {
     await db.query("BEGIN");
     const compra_id = pago.response.external_reference;
 
-    if (pago.response.status === "approved") {
+    if (pago.response.status !== "approved") {
       const cliente_nombre = pago.response.payer.first_name;
       const cliente_apellido = pago.response.payer.last_name;
       const cliente_telefono = pago.response.payer.phone.number;
@@ -368,8 +368,8 @@ rifasCtrl.notificacion = async (req, res) => {
       const estado = "denegado";
 
       await db.query(
-        "UPDATE rifa SET disponible = true::boolean, compra_id = $1 WHERE compra_id = $2;",
-        [NULL, compra_id]
+        "UPDATE rifa SET disponible = true::boolean, compra_id = null WHERE compra_id = $1;",
+        [compra_id]
       );
 
       //actualizar estado compra

@@ -27,7 +27,7 @@ export default class CompraRifa extends Component {
                         method: "GET"
                     });
                     const response = await res.json();
-                    console.log(response)
+                    console.log(response.rifas_compradas)
                 } catch (error) {
                     console.log(error.message)
                 }

@@ -36,13 +36,9 @@ function App() {
       } catch (error) {
         setIsAuthenticated(false);
       }
-
-
     } catch (err) {
       console.error(err.message);
-
     }
-
   }
 
   useEffect(() => {

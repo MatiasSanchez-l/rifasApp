@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import { Redirect } from "react-router-dom";
 import swal from 'sweetalert';
 import axios from 'axios';
 import './css/ComprarRifa.css';
@@ -16,7 +17,10 @@ export default class CompraRifa extends Component {
         compras: {},
         isWaiting: false
     }
-
+    componentDidMount(){
+        let urlElements = window.location.href.split('/')
+        console.log(urlElements);
+    }
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)
         let nuevaCantidad = this.state.cantidadRifas + cantidad;
@@ -76,9 +80,9 @@ export default class CompraRifa extends Component {
             cantidad: this.state.cantidadRifas,
         };
         this.setState({ compras: newCompra });
-            console.log("antes de llamar al backend")
+
         const res = await axios.put('https://www.juntosxoscar.com.ar/rifas/comprar_mp', newCompra);
-        console.log(res);
+        console.log(window.location.href)
         if (res.data.errores !== undefined) {
             swal({
                 title: "Ocurrio un error en la compra de sus rifas",
@@ -89,6 +93,12 @@ export default class CompraRifa extends Component {
                 isWaiting: false
             });
         } else {
+            let win = window.open(res.data.data.init_point, '_blank');
+            win.focus();
+
+            /*
+            ESTO VA DESPUES DE QUE SE PAGUE TODO Y DE TODO OK
+            SE ABRE EL MODAL Y TAMBIEN SE MANDA EL EMAIL CON LOS DATOS ANASHE
             swal({
                 title: "Gracias por tu colaboracion",
                 text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: " + res.data.rifas_compradas.map(rifa => rifa),
@@ -105,7 +115,7 @@ export default class CompraRifa extends Component {
             e.target.reset();
             this.setState({
                 isWaiting: false
-            });
+            });*/
         }
     }
 

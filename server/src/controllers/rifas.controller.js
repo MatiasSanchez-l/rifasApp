@@ -319,9 +319,6 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
   }
 };
 
-/*necesito saber como guardar las rifas que se sacaron su disponibilidad para cuando me llegue la notificacion 
-devolverle la disponibilidad en caso de que ocurrio un error en el pago o registrar la compra en caso de que se aprovo el pago*/
-
 rifasCtrl.notificacion = async (req, res) => {
   try {
     const { body } = req;

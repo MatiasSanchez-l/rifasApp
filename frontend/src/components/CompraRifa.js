@@ -127,7 +127,7 @@ export default class CompraRifa extends Component {
                 isWaiting: false
             });
         } else {
-            let win = window.open(res.data.data.init_point, '_blank');
+            let win = window.open(res.data.data.init_point);
             win.focus();
             this.vaciarState();
             e.target.reset();

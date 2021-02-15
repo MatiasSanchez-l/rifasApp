@@ -336,18 +336,18 @@ rifasCtrl.notificacion = async (req, res) => {
     console.log("pago ", pago);
 
     await db.query("BEGIN");
-    const compra_id = pago.external_reference;
+    const compra_id = pago.response.external_reference;
  
     if (pago.response.status === "approved") {
       console.log("entro al if de arpovves")
-      const cliente_nombre = pago.payer.first_name;
-      const cliente_apellido = pago.payer.last_name;
-      const cliente_telefono = pago.payer.phone.number;
-      const cliente_email = pago.payer.email;
+      const cliente_nombre = pago.response.payer.first_name;
+      const cliente_apellido = pago.response.payer.last_name;
+      const cliente_telefono = pago.response.payer.phone.number;
+      const cliente_email = pago.response.payer.email;
       const fecha = new Date();
       const estado = "aprobado";
-      const cantidad_rifas_comprar = pago.aditional_info.quantity;
-      const precio = pago.aditional_info.unit_price;
+      const cantidad_rifas_comprar = pago.response.aditional_info.quantity;
+      const precio = pago.response.aditional_info.unit_price;
       const monto = cantidad_rifas_comprar * precio;
 
       //registrar cliente

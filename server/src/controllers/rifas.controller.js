@@ -334,10 +334,7 @@ rifasCtrl.notificacion = async (req, res) => {
 
     await db.query("BEGIN");
     const compra_id = pago.external_reference;
-    const rifas_compradas = await db.query(
-      "SELECT rifa_id FROM rifa WHERE compra_id = $1;",
-      [compra_id]
-    );
+    
 
     if (pago.status == "approved") {
       const cliente_nombre = pago.payer.first_name;

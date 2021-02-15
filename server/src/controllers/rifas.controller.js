@@ -327,10 +327,9 @@ devolverle la disponibilidad en caso de que ocurrio un error en el pago o regist
 
 rifasCtrl.notificacion = async (req, res) => {
   try {
-    console.log("<<<<<<<<<<" + req.body)
+    
     const { body } = req;
     const { data } = body;
-    console.log("<<<<<<<<<<" + req)
     console.log("body", body);
 
     const pago = await mercadopago.payment.get(data.id);
@@ -338,12 +337,10 @@ rifasCtrl.notificacion = async (req, res) => {
 
     await db.query("BEGIN");
     const compra_id = pago.external_reference;
-    const rifas_compradas = await db.query(
-      "SELECT rifa_id FROM rifa WHERE compra_id = $1;",
-      [compra_id]
-    );
+ 
 
     if (pago.status == "approved") {
+      console.log("entro al if de arpovves")
       const cliente_nombre = pago.payer.first_name;
       const cliente_apellido = pago.payer.last_name;
       const cliente_telefono = pago.payer.phone.number;

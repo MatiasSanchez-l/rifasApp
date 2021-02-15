@@ -21,14 +21,20 @@ export default class CompraRifa extends Component {
         let urlElements = window.location.href.split('&')
         if (urlElements[2]) {
             if (urlElements[3].split('=')[1] === "approved") {
-                const external_reference = urlElements[4].split('=')[1];
+                /*const external_reference = urlElements[4].split('=')[1];
                 console.log(typeof (external_reference));
                 const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/', external_reference);
-                console.log(res)
+                console.log(res)*/
+                this.funcionComponent();
             } else {
                 console.log("desaprobado")
             }
         }
+    }
+    async funcionComponent() {
+        const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/', 6);
+        console.log(res)
+
     }
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)

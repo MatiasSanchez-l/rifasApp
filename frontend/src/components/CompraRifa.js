@@ -36,7 +36,7 @@ export default class CompraRifa extends Component {
             const res = await fetch('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/' + 6, {
                 method: "GET"
             });
-            console.log(res)
+            console.log(res.json())
         } catch (error) {
             console.log(error.message)
         }

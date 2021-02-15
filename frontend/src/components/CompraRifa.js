@@ -19,6 +19,11 @@ export default class CompraRifa extends Component {
     }
     componentDidMount() {
         let urlElements = window.location.href.split('&')
+        if(urlElements[2]){
+            console.log("existe")
+        }else{
+            console.log("no existe")
+        }
         console.log(urlElements.map(map => map + "-"));
         console.log(urlElements[4].split('=')[1])
     }

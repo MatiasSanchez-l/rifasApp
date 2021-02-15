@@ -78,7 +78,6 @@ export default class CompraRifa extends Component {
         };
         this.setState({ compras: newCompra });
 
-        console.log("antes de llamar al backend")
         const res = await axios.put('https://www.juntosxoscar.com.ar/rifas/comprar_mp', newCompra);
 
         if (res.data.errores !== undefined) {
@@ -91,8 +90,8 @@ export default class CompraRifa extends Component {
                 isWaiting: false
             });
         } else {
-            <Redirect to={res.data.data.init_point} />
-
+            let win = window.open(res.data.data.init_point, '_blank');
+            win.focus();
 
             /*
             ESTO VA DESPUES DE QUE SE PAGUE TODO Y DE TODO OK

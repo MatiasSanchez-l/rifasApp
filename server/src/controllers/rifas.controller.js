@@ -26,7 +26,6 @@ rifasCtrl.obtener_rifa_random = async (req, res) => {
       "SELECT rifa_id FROM rifa r JOIN compra c ON c.compra_id = r.compra_id WHERE r.disponible = FALSE AND c.estado=$1;",
       [estado]
     );
-    console.log(rifas_compradas)
     const cantidad_rifas = rifas_compradas.rows.length;
 
     //rifa aleatorias
@@ -349,7 +348,7 @@ rifasCtrl.notificacion = async (req, res) => {
     await db.query("BEGIN");
     const compra_id = pago.response.external_reference;
 
-    if (pago.response.status === "approved") {
+    if (pago.response.status !== "approved") {
       const cliente_nombre = pago.response.payer.first_name;
       const cliente_apellido = pago.response.payer.last_name;
       const cliente_telefono = pago.response.payer.phone.number;

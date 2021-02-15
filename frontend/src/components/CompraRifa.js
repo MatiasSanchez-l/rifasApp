@@ -21,10 +21,6 @@ export default class CompraRifa extends Component {
         let urlElements = window.location.href.split('&')
         if (urlElements[2]) {
             if (urlElements[3].split('=')[1] === "approved") {
-                /*
-                console.log(typeof (external_reference));
-                const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/', external_reference);
-                console.log(res)*/
                 try {
                     const external_reference = urlElements[4].split('=')[1];
                     const res = await fetch('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/' + external_reference, {

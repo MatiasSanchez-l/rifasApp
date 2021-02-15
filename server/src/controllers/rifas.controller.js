@@ -329,7 +329,7 @@ rifasCtrl.notificacion = async (req, res) => {
   try {
     const { body } = req;
     const { data } = body;
-
+    console.log("<<<<<<<<<<" + data.response.id)
     console.log("body", body);
 
     const pago = await mercadopago.payment.get(data.id);

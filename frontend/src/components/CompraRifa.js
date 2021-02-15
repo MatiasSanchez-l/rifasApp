@@ -27,6 +27,11 @@ export default class CompraRifa extends Component {
                         method: "GET"
                     });
                     const response = await res.json();
+                    swal({
+                        title: "Gracias por tu colaboracion",
+                        text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
+                        icon: "success"
+                    });
                     console.log(response.rifas_compradas)
                 } catch (error) {
                     console.log(error.message)

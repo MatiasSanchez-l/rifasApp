@@ -26,6 +26,7 @@ rifasCtrl.obtener_rifa_random = async (req, res) => {
       "SELECT rifa_id FROM rifa r JOIN compra c ON c.compra_id = r.compra_id WHERE r.disponible = FALSE AND c.estado=$1;",
       [estado]
     );
+    console.log(rifas_compradas)
     const cantidad_rifas = rifas_compradas.rows.length;
 
     //rifa aleatorias

@@ -346,9 +346,7 @@ rifasCtrl.notificacion = async (req, res) => {
       const cliente_email = pago.response.payer.email;
       const fecha = new Date();
       const estado = "aprobado";
-      const cantidad_rifas_comprar = pago.response.aditional_info.items.quantity;
-      const precio = pago.response.aditional_info.items.unit_price;
-      const monto = cantidad_rifas_comprar * precio;
+
 
       //registrar cliente
       const cliente_id_json = await db.query(

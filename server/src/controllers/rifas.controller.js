@@ -27,9 +27,7 @@ rifasCtrl.obtener_rifa_random = async (req, res) => {
     const cantidad_rifas = rifas_compradas.rows.length;
 
     //rifa aleatorias
-    const numero_ramdon = Math.floor(
-      Math.random() * cantidad_rifas
-    );
+    const numero_ramdon = Math.floor(Math.random() * cantidad_rifas);
 
     const rifa = rifas_compradas.rows[numero_ramdon].rifa_id;
 
@@ -76,9 +74,11 @@ rifasCtrl.crear_rifas = async (req, res) => {
 
 rifasCtrl.obtener_total = async (req, res) => {
   try {
-    const estado = 'aprobado';
-    const resultado = await db.query("SELECT SUM(monto) as total FROM compra WHERE estado = $1;",
-      [estado]);
+    const estado = "aprobado";
+    const resultado = await db.query(
+      "SELECT SUM(monto) as total FROM compra WHERE estado = $1;",
+      [estado]
+    );
 
     res.status(200).json({
       status: "success",
@@ -177,8 +177,8 @@ rifasCtrl.comprar_rifas = async (req, res) => {
           .status(401)
           .json(
             "No hay disponible esa cantidad de rifas. Solo quedan: " +
-            cantidad_rifas_disponibles +
-            "."
+              cantidad_rifas_disponibles +
+              "."
           );
       }
     }
@@ -243,8 +243,8 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
               Math.random() * cantidad_rifas_disponibles
             );
 
-            const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
-
+            const rifa_a_comprar =
+              rifas_disponibles.rows[numero_ramdon].rifa_id;
 
             //sacar disponibilida de rifa
             await db.query(
@@ -284,11 +284,12 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             },
             back_urls: {
               success: "https://juntosxoscar.com.ar/comprarRifa?result=true",
-              failure: "https://juntosxoscar.com.ar/comprarRifa?result=false"
+              failure: "https://juntosxoscar.com.ar/comprarRifa?result=false",
             },
             auto_return: "approved",
             external_reference: compra_id.toString(),
-            notification_url: "https://www.juntosxoscar.com.ar/rifas/notificaciones",
+            notification_url:
+              "https://www.juntosxoscar.com.ar/rifas/notificaciones",
             expires: true,
             binary_mode: true,
           };
@@ -314,7 +315,17 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
         }
       } else {
         return res
-          .status(200).json({ errores: [{ mensaje: "No hay disponible esa cantidad de rifas. Solo quedan: " + cantidad_rifas_disponibles + "." }] });
+          .status(200)
+          .json({
+            errores: [
+              {
+                mensaje:
+                  "No hay disponible esa cantidad de rifas. Solo quedan: " +
+                  cantidad_rifas_disponibles +
+                  ".",
+              },
+            ],
+          });
       }
     }
   } catch (e) {
@@ -324,7 +335,6 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
 
 rifasCtrl.notificacion = async (req, res) => {
   try {
-
     const { body } = req;
     const { data } = body;
     console.log("body", body);
@@ -332,7 +342,7 @@ rifasCtrl.notificacion = async (req, res) => {
     const pago = await mercadopago.payment.get(data.id);
 
     console.log("pago ", pago);
-    console.log(data.id)
+    console.log(data.id);
     await db.query("BEGIN");
     const compra_id = pago.response.external_reference;
 
@@ -344,7 +354,6 @@ rifasCtrl.notificacion = async (req, res) => {
       const fecha = new Date();
       const estado = "aprobado";
 
-
       //registrar cliente
       const cliente_id_json = await db.query(
         "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
@@ -353,16 +362,16 @@ rifasCtrl.notificacion = async (req, res) => {
       const cliente_id = cliente_id_json.rows[0].cliente_id;
 
       //actualizar estado compra
-      await db.query(
-        "UPDATE compra SET estado = $1 WHERE compra_id = $2;",
-        [estado, compra_id]
-      );
+      await db.query("UPDATE compra SET estado = $1 WHERE compra_id = $2;", [
+        estado,
+        compra_id,
+      ]);
 
       //actualizar cliente de rifa
-      await db.query(
-        "UPDATE rifa SET cliente_id = $1 WHERE compra_id = $2;",
-        [cliente_id, compra_id]
-      );
+      await db.query("UPDATE rifa SET cliente_id = $1 WHERE compra_id = $2;", [
+        cliente_id,
+        compra_id,
+      ]);
 
       await db.query("COMMIT");
     } else {
@@ -375,15 +384,37 @@ rifasCtrl.notificacion = async (req, res) => {
       );
 
       //actualizar estado compra
-      await db.query(
-        "UPDATE compra SET estado = $1 WHERE compra_id = $2;",
-        [estado, compra_id]
-      );
+      await db.query("UPDATE compra SET estado = $1 WHERE compra_id = $2;", [
+        estado,
+        compra_id,
+      ]);
 
       await db.query("COMMIT");
     }
   } catch (e) {
     await db.query("ROLLBACK");
+    console.error(e.message);
+  }
+};
+
+rifasCtrl.obtener_rifas_compra = async (req, res) => {
+  try {
+    const compra_id = req.params.external_reference;
+
+    const resultado = await db.query(
+      "select rifa_id from rifa where compra_id = $1;",
+      [compra_id]
+    );
+    const rifas_compradas = [];
+
+    for (let i = 0; i < resultado.rows.length; i++) {
+      rifas_compradas.push(resultado.rows[i].rifa_id);
+    }
+
+    res.status(200).json({
+      rifas_compradas: rifas_compradas,
+    });
+  } catch (e) {
     console.error(e.message);
   }
 };

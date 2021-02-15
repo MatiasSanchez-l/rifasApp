@@ -17,9 +17,9 @@ export default class CompraRifa extends Component {
         compras: {},
         isWaiting: false
     }
-    componentDidMount(){
+    componentDidMount() {
         let urlElements = window.location.href.split('/')
-        console.log(urlElements);
+        console.log(urlElements.map(map => map + "-"));
     }
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)

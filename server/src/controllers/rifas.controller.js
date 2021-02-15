@@ -229,80 +229,84 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
 
       //verificar que la cantidad de rifas a comprar sea menor a la cantidad de rifas disponibles
       if (cantidad_rifas_disponibles > cantidad_rifas_comprar) {
-
-        //registrar compra
-        const compra_id_json = await db.query(
-          "INSERT INTO compra(monto, cantidad, estado, fecha) VALUES($1, $2, $3, $4) returning compra_id;",
-          [monto, cantidad_rifas_comprar, estado, fecha]
-        );
-        const compra_id = compra_id_json.rows[0].compra_id;
-
-        //comprar rifas aleatorias
-        for (let i = 0; i < cantidad_rifas_comprar; i++) {
-          const numero_ramdon = Math.floor(
-            Math.random() * cantidad_rifas_disponibles
+        try {
+          //registrar compra
+          const compra_id_json = await db.query(
+            "INSERT INTO compra(monto, cantidad, estado, fecha) VALUES($1, $2, $3, $4) returning compra_id;",
+            [monto, cantidad_rifas_comprar, estado, fecha]
           );
+          const compra_id = compra_id_json.rows[0].compra_id;
 
-          const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
+          //comprar rifas aleatorias
+          for (let i = 0; i < cantidad_rifas_comprar; i++) {
+            const numero_ramdon = Math.floor(
+              Math.random() * cantidad_rifas_disponibles
+            );
+
+            const rifa_a_comprar = rifas_disponibles.rows[numero_ramdon].rifa_id;
 
 
-          //sacar disponibilida de rifa
-          await db.query(
-            "UPDATE rifa SET disponible = false::boolean, compra_id = $1 WHERE rifa_id = $2;",
-            [compra_id, rifa_a_comprar]
-          );
-        }
+            //sacar disponibilida de rifa
+            await db.query(
+              "UPDATE rifa SET disponible = false::boolean, compra_id = $1 WHERE rifa_id = $2;",
+              [compra_id, rifa_a_comprar]
+            );
+          }
 
-        // Crea un objeto de preferencia
-        let preference = {
-          items: [
-            {
-              title: "JuntosXOscar - Bono contribucion",
-              currency_id: "ARS",
-              description: "rifa",
-              quantity: cantidad_rifas_comprar,
-              unit_price: precio_rifa,
-            },
-          ],
-          payer: {
-            name: cliente_nombre,
-            surname: cliente_apellido,
-            email: cliente_email,
-            phone: {
-              number: parseInt(cliente_telefono),
-            },
-          },
-          payment_methods: {
-            excluded_payment_types: [
+          // Crea un objeto de preferencia
+          let preference = {
+            items: [
               {
-                id: "ticket",
-              },
-              {
-                id: "atm",
+                title: "JuntosXOscar - Bono contribucion",
+                currency_id: "ARS",
+                description: "rifa",
+                quantity: cantidad_rifas_comprar,
+                unit_price: precio_rifa,
               },
             ],
-          },
-          external_reference: toString(compra_id),
-          notification_url: "http://juntosxoscar.com.ar/rifas/notificaciones",
-          expires: true,
-          binary_mode: true,
-        };
-
-        await db.query("COMMIT");
-
-        mercadopago.preferences
-          .create(preference)
-          .then(function (response) {
-            res.send({
-              data: {
-                preference_id: response.body.id,
-                init_point: response.body.init_point,
+            payer: {
+              name: cliente_nombre,
+              surname: cliente_apellido,
+              email: cliente_email,
+              phone: {
+                number: parseInt(cliente_telefono),
               },
+            },
+            payment_methods: {
+              excluded_payment_types: [
+                {
+                  id: "ticket",
+                },
+                {
+                  id: "atm",
+                },
+              ],
+            },
+            external_reference: toString(compra_id),
+            notification_url: "http://juntosxoscar.com.ar/rifas/notificaciones",
+            expires: true,
+            binary_mode: true,
+          };
+
+          await db.query("COMMIT");
+
+          mercadopago.preferences
+            .create(preference)
+            .then(function (response) {
+              res.send({
+                data: {
+                  preference_id: response.body.id,
+                  init_point: response.body.init_point,
+                },
+              });
+            })
+            .catch(function (error) {
+              console.log(error);
             });
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        } catch (err) {
+          await db.query("ROLLBACK");
+          console.error(err.message);
+        }
       } else {
         return res
           .status(401)
@@ -314,7 +318,6 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
       }
     }
   } catch (e) {
-    await db.query("ROLLBACK");
     console.error(e.message);
   }
 };

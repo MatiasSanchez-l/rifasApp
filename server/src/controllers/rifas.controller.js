@@ -282,6 +282,11 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
                 },
               ],
             },
+            back_urls: {
+              success: "https://juntosxoscar.com.ar/comprarRifa?result=true",
+              failure: "https://juntosxoscar.com.ar/comprarRifa?result=false"
+            },
+            auto_return: "approved",
             external_reference: compra_id.toString(),
             notification_url: "https://www.juntosxoscar.com.ar/rifas/notificaciones",
             expires: true,
@@ -334,7 +339,7 @@ rifasCtrl.notificacion = async (req, res) => {
     await db.query("BEGIN");
     const compra_id = pago.response.external_reference;
 
-    if (pago.response.status !== "approved") {
+    if (pago.response.status === "approved") {
       const cliente_nombre = pago.response.payer.first_name;
       const cliente_apellido = pago.response.payer.last_name;
       const cliente_telefono = pago.response.payer.phone.number;

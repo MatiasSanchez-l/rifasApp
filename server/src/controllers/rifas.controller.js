@@ -269,7 +269,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             surname: cliente_apellido,
             email: cliente_email,
             phone: {
-              number: cliente_telefono,
+              number: parseInt(cliente_telefono),
             },
           },
           payment_methods: {

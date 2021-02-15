@@ -78,7 +78,7 @@ rifasCtrl.obtener_total = async (req, res) => {
   try {
     const estado = 'aprobado';
     const resultado = await db.query("SELECT SUM(monto) as total FROM compra WHERE estado = $1;",
-    [estado]);
+      [estado]);
 
     res.status(200).json({
       status: "success",
@@ -177,8 +177,8 @@ rifasCtrl.comprar_rifas = async (req, res) => {
           .status(401)
           .json(
             "No hay disponible esa cantidad de rifas. Solo quedan: " +
-              cantidad_rifas_disponibles +
-              "."
+            cantidad_rifas_disponibles +
+            "."
           );
       }
     }
@@ -253,8 +253,6 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
           );
         }
 
-        await db.query("COMMIT");
-
         // Crea un objeto de preferencia
         let preference = {
           items: [
@@ -290,6 +288,8 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
           binary_mode: true,
         };
 
+        await db.query("COMMIT");
+
         mercadopago.preferences
           .create(preference)
           .then(function (response) {
@@ -308,8 +308,8 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
           .status(401)
           .json(
             "No hay disponible esa cantidad de rifas. Solo quedan: " +
-              cantidad_rifas_disponibles +
-              "."
+            cantidad_rifas_disponibles +
+            "."
           );
       }
     }
@@ -362,7 +362,7 @@ rifasCtrl.notificacion = async (req, res) => {
         "UPDATE compra SET estado = $1 WHERE compra_id = $2;",
         [estado, compra_id]
       );
-      
+
       //actualizar cliente de rifa
       await db.query(
         "UPDATE rifa SET cliente_id = $1 WHERE compra_id = $2;",
@@ -372,18 +372,18 @@ rifasCtrl.notificacion = async (req, res) => {
       await db.query("COMMIT");
     } else {
       //volver a poner las rifas en disponibles
-        const estado = "denegado";
+      const estado = "denegado";
 
-        await db.query(
-          "UPDATE rifa SET disponible = true::boolean, compra_id = $1 WHERE compra_id = $2;",
-          [NULL, compra_id]
-        );
-      
+      await db.query(
+        "UPDATE rifa SET disponible = true::boolean, compra_id = $1 WHERE compra_id = $2;",
+        [NULL, compra_id]
+      );
+
       //actualizar estado compra
-        await db.query(
-          "UPDATE compra SET estado = $1 WHERE compra_id = $2;",
-          [estado, compra_id]
-        );
+      await db.query(
+        "UPDATE compra SET estado = $1 WHERE compra_id = $2;",
+        [estado, compra_id]
+      );
 
       await db.query("COMMIT");
     }

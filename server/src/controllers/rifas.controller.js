@@ -309,12 +309,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
         }
       } else {
         return res
-          .status(401)
-          .json(
-            "No hay disponible esa cantidad de rifas. Solo quedan: " +
-            cantidad_rifas_disponibles +
-            "."
-          );
+          .status(200).json({ errores: [{ mensaje: "No hay disponible esa cantidad de rifas. Solo quedan: " + cantidad_rifas_disponibles + "." }] });
       }
     }
   } catch (e) {
@@ -327,18 +322,18 @@ devolverle la disponibilidad en caso de que ocurrio un error en el pago o regist
 
 rifasCtrl.notificacion = async (req, res) => {
   try {
-    
+
     const { body } = req;
     const { data } = body;
     console.log("body", body);
 
     const pago = await mercadopago.payment.get(data.id);
-    
+
     console.log("pago ", pago);
     console.log(data.id)
     await db.query("BEGIN");
     const compra_id = pago.response.external_reference;
- 
+
     if (pago.response.status === "approved") {
       const cliente_nombre = pago.response.payer.first_name;
       const cliente_apellido = pago.response.payer.last_name;

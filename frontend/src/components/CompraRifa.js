@@ -20,7 +20,7 @@ export default class CompraRifa extends Component {
     componentDidMount() {
         let urlElements = window.location.href.split('&')
         console.log(urlElements.map(map => map + "-"));
-        console.log(urlElements[4].split('='))
+        console.log(urlElements[4].split('=')[1])
     }
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)

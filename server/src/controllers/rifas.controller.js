@@ -21,9 +21,10 @@ rifasCtrl.obtener_rifas = async (req, res) => {
 
 rifasCtrl.obtener_rifa_random = async (req, res) => {
   try {
+    const estado = 'aprobado';
     const rifas_compradas = await db.query(
       "SELECT rifa_id FROM rifa r JOIN compra c ON c.compra_id = r.compra_id WHERE r.disponible = FALSE AND c.estado=$1;",
-      ['aprobado']
+      [estado]
     );
     const cantidad_rifas = rifas_compradas.rows.length;
 

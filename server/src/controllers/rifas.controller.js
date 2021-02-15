@@ -236,7 +236,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             [monto, cantidad_rifas_comprar, estado, fecha]
           );
           const compra_id = compra_id_json.rows[0].compra_id;
-            console.log(compra_id_json.rows[0].compra_id);
+
           //comprar rifas aleatorias
           for (let i = 0; i < cantidad_rifas_comprar; i++) {
             const numero_ramdon = Math.floor(
@@ -282,7 +282,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
                 },
               ],
             },
-            external_reference: toString(compra_id),
+            external_reference: '"' + compra_id + '"',
             notification_url: "https://www.juntosxoscar.com.ar/rifas/notificaciones",
             expires: true,
             binary_mode: true,

@@ -37,10 +37,8 @@ function App() {
         setIsAuthenticated(false);
       }
     } catch (err) {
-      console.error(">>>>>>>>><<<<<<<<<<<<<is auth"+err.message);
-
+      console.error(err.message);
     }
-
   }
 
   useEffect(() => {

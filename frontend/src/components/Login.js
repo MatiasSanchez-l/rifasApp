@@ -35,7 +35,7 @@ const Login = ({ setAuth }) => {
             }
 
         } catch (err) {
-            console.error("<<<<<<<<<<<<<<<<<login"+err.message);
+            console.error(err.message);
         }
     }
 

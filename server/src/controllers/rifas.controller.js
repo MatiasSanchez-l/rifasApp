@@ -283,8 +283,8 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
               ],
             },
             back_urls: {
-              success: "https://juntosxoscar.com.ar/comprarRifa?result=true",
-              failure: "https://juntosxoscar.com.ar/comprarRifa?result=false"
+              success: "https://juntosxoscar.com.ar/comprarRifa/",
+              failure: "https://juntosxoscar.com.ar/comprarRifa/"
             },
             auto_return: "approved",
             external_reference: compra_id.toString(),

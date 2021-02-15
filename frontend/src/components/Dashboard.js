@@ -140,12 +140,7 @@ const Dashboard = ({ setAuth }) => {
     }
     const cantidadRifasAGenerar = inputs;
 
-    useEffect(() => {
-        getName();
-        getRifas();
-        getRecaudado();
 
-    }, []);
     async function onClick() {
         try {
             const response = await fetch("https://www.juntosxoscar.com.ar/rifas/rifa_rand", {
@@ -198,8 +193,13 @@ const Dashboard = ({ setAuth }) => {
         } catch (err) {
             console.error(err.message);
         }
-
     }
+    useEffect(() => {
+        getName();
+        getRifas();
+        getRecaudado();
+
+    }, []);
     return (
         <Fragment>
             <div className="container">

@@ -32,12 +32,24 @@ export default class CompraRifa extends Component {
                         text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
                         icon: "success"
                     });
-                    console.log(this.state)
+                    /*
+                    const newRifasConsulta = {
+                        rifas: response.rifas_compradas,
+                        email: response.email,
+                        nombre: response.nombre,
+                        apellido: response.apellido
+                    }
+                    await axios.post("https://www.juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
+                    */
                 } catch (error) {
                     console.log(error.message)
                 }
             } else {
-                console.log("desaprobado")
+                swal({
+                    title: "Ocurrio un error en el pago",
+                    text: "Al momento de realizar la compra, sucedio un error. Por favor intentelo de nuevo!",
+                    icon: "error"
+                });
             }
         }
     }
@@ -116,23 +128,11 @@ export default class CompraRifa extends Component {
         } else {
             let win = window.open(res.data.data.init_point, '_blank');
             win.focus();
-
-            /*
-            ESTO VA DESPUES DE QUE SE PAGUE TODO Y DE TODO OK
-            SE ABRE EL MODAL Y TAMBIEN SE MANDA EL EMAIL CON LOS DATOS ANASHE
-
-            const newRifasConsulta = {
-                rifas: res.data.rifas_compradas,
-                email: this.state.email,
-                nombre: this.state.nombre,
-                apellido: this.state.apellido
-            }
-            await axios.post("https://www.juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
             this.vaciarState();
             e.target.reset();
             this.setState({
                 isWaiting: false
-            });*/
+            });
         }
     }
 

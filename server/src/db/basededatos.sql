@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 
 drop table cliente;
 drop table compra;
-drop table rifas;
+drop table rifa;
 
 
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS cliente (
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    telefono INT NOT NULL
+    telefono VARCHAR(50) NOT NULL
 );
 /*id_mercado_pago VARCHAR(255),*/
 CREATE TABLE IF NOT EXISTS compra(

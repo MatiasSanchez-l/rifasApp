@@ -236,7 +236,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             [monto, cantidad_rifas_comprar, estado, fecha]
           );
           const compra_id = compra_id_json.rows[0].compra_id;
-            console.log(toString(compra_id));
+            console.log(compra_id_json.rows[0].compra_id);
           //comprar rifas aleatorias
           for (let i = 0; i < cantidad_rifas_comprar; i++) {
             const numero_ramdon = Math.floor(

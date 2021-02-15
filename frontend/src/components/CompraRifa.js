@@ -22,7 +22,7 @@ export default class CompraRifa extends Component {
         if (urlElements[2]) {
             if (urlElements[3].split('=')[1] === "approved") {
                 const external_reference = urlElements[4].split('=')[1];
-                console.log(external_reference);
+                console.log(typeof (external_reference));
                 const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/', external_reference);
                 console.log(res)
             } else {

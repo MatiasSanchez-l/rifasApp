@@ -33,7 +33,11 @@ export default class CompraRifa extends Component {
     }
     async funcionComponent() {
         try {
-            const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/', 6);
+            const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/', {
+                data: {
+                    external_reference: 6
+                }
+            });
             console.log(res)
         } catch (error) {
             console.log(error.message)

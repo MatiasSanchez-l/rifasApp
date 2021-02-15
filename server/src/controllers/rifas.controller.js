@@ -283,7 +283,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
               ],
             },
             external_reference: toString(compra_id),
-            notification_url: "http://juntosxoscar.com.ar/rifas/notificaciones",
+            notification_url: "https://www.juntosxoscar.com.ar/rifas/notificaciones",
             expires: true,
             binary_mode: true,
           };

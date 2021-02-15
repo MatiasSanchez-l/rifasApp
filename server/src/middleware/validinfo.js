@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
   }
 
   if (isNaN(telefono)) {
-    return res.status(401).json("Numero de telefono no es correcto.");
+    return res.status(200).json({ errores: [{ mensaje: "Numero de telefono no es correcto." }] });
   }
 
   next();

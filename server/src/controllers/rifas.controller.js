@@ -334,12 +334,7 @@ rifasCtrl.notificacion = async (req, res) => {
     console.log("pago ", pago);
     console.log(data.id)
     await db.query("BEGIN");
-<<<<<<< HEAD
-    const compra_id = pago.external_reference;
-    
-=======
     const compra_id = pago.response.external_reference;
->>>>>>> 8a267533007123cf42ff97ae59fd854bf7fd4dd0
 
     if (pago.response.status === "approved") {
       const cliente_nombre = pago.response.payer.first_name;

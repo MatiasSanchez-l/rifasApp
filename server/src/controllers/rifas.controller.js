@@ -77,7 +77,7 @@ rifasCtrl.crear_rifas = async (req, res) => {
 
 rifasCtrl.obtener_total = async (req, res) => {
   try {
-    const estado = "aprobado";
+    const estado = 'aprobado';
     const resultado = await db.query(
       "SELECT SUM(monto) as total FROM compra WHERE estado = $1;",
       [estado]

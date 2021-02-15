@@ -32,15 +32,16 @@ export default class CompraRifa extends Component {
                         text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
                         icon: "success"
                     });
-                    /*
+                    
                     const newRifasConsulta = {
                         rifas: response.rifas_compradas,
                         email: response.email,
                         nombre: response.nombre,
                         apellido: response.apellido
                     }
+                    console.log(newRifasConsulta.json())
                     await axios.post("https://www.juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
-                    */
+                    
                 } catch (error) {
                     console.log(error.message)
                 }

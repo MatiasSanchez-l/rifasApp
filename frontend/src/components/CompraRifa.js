@@ -107,7 +107,6 @@ export default class CompraRifa extends Component {
         this.setState({ compras: newCompra });
 
         const res = await axios.put('https://www.juntosxoscar.com.ar/rifas/comprar_mp', newCompra);
-        console.log(window.location.href)
         if (res.data.errores !== undefined) {
             swal({
                 title: "Ocurrio un error en la compra de sus rifas",

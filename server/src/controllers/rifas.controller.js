@@ -340,12 +340,9 @@ rifasCtrl.notificacion = async (req, res) => {
   try {
     const { body } = req;
     const { data } = body;
-    console.log("body", body);
 
     const pago = await mercadopago.payment.get(data.id);
 
-    console.log("pago ", pago);
-    console.log(data.id);
     await db.query("BEGIN");
     const compra_id = pago.response.external_reference;
 

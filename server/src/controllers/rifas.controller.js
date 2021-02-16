@@ -267,8 +267,8 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             let numero_ramdon = Math.floor(
                 Math.random() * cantidad_rifas_disponibles
             );
-
-            while (numeros_random.includes(numero_ramdon) || rifas_compradas.includes(numero_ramdon)) {
+            
+            while (numeros_random.includes(numero_ramdon)) {
               numero_ramdon = Math.floor(
                 Math.random() * cantidad_rifas_disponibles
               );

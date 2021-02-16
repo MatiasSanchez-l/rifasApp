@@ -16,30 +16,21 @@ export default class CompraRifa extends Component {
         isWaiting: false
     }
     async componentDidMount() {
-        let urlElements = window.location.href.split('&')
-        if (urlElements[2]) {
-            if (urlElements[3].split('=')[1] === "approved") {
-                try {
-                    const external_reference = urlElements[4].split('=')[1];
-                    const res = await fetch('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/' + external_reference, {
-                        method: "GET"
-                    });
-                    const response = await res.json();
-                    swal({
-                        title: "Gracias por tu colaboracion",
-                        text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
-                        icon: "success"
-                    });
-
-                } catch (error) {
-                    console.log(error.message)
-                }
-            } else {
-                swal({
-                    title: "Ocurrio un error en el pago",
-                    text: "Al momento de realizar la compra, sucedio un error. Por favor intentelo de nuevo!",
-                    icon: "error"
+        let urlElements = window.location.href;
+        if (urlElements.includes('approved')) {
+            try {
+                const external_reference = urlElements[4].split('=')[1];
+                const res = await fetch('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/' + external_reference, {
+                    method: "GET"
                 });
+                const response = await res.json();
+                swal({
+                    title: "Gracias por tu colaboracion",
+                    text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
+                    icon: "success"
+                });
+            } catch (error) {
+                console.log(error.message)
             }
         }
     }
@@ -99,9 +90,9 @@ export default class CompraRifa extends Component {
         });
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
             camposValidos = false;
-            mensaje+="Por favor ingrese un email valido. \n ";
+            mensaje += "Por favor ingrese un email valido. \n ";
         }
-        
+
         if (camposValidos) {
             console.log("true" + camposValidos);
         } else {

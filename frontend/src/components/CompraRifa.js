@@ -1,9 +1,8 @@
 import React, { Component, useState } from 'react';
-import { Redirect } from "react-router-dom";
+import Footer from './Footer';
 import swal from 'sweetalert';
 import axios from 'axios';
 import './css/ComprarRifa.css';
-//import emailjs from 'emailjs-com';
 
 
 export default class CompraRifa extends Component {
@@ -237,6 +236,7 @@ export default class CompraRifa extends Component {
                         </div>
                     </form>
                 </div>
+                <Footer />
             </div>
         )
     }

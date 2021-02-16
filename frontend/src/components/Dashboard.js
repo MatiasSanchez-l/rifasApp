@@ -38,7 +38,7 @@ const columnas = [
         name: "Cliente Telefono",
         selector: "cliente_telefono",
         sortable: true
-    }, 
+    },
     {
         name: "Fecha",
         selector: "fecha",
@@ -159,6 +159,7 @@ const Dashboard = ({ setAuth }) => {
                 method: "GET",
             });
             const parseRes = await response.json();
+            console.log(parseRes);
             setRifaAleatoria(parseRes.data.rifa);
         } catch (err) {
             console.error(err.message + "recaudado");

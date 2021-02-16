@@ -38,6 +38,11 @@ const columnas = [
         name: "Cliente Telefono",
         selector: "cliente_telefono",
         sortable: true
+    }, 
+    {
+        name: "Fecha",
+        selector: "fecha",
+        sortable: true
     },
     {
         name: "Numero de Compra",

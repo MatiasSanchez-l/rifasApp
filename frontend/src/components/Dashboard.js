@@ -40,11 +40,6 @@ const columnas = [
         sortable: true
     },
     {
-        name: "Fecha",
-        selector: "fecha",
-        sortable: true
-    },
-    {
         name: "Numero de Compra",
         selector: "compra_id",
         sortable: true

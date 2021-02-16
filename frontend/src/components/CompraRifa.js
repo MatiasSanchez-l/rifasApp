@@ -97,7 +97,7 @@ export default class CompraRifa extends Component {
             isWaiting: true
         });
         if (1 > 0) {
-            camposValidos = false;
+            camposValidos = true;
         }
 
         if (camposValidos) {

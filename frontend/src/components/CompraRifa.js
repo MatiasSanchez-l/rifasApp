@@ -92,14 +92,16 @@ export default class CompraRifa extends Component {
 
     registrarUsuarioYCompra = async e => {
         let camposValidos = true;
+        let mensaje = "";
         e.preventDefault();
         this.setState({
             isWaiting: true
         });
-        if (1 > 0) {
-            camposValidos = true;
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
+            camposValidos = false;
+            mensaje+="Por favor ingrese un email valido. \n ";
         }
-
+        
         if (camposValidos) {
             console.log("true" + camposValidos);
         } else {

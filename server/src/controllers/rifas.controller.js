@@ -250,13 +250,13 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
 
           //creacion de array numeros random 
           let numeros_random = [];
-          
+
           //comprar rifas aleatorias
           for (let i = 0; i < cantidad_rifas_comprar; i++) {
             let numero_ramdon = Math.floor(
-                Math.random() * cantidad_rifas_disponibles
+              Math.random() * cantidad_rifas_disponibles
             );
-            
+
             while (numeros_random.includes(numero_ramdon)) {
               numero_ramdon = Math.floor(
                 Math.random() * cantidad_rifas_disponibles
@@ -310,8 +310,8 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             },
             auto_return: "approved",
             external_reference: compra_id.toString(),
-            notification_url:
-              "https://www.juntosxoscar.com.ar/rifas/notificaciones",
+            /*notification_url:
+              "https://www.juntosxoscar.com.ar/rifas/notificaciones",*/
             expires: true,
             binary_mode: true,
           };
@@ -413,7 +413,7 @@ rifasCtrl.notificacion = async (req, res) => {
         });
         await transporter.sendMail({
           from: "<juntosxoscar@gmail.com>", // sender address
-          to: "santifagliano@live.com.ar", // list of receivers
+          to: "" + cliente_email + "", // list of receivers
           subject: "Bono Contribucion - Juntos x Oscar", // Subject line
           html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
         });

@@ -3,13 +3,14 @@ import './css/Premios.css';
 import premio3 from './helper/premio3.jpeg';
 
 export default class Premios extends Component {
-    componentDidMount(){
+    componentDidMount() {
         let urlElements = window.location.href.split('/');
-        if(urlElements[4]){
-            document.getElementById(urlElements[4].split('=')[1]).scrollIntoView()
+        if (urlElements[4]) {
+            const id = urlElements[4].split('=')[1];
+            document.getElementById('' + id + '').scrollIntoView();
         }
-        
-        
+
+
     }
     render() {
         return (

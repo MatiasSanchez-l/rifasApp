@@ -424,7 +424,7 @@ rifasCtrl.notificacion = async (req, res) => {
           html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
         });
         console.log("mandamos email")
-        res.status(200).send();
+        res.sendStatus(200)
       } catch (e) {
         console.error(e.message);
       }

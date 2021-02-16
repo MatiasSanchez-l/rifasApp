@@ -251,8 +251,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
           //obtener array rifas compradas
           const estado_compra = 'aprobado';
           const resultado = await db.query(
-            "SELECT rifa_id FROM rifa r JOIN compra c ON c.compra_id = r.compra_id WHERE c.estado = $1;",
-            [estado_compra]
+            "SELECT rifa_id FROM rifa r WHERE r.compra_id IS NOT NULL;"
           );
           const rifas_compradas = [];
       
@@ -269,7 +268,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
                 Math.random() * cantidad_rifas_disponibles
             );
 
-            while (numeros_ramdon.includes(numero_ramdon) || rifas_compradas.includes(numero_ramdon)) {
+            while (numeros_random.includes(numero_ramdon) || rifas_compradas.includes(numero_ramdon)) {
               numero_ramdon = Math.floor(
                 Math.random() * cantidad_rifas_disponibles
               );

@@ -91,10 +91,20 @@ export default class CompraRifa extends Component {
     }
 
     registrarUsuarioYCompra = async e => {
+        let camposValidos = true;
         e.preventDefault();
         this.setState({
             isWaiting: true
         });
+        if (1 > 0) {
+            camposValidos = false;
+        }
+
+        if (camposValidos) {
+            console.log("true" + camposValidos)
+        } else {
+            console.log("false" + camposValidos)
+        }
         const newCompra = {
             nombre: this.state.nombre,
             apellido: this.state.apellido,

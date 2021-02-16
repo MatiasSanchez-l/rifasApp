@@ -417,7 +417,7 @@ rifasCtrl.notificacion = async (req, res) => {
           subject: "Bono Contribucion - Juntos x Oscar", // Subject line
           html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
         });
-
+        console.log("mandamos email")
       } catch (e) {
         console.error(e.message);
       }

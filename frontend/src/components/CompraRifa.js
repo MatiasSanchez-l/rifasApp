@@ -53,7 +53,6 @@ export default class CompraRifa extends Component {
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
         });
-        console.log(this.state.cantidadRifas);
     };
 
     restarCantidadRifas = e => {
@@ -65,7 +64,6 @@ export default class CompraRifa extends Component {
             cantidadRifas: nuevaCantidad,
             valorTotal: nuevoValor
         });
-        console.log(this.state.cantidadRifas);
     };
 
     sumarCantidad = () => {
@@ -75,7 +73,6 @@ export default class CompraRifa extends Component {
             cantidadRifas: cantidad,
             valorTotal: nuevoValor
         });
-        console.log(this.state.cantidadRifas);
     };
 
     restarCantidad = () => {
@@ -86,7 +83,6 @@ export default class CompraRifa extends Component {
             cantidadRifas: cantidad,
             valorTotal: nuevoValor
         });
-        console.log(this.state.cantidadRifas);
     };
 
     onInputChange = (e) => {
@@ -107,7 +103,7 @@ export default class CompraRifa extends Component {
             telefono: this.state.telefono,
             cantidad: this.state.cantidadRifas,
         };
-        console.log(this.state.cantidadRifas);
+
         this.setState({ compras: newCompra });
 
         const res = await axios.put('https://www.juntosxoscar.com.ar/rifas/comprar_mp', newCompra);

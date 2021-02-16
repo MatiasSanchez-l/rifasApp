@@ -247,13 +247,14 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             [monto, cantidad_rifas_comprar, estado, fecha]
           );
           const compra_id = compra_id_json.rows[0].compra_id;
+          console.log(cantidad_rifas_comprar)
 
           //comprar rifas aleatorias
           for (let i = 0; i < cantidad_rifas_comprar; i++) {
             const numero_ramdon = Math.floor(
               Math.random() * cantidad_rifas_disponibles
             );
-
+              
             const rifa_a_comprar =
               rifas_disponibles.rows[numero_ramdon].rifa_id;
 
@@ -262,6 +263,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
               "UPDATE rifa SET disponible = false::boolean, compra_id = $1 WHERE rifa_id = $2;",
               [compra_id, rifa_a_comprar]
             );
+            console.log(i)
           }
 
           // Crea un objeto de preferencia

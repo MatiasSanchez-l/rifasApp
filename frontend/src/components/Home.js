@@ -46,13 +46,13 @@ export default class Home extends Component {
                     <div className="col-12 col-md-6">
                         <h3>Nuestra Historia</h3>
                         <div className="texto_inicio">
-                            <p>
+                            <p className="fst-italic">
                                 -“Che, Cabezón, tenemos que pensar en hacerte un cuarto abajo…
                             </p>
-                            <p>
+                            <p className="fst-italic">
                                 - No sé… Vemos…. Cualquier cosa cuando no pueda subir y bajar más, me quedo arriba y listo
                             </p>
-                            <p>
+                            <p className="fst-italic">
                                 - Cabezón! ¿Vos sos b…?
                             </p>
                             <p>

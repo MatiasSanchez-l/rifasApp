@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/home.css';
+import './css/Home.css';
 import { Link } from 'react-router-dom';
 import { Slider } from '@material-ui/core';
 import regaloVerde from './helper/cajaVerde.png';
@@ -82,7 +82,10 @@ export default class Home extends Component {
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className="videoHome"></iframe>
+                            <hr className="hr"/>
+                        <h5 className="text-center mt-2 fw-bold col-12">Total Recaudado</h5>
                         <div className="d-flex justify-content-between p-2">
+
                             <Slider
                                 valueLabelDisplay="off"
                                 value={this.state.recaudado}
@@ -94,10 +97,10 @@ export default class Home extends Component {
                         </div>
                         <div className="d-flex justify-content-center fs-5">
                             <p className="p-1 m-auto text-center">Para poder acompañarnos durante el proceso del proyecto seguinos en
-                                <span
-                                    className="pointer p-1 mx-1 instagram-home"
+                                <button
+                                    className="btn pointer p-1 mx-1 instagram-home"
                                     onClick={this.irAlInstagram}> <i className="fab fa-instagram "></i> @juntosxoscar
-                                </span>
+                                </button>
                             </p>
                         </div>
                     </div>
@@ -109,7 +112,7 @@ export default class Home extends Component {
                     </div>
                     <div className="row justify-content-center p-2">
                         <div className="col-12 col-md-4">
-                            <Link to="/premios/?premio=primero">
+                            <Link className="linkRegalo" to="/premios/?premio=primero">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>
@@ -117,7 +120,7 @@ export default class Home extends Component {
                             </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <Link to="/premios/?premio=segundo">
+                            <Link className="linkRegalo" to="/premios/?premio=segundo">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>
@@ -125,7 +128,7 @@ export default class Home extends Component {
                             </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <Link to="/premios/?premio=tercero">
+                            <Link className="linkRegalo" to="/premios/?premio=tercero">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>
@@ -133,7 +136,7 @@ export default class Home extends Component {
                             </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <Link to="/premios/?premio=cuarto">
+                            <Link className="linkRegalo" to="/premios/?premio=cuarto">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>

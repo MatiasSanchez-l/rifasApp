@@ -18,11 +18,11 @@ export default class Premios extends Component {
                 <h2 className="text-center fw-bold">PREMIOS</h2>
                 <div className="row">
                     <div className="col-6 text-center">
+                        <p className="text-center mt-3" >1° Premio</p>
                         <img
                             className="img-fluid img-thumbnail"
                             src="https://http2.mlstatic.com/tostadora-electrica-kanjihome-kjh-tm900sec01-900w-plateada-D_NQ_NP_600821-MLA43694173299_102020-F.webp%202x"
                             alt="Premio tostadora" />
-                        <p className="text-center mt-3" >1° Premio</p>
                     </div>
                     <div className="col-6" id="primero">
                         <h5>Tostadora Electrica Kanjihome.</h5>
@@ -68,21 +68,21 @@ export default class Premios extends Component {
 
                     </div>
                     <div className="col-6 text-center">
+                        <p className="text-center mt-3">2° Premio</p>
                         <img
                             className="img-fluid img-thumbnail"
                             src="https://http2.mlstatic.com/pava-electrica-kanji-2-lts-1500w-ccorte-mate-castelar-D_NQ_NP_630835-MLA44174088004_112020-F.webp"
                             alt="Premio tostadora" />
-                        <p className="text-center mt-3">2° Premio</p>
                     </div>
                 </div>
                 <hr className="hr my-3" />
                 <div className="row">
                     <div className="col-6 text-center">
+                        <p className="text-center mt-3">3° Premio</p>
                         <img
                             className="img-fluid img-thumbnail"
                             src={premio3}
                             alt="Premio tostadora" />
-                        <p className="text-center mt-3">3° Premio</p>
                     </div>
                     <div className="col-6" id="tercero">
                         <h5>Box Spa de Manos La Boutique de Uñas.</h5>
@@ -121,11 +121,11 @@ export default class Premios extends Component {
                         </ul>
                     </div>
                     <div className="col-6 text-center parlante">
+                        <p className="text-center mt-3">4° Premio</p>
                         <img
                             className="img-fluid img-thumbnail"
                             src="https://http2.mlstatic.com/parlante-portatil-inalambrico-bluetooth-bt25-led-rgb-D_NQ_NP_868745-MLA43073032259_082020-F.webp%202x"
                             alt="Premio tostadora" />
-                        <p className="text-center mt-3">4° Premio</p>
                     </div>
                 </div>
             </div>

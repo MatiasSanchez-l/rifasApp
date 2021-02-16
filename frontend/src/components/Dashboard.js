@@ -10,6 +10,11 @@ const columnas = [
         sortable: true
     },
     {
+        name: "Estado Compra",
+        selector: "estado",
+        sortable: true
+    },
+    {
         name: "Disponibilidad",
         selector: "disponible",
         sortable: true
@@ -72,7 +77,6 @@ const Dashboard = ({ setAuth }) => {
         try {
             const response = await fetch("https://www.juntosxoscar.com.ar/rifas/total", {
                 method: "GET",
-
             });
             const parseRes = await response.json();
             setRecaudado(parseRes.data.monto[0].total);
@@ -104,6 +108,9 @@ const Dashboard = ({ setAuth }) => {
                     arrayNuevo[i].cliente_apellido = "No comprada";
                     arrayNuevo[i].cliente_email = "No comprada";
                     arrayNuevo[i].cliente_telefono = "No comprada";
+                }
+                if (arrayNuevo[i].estado === null) {
+                    arrayNuevo[i].estado = "No comprada";
                 }
 
             }
@@ -147,6 +154,7 @@ const Dashboard = ({ setAuth }) => {
                 method: "GET",
             });
             const parseRes = await response.json();
+            console.log(parseRes);
             setRifaAleatoria(parseRes.data.rifa);
         } catch (err) {
             console.error(err.message + "recaudado");

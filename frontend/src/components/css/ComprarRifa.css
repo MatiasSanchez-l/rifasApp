@@ -67,3 +67,7 @@
 .btn-outline-verde-signos:hover {
     background-color: #255f25bb!important;
 }
+
+.a {
+    list-style-type: circle!important;
+}

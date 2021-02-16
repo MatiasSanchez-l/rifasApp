@@ -109,28 +109,36 @@ export default class Home extends Component {
                     </div>
                     <div className="row justify-content-center p-2">
                         <div className="col-12 col-md-4">
-                            <div className="row premio-verde">
-                                <img src={regaloVerde} alt="" />
-                            </div>
-                            <p className="text-center">1° premio</p>
+                            <Link to="/premios/?premio=primero">
+                                <div className="row premio-verde">
+                                    <img src={regaloVerde} alt="" />
+                                </div>
+                                <p className="text-center">1° premio</p>
+                            </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <div className="row premio-verde">
-                                <img src={regaloVerde} alt="" />
-                            </div>
-                            <p className="text-center">2° premio</p>
+                            <Link to="/premios/?premio=segundo">
+                                <div className="row premio-verde">
+                                    <img src={regaloVerde} alt="" />
+                                </div>
+                                <p className="text-center">2° premio</p>
+                            </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <div className="row premio-verde">
-                                <img src={regaloVerde} alt="" />
-                            </div>
-                            <p className="text-center">3° premio</p>
+                            <Link to="/premios/?premio=tercero">
+                                <div className="row premio-verde">
+                                    <img src={regaloVerde} alt="" />
+                                </div>
+                                <p className="text-center">3° premio</p>
+                            </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <div className="row premio-verde">
-                                <img src={regaloVerde} alt="" />
-                            </div>
-                            <p className="text-center">4° premio</p>
+                            <Link to="/premios/?premio=cuarto">
+                                <div className="row premio-verde">
+                                    <img src={regaloVerde} alt="" />
+                                </div>
+                                <p className="text-center">4° premio</p>
+                            </Link>
                         </div>
                     </div>
                     <div className="text-center">
@@ -143,36 +151,12 @@ export default class Home extends Component {
                     <div className="p-5 text-center">
                         CADA RIFA COMPRADA TIENE UN NÚMERO ÚNICO
                         E IRREPETIBLE, TODOS LOS NÚMEROS SERAN
-                        SORTEADOS EL DIA __________ . HABRA TRES
+                        SORTEADOS EL DIA __________ . HABRA CUATRO
                         FUTUROS GANADORES, QUE SERÁN CONTACTADOS
                         PARA OBTENER SU PREMIO.
                     </div>
-                </div>
-                <div className="p-2 text-end ">
-                    <Link className="login-home" to="/login">Login</Link>
                 </div>
             </div>
         )
     }
 }
-/*
-
-                        <div className="col-4">
-                            <div className="row premio">
-                                <div>s</div>
-                            </div>
-                            <p className="text-center">1° premio</p>
-                        </div>
-                        <div className="col-4">
-                            <div className="row premio">
-                                <div>s</div>
-                            </div>
-                            <p className="text-center">2° premio</p>
-                        </div>
-                        <div className="col-4">
-                            <div className="row premio">
-                                <div>s</div>
-                            </div>
-                            <p className="text-center">3° premio</p>
-                        </div>
-*/

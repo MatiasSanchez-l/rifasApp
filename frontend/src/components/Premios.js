@@ -3,6 +3,15 @@ import './css/Premios.css';
 import premio3 from './helper/premio3.jpeg';
 
 export default class Premios extends Component {
+    componentDidMount() {
+        let urlElements = window.location.href.split('/');
+        if (urlElements[4]) {
+            const id = urlElements[4].split('=')[1];
+            document.getElementById(id).scrollIntoView();
+        }
+
+
+    }
     render() {
         return (
             <div className="mt-3 premios">
@@ -13,9 +22,9 @@ export default class Premios extends Component {
                             className="img-fluid img-thumbnail"
                             src="https://http2.mlstatic.com/tostadora-electrica-kanjihome-kjh-tm900sec01-900w-plateada-D_NQ_NP_600821-MLA43694173299_102020-F.webp%202x"
                             alt="Premio tostadora" />
-                        <p className="text-center mt-3">1° Premio</p>
+                        <p className="text-center mt-3" >1° Premio</p>
                     </div>
-                    <div className="col-6">
+                    <div className="col-6" id="primero">
                         <h5>Tostadora Electrica Kanjihome.</h5>
                         <p>Tostadora Electrica Kanjihome Kjh-tm900sec01 900w Plata</p>
                         <p>
@@ -37,7 +46,7 @@ export default class Premios extends Component {
                 <hr className="hr my-3" />
 
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-6" id="segundo">
                         <h5>Pava Eléctrica Kanji.</h5>
                         <p>La pava eléctrica Kanji de acero inoxidable posee una de capacidad de 1,8 lts y viene con corte automático de temperatura, indicador luminoso de encendido. Su estilo clásico la hace ideal para todo tipo de bebidas.</p>
 
@@ -67,7 +76,6 @@ export default class Premios extends Component {
                     </div>
                 </div>
                 <hr className="hr my-3" />
-
                 <div className="row">
                     <div className="col-6 text-center">
                         <img
@@ -76,8 +84,8 @@ export default class Premios extends Component {
                             alt="Premio tostadora" />
                         <p className="text-center mt-3">3° Premio</p>
                     </div>
-                    <div className="col-6">
-                        <h5>Box Spa de Manos.</h5>
+                    <div className="col-6" id="tercero">
+                        <h5>Box Spa de Manos La Boutique de Uñas.</h5>
                         <p>Incluye:</p>
                         <ul>
                             <li>Crema Exfoliante de manos de Lavanda.</li>
@@ -95,7 +103,7 @@ export default class Premios extends Component {
                 <hr className="hr my-3" />
 
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-6" id="cuarto">
                         <h5>Parlante Portatil Inalambrico Bluetooth Bt25.</h5>
                         <p>
                             Producto: Parlante Portatil <br />
@@ -117,7 +125,7 @@ export default class Premios extends Component {
                             className="img-fluid img-thumbnail"
                             src="https://http2.mlstatic.com/parlante-portatil-inalambrico-bluetooth-bt25-led-rgb-D_NQ_NP_868745-MLA43073032259_082020-F.webp%202x"
                             alt="Premio tostadora" />
-                        <p className="text-center mt-3">3° Premio</p>
+                        <p className="text-center mt-3">4° Premio</p>
                     </div>
                 </div>
             </div>

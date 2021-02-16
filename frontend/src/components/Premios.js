@@ -7,7 +7,6 @@ export default class Premios extends Component {
         let urlElements = window.location.href.split('/');
         if (urlElements[4]) {
             const id = urlElements[4].split('=')[1];
-            console.log(id)
             document.getElementById(id).scrollIntoView();
         }
 

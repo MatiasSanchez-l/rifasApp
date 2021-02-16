@@ -163,6 +163,7 @@ export default class CompraRifa extends Component {
                 <div>
                     <div>
                         <h5 className="fw-bold text-center m-1">Elija la cantidad de bonos</h5>
+                        <p>Precio por Unidad: $200</p>
                         <div className="mt-3 text-center botones">
                             <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="1" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">+ 1</button>
                             <button disabled={this.state.isWaiting} onClick={this.sumarCantidadRifas} value="10" className="btn btn-outline-dark btn-outline-verde mx-1 my-1 rounded">+ 10</button>

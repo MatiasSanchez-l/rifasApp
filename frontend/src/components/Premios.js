@@ -9,7 +9,7 @@ export default class Premios extends Component {
             const id = urlElements[4].split('=')[1];
             document.getElementById(id).scrollIntoView();
         }else{
-            document.getElementById("premios").scrollIntoView()
+            document.getElementById("premios").scrollIntoView();
         }
 
 

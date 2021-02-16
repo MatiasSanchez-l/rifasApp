@@ -22,10 +22,7 @@ export default class Header extends Component {
                                 <Nav.Link eventKey="1" as={Link} to="/">Inicio</Nav.Link>
                                 <Nav.Link eventKey="2" as={Link} to="/comprarRifa">Comprar Bonos</Nav.Link>
                                 <Nav.Link eventKey="3" as={Link} to="/contacto">Contacto</Nav.Link>
-
-
                             </Nav>
-
                         </Navbar.Collapse>
                     </div>
                 </Navbar>

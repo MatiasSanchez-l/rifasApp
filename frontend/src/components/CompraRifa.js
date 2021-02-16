@@ -231,6 +231,14 @@ export default class CompraRifa extends Component {
                                 <input name="telefono" id="telefono" type="number" className="form-control" placeholder="11 12345678" onChange={this.onInputChange} value={this.state.telefono} />
                             </div>
                         </div>
+                        <p className="text-center">Indicaciones: </p>
+                        <ul className="a">
+                            <li>Ingresar un email valido como el de ejemplo.</li>
+                            <li>Ingrese un numero de telefono valido como el de ejemplo.</li>
+                            <li>Antes de realizar el pago, verifique sus datos ya que con ellos sera contactado si gana un premio.</li>
+                            <li>Los numeros asignados se le mostraran en pantalla luego de que realize el pago, a su vez se le enviaran al email que haya puesto.</li>
+                            <li>Ante cualquier consulta o pregunta no dude en pasar por nuestra seccion de contacto y dejarnos su problema.</li>
+                        </ul>
                         <div className="text-end">
                             <button disabled={this.state.isWaiting} type="submit" className="btn btn-outline-dark btn-outline-verde">Proceder a realizar el pago</button>
                         </div>

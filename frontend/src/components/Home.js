@@ -143,7 +143,7 @@ export default class Home extends Component {
                     <div className="p-5 text-center">
                         CADA RIFA COMPRADA TIENE UN NÚMERO ÚNICO
                         E IRREPETIBLE, TODOS LOS NÚMEROS SERAN
-                        SORTEADOS EL DIA __________ . HABRA TRES
+                        SORTEADOS EL DIA __________ . HABRA CUATRO
                         FUTUROS GANADORES, QUE SERÁN CONTACTADOS
                         PARA OBTENER SU PREMIO.
                     </div>
@@ -155,24 +155,3 @@ export default class Home extends Component {
         )
     }
 }
-/*
-
-                        <div className="col-4">
-                            <div className="row premio">
-                                <div>s</div>
-                            </div>
-                            <p className="text-center">1° premio</p>
-                        </div>
-                        <div className="col-4">
-                            <div className="row premio">
-                                <div>s</div>
-                            </div>
-                            <p className="text-center">2° premio</p>
-                        </div>
-                        <div className="col-4">
-                            <div className="row premio">
-                                <div>s</div>
-                            </div>
-                            <p className="text-center">3° premio</p>
-                        </div>
-*/

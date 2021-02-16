@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.d19bd934.chunk.css",
-    "main.js": "/static/js/main.09875a00.chunk.js",
-    "main.js.map": "/static/js/main.09875a00.chunk.js.map",
+    "main.css": "/static/css/main.bd3bcd04.chunk.css",
+    "main.js": "/static/js/main.ca7b09d2.chunk.js",
+    "main.js.map": "/static/js/main.ca7b09d2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c60b7f5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.c60b7f5c.js.map",
     "static/css/2.9c1952fe.chunk.css": "/static/css/2.9c1952fe.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.ba9374ab.chunk.js.map": "/static/js/2.ba9374ab.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.9c1952fe.chunk.css.map": "/static/css/2.9c1952fe.chunk.css.map",
-    "static/css/main.d19bd934.chunk.css.map": "/static/css/main.d19bd934.chunk.css.map",
+    "static/css/main.bd3bcd04.chunk.css.map": "/static/css/main.bd3bcd04.chunk.css.map",
     "static/js/2.ba9374ab.chunk.js.LICENSE.txt": "/static/js/2.ba9374ab.chunk.js.LICENSE.txt",
     "static/media/cajaVerde.41ed15f3.png": "/static/media/cajaVerde.41ed15f3.png",
     "static/media/home.css": "/static/media/premio.658e2c62.svg",
@@ -20,7 +20,7 @@
     "static/js/runtime-main.c60b7f5c.js",
     "static/css/2.9c1952fe.chunk.css",
     "static/js/2.ba9374ab.chunk.js",
-    "static/css/main.d19bd934.chunk.css",
-    "static/js/main.09875a00.chunk.js"
+    "static/css/main.bd3bcd04.chunk.css",
+    "static/js/main.ca7b09d2.chunk.js"
   ]
 }

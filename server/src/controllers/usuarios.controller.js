@@ -49,7 +49,7 @@ usuariosCtrl.loguear_usuario = async (req, res) => {
     res.status(200).json({ token });
   } catch (e) {
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 
@@ -58,7 +58,7 @@ usuariosCtrl.verificado = async (req, res) => {
     res.json(true);
   } catch (e) {
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 
 };

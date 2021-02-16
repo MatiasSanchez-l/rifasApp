@@ -41,7 +41,7 @@ nodemailerCtrl.contacto = async (req, res) => {
             }
         } catch (e) {
             console.error(e.message);
-            throw e;
+            res.status(500).send(e);
         }
     }
 };

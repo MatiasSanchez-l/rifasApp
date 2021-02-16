@@ -17,7 +17,7 @@ rifasCtrl.obtener_rifas = async (req, res) => {
     });
   } catch (e) {
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 
@@ -50,7 +50,7 @@ rifasCtrl.obtener_rifa_random = async (req, res) => {
     });
   } catch (e) {
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 
@@ -82,7 +82,7 @@ rifasCtrl.crear_rifas = async (req, res) => {
   } catch (e) {
     await db.query("ROLLBACK");
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 
@@ -102,7 +102,7 @@ rifasCtrl.obtener_total = async (req, res) => {
     });
   } catch (e) {
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 
@@ -200,7 +200,7 @@ rifasCtrl.comprar_rifas = async (req, res) => {
   } catch (e) {
     await db.query("ROLLBACK");
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 
@@ -357,7 +357,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
     }
   } catch (e) {
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 
@@ -474,7 +474,7 @@ rifasCtrl.obtener_rifas_compra = async (req, res) => {
     });
   } catch (e) {
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 

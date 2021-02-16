@@ -11,11 +11,11 @@ const marks = [
         label: '0%'
     },
     {
-        value: 50,
+        value: 500000,
         label: '50%'
     },
     {
-        value: 100,
+        value: 1000000,
         label: '100%'
     }
 ]
@@ -31,7 +31,7 @@ export default class Home extends Component {
 
     async componentDidMount() {
         const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/total');
-        let cantidad = (res.data.data.monto[0].total * 100) / 1000000;
+        let cantidad = res.data.data.monto[0].total;
         this.setState({ recaudado: cantidad });
     }
 

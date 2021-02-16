@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-import Footer from './Footer';
 import swal from 'sweetalert';
 import axios from 'axios';
 import './css/ComprarRifa.css';

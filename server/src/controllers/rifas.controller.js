@@ -247,17 +247,6 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             [monto, cantidad_rifas_comprar, estado, fecha]
           );
           const compra_id = compra_id_json.rows[0].compra_id;
-          
-          //obtener array rifas compradas
-          const estado_compra = 'aprobado';
-          const resultado = await db.query(
-            "SELECT rifa_id FROM rifa r WHERE r.compra_id IS NOT NULL;"
-          );
-          const rifas_compradas = [];
-      
-          for (let i = 0; i < resultado.rows.length; i++) {
-            rifas_compradas.push(resultado.rows[i].rifa_id);
-          }
 
           //creacion de array numeros random 
           let numeros_random = [];

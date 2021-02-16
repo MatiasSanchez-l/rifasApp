@@ -8,7 +8,7 @@ export default class Premios extends Component {
         if (urlElements[4]) {
             const id = urlElements[4].split('=')[1];
             console.log(id)
-            document.getElementById('' + id + '').scrollIntoView();
+            document.getElementById(id).scrollIntoView();
         }
 
 
@@ -104,7 +104,7 @@ export default class Premios extends Component {
                 <hr className="hr my-3" />
 
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-6" id="cuarto">
                         <h5>Parlante Portatil Inalambrico Bluetooth Bt25.</h5>
                         <p>
                             Producto: Parlante Portatil <br />

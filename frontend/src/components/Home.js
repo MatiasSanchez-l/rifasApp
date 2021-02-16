@@ -87,7 +87,7 @@ export default class Home extends Component {
                                 valueLabelDisplay="off"
                                 value={this.state.recaudado}
                                 min={0}
-                                max={400000}
+                                max={1000000}
                                 marks={marks}
                             />
                             <i className="p-1 fas fa-home"></i>

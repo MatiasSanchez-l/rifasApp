@@ -447,7 +447,7 @@ rifasCtrl.notificacion = async (req, res) => {
   } catch (e) {
     await db.query("ROLLBACK");
     console.error(e.message);
-    throw e;
+    res.status(500).send(e);
   }
 };
 

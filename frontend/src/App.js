@@ -11,6 +11,7 @@ import Contacto from './components/Contacto';
 import Dashboard from './components/Dashboard';
 import Premios from './components/Premios';
 import Login from './components/Login';
+import Footer from './components/Footer';
 //import Footer from './components/Footer';
 
 toast.configure();
@@ -60,6 +61,7 @@ function App() {
             <Route render={() => <Redirect to={{ pathname: "/" }} />} />
           </Switch>
         </div>
+        <Footer />
       </Router>
     </Fragment>
   );

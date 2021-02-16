@@ -4,9 +4,12 @@ import premio3 from './helper/premio3.jpeg';
 
 export default class Premios extends Component {
     componentDidMount(){
-        let urlElements = window.location.href.split('/')
-        console.log(urlElements[4].split('='))
-        document.getElementById('tercero').scrollIntoView()
+        let urlElements = window.location.href.split('/');
+        if(urlElements[4]){
+            document.getElementById(urlElements[4].split('=')[1]).scrollIntoView()
+        }
+        
+        
     }
     render() {
         return (

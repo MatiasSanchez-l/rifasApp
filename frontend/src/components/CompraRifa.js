@@ -101,9 +101,9 @@ export default class CompraRifa extends Component {
         }
 
         if (camposValidos) {
-            console.log("true" + camposValidos)
+            console.log("true" + camposValidos);
         } else {
-            console.log("false" + camposValidos)
+            console.log("false" + camposValidos);
         }
         const newCompra = {
             nombre: this.state.nombre,

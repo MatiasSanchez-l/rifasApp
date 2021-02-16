@@ -8,7 +8,7 @@ const app = express();
 //middlewares
 app.use('/', express.static('../frontend/build'));
 app.use('/contacto', express.static('../frontend/build'));
-app.use('/comprarRifa', express.static('../frontend/build'));
+app.use('/comprarBono', express.static('../frontend/build'));
 app.use('/login', express.static('../frontend/build'));
 app.use('/dashboard', express.static('../frontend/build'));
 app.use('/premios', express.static('../frontend/build'));

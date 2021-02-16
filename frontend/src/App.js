@@ -52,7 +52,7 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/comprarRifa" component={CompraRifa} />
+            <Route exact path="/comprarBono" component={CompraRifa} />
             <Route exact path="/contacto" component={Contacto} />
             <Route exact path="/premios" component={Premios} />
             <Route exact path="/login" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)} />

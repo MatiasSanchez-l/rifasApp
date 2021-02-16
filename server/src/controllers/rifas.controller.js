@@ -239,7 +239,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
       const cantidad_rifas_disponibles = rifas_disponibles.rows.length;
 
       //verificar que la cantidad de rifas a comprar sea menor a la cantidad de rifas disponibles
-      if (cantidad_rifas_disponibles > cantidad_rifas_comprar) {
+      if (cantidad_rifas_disponibles >= cantidad_rifas_comprar) {
         try {
           //registrar compra
           const compra_id_json = await db.query(
@@ -272,6 +272,7 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
               numero_ramdon = Math.floor(
                 Math.random() * cantidad_rifas_disponibles
               );
+              console.log(numero_ramdon)
             }
             numeros_random.push(numero_ramdon);
 

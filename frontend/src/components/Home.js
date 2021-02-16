@@ -106,6 +106,17 @@ export default class Home extends Component {
                     </div>
                 </div>
                 <hr />
+                <div>
+                    <h3 className="text-center">¿C&oacute;mo funciona el sorteo?</h3>
+                    <div className="p-5 text-center">
+                        CADA RIFA COMPRADA TIENE UN NÚMERO ÚNICO
+                        E IRREPETIBLE, TODOS LOS NÚMEROS SERAN
+                        SORTEADOS EL DIA __________ . HABRA CUATRO
+                        FUTUROS GANADORES, QUE SERÁN CONTACTADOS
+                        PARA OBTENER SU PREMIO.
+                    </div>
+                </div>
+                <hr />
                 <div className="fondo-home1" >
                     <h5 className="text-center">Premios a sortear</h5>
                     <div className="row p-2">
@@ -148,17 +159,7 @@ export default class Home extends Component {
                         <Link className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</Link>
                     </div>
                 </div>
-                <hr />
-                <div>
-                    <h3 className="text-center">¿C&oacute;mo funciona el sorteo?</h3>
-                    <div className="p-5 text-center">
-                        CADA RIFA COMPRADA TIENE UN NÚMERO ÚNICO
-                        E IRREPETIBLE, TODOS LOS NÚMEROS SERAN
-                        SORTEADOS EL DIA __________ . HABRA CUATRO
-                        FUTUROS GANADORES, QUE SERÁN CONTACTADOS
-                        PARA OBTENER SU PREMIO.
-                    </div>
-                </div>
+               
             </div>
         )
     }

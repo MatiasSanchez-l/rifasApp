@@ -8,6 +8,8 @@ export default class Premios extends Component {
         if (urlElements[4]) {
             const id = urlElements[4].split('=')[1];
             document.getElementById(id).scrollIntoView();
+        }else{
+            document.getElementById("premios").scrollIntoView()
         }
 
 
@@ -15,7 +17,7 @@ export default class Premios extends Component {
     render() {
         return (
             <div className="mt-3 premios">
-                <h2 className="text-center fw-bold">PREMIOS</h2>
+                <h2 className="text-center fw-bold" id="premios">PREMIOS</h2>
                 <div className="row">
                     <div className="col-6 text-center">
                         <p className="text-center mt-3" >1° Premio</p>

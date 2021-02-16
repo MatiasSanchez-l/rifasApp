@@ -33,15 +33,6 @@ export default class CompraRifa extends Component {
                         icon: "success"
                     });
 
-                    const newRifasConsulta = {
-                        rifas: response.rifas_compradas,
-                        email: response.email,
-                        nombre: response.nombre,
-                        apellido: response.apellido
-                    }
-                    console.log(newRifasConsulta)
-                    await axios.post("https://www.juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
-
                 } catch (error) {
                     console.log(error.message)
                 }

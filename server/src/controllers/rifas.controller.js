@@ -1,5 +1,6 @@
 const db = require("../db/index");
 const mercadopago = require("mercadopago");
+const nodemailer = require('nodemailer');
 const rifasCtrl = {};
 
 rifasCtrl.obtener_rifas = async (req, res) => {
@@ -179,8 +180,8 @@ rifasCtrl.comprar_rifas = async (req, res) => {
           .status(401)
           .json(
             "No hay disponible esa cantidad de rifas. Solo quedan: " +
-              cantidad_rifas_disponibles +
-              "."
+            cantidad_rifas_disponibles +
+            "."
           );
       }
     }
@@ -374,8 +375,36 @@ rifasCtrl.notificacion = async (req, res) => {
         cliente_id,
         compra_id,
       ]);
+      const resultado = await db.query(
+        "select rifa_id, nombre, apellido, email FROM rifa r JOIN cliente c ON c.cliente_id = r.cliente_id WHERE compra_id = $1;",
+        [compra_id]
+      );
+      const rifas_compradas = [];
 
+      for (let i = 0; i < resultado.rows.length; i++) {
+        rifas_compradas.push(resultado.rows[i].rifa_id);
+      }
       await db.query("COMMIT");
+      try {
+        const transporter = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 465,
+          secure: true,
+          auth: {
+            user: "juntosxoscar@gmail.com",
+            pass: "xqjjnyzmmxlxmufe"
+          },
+        });
+        await transporter.sendMail({
+          from: "<juntosxoscar@gmail.com>", // sender address
+          to: "santifagliano@live.com.ar", // list of receivers
+          subject: "Bono Contribucion - Juntos x Oscar", // Subject line
+          html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
+        });
+
+      } catch (e) {
+        console.error(e.message);
+      }
     } else {
       //volver a poner las rifas en disponibles
       const estado = "denegado";
@@ -416,7 +445,7 @@ rifasCtrl.obtener_rifas_compra = async (req, res) => {
     res.status(200).json({
       rifas_compradas: rifas_compradas,
       email: resultado.rows[0].email,
-      nombre:resultado.rows[0].nombre,
+      nombre: resultado.rows[0].nombre,
       apellido: resultado.rows[0].apellido
     });
   } catch (e) {

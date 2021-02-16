@@ -109,7 +109,7 @@ export default class Home extends Component {
                     </div>
                     <div className="row justify-content-center p-2">
                         <div className="col-12 col-md-4">
-                            <Link to="/premios?premio=primero">
+                            <Link to="/premios/?premio=primero">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>
@@ -117,7 +117,7 @@ export default class Home extends Component {
                             </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <Link to="/premios?premio=segundo">
+                            <Link to="/premios/?premio=segundo">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>
@@ -125,7 +125,7 @@ export default class Home extends Component {
                             </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <Link to="/premios?premio=tercero">
+                            <Link to="/premios/?premio=tercero">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>
@@ -133,7 +133,7 @@ export default class Home extends Component {
                             </Link>
                         </div>
                         <div className="col-12 col-md-4">
-                            <Link to="/premios?premio=cuarto">
+                            <Link to="/premios/?premio=cuarto">
                                 <div className="row premio-verde">
                                     <img src={regaloVerde} alt="" />
                                 </div>

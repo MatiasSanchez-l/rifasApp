@@ -10,6 +10,11 @@ const columnas = [
         sortable: true
     },
     {
+        name: "Estado Compra",
+        selector: "estado",
+        sortable: true
+    },
+    {
         name: "Disponibilidad",
         selector: "disponible",
         sortable: true
@@ -118,7 +123,6 @@ const Dashboard = ({ setAuth }) => {
                 method: "GET"
             });
             const parseRes = await res.json();
-            console.log(parseRes)
             if (parseRes.status === "success") {
                 const arrayNuevo = verificarCamposVacios(parseRes.data.rifas);
                 setRifas(arrayNuevo);

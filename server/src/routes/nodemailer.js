@@ -1,10 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 
-const { rifas, contacto } = require('../controllers/nodemailer.controller');
-
-router.route("/rifas")
-    .post(rifas);
+const { contacto } = require('../controllers/nodemailer.controller');
 
 router.route("/contacto")
     .post(contacto);

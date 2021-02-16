@@ -1,30 +1,6 @@
 const nodemailer = require('nodemailer');
 const nodemailerCtrl = {};
 
-nodemailerCtrl.rifas = async (req, res) => {
-    try {
-        const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
-            auth: {
-                user: "juntosxoscar@gmail.com",
-                pass: "xqjjnyzmmxlxmufe"
-            },
-        });
-        await transporter.sendMail({
-            from: "<juntosxoscar@gmail.com>", // sender address
-            to: "" + req.body.email + "", // list of receivers
-            subject: "Bono Contribucion - Juntos x Oscar", // Subject line
-            html: "<div>  <p>Gracias por su contribucion!</p> <p>" + req.body.nombre + " " + req.body.apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + req.body.rifas.map(rifa => " " + rifa) + "</b> <br> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
-        });
-
-    } catch (e) {
-        console.error(e.message);
-    }
-};
-
-
 nodemailerCtrl.contacto = async (req, res) => {
     const nombre = req.body.nombre;
     const apellido = req.body.apellido;

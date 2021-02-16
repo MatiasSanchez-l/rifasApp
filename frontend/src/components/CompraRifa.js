@@ -1,9 +1,8 @@
 import React, { Component, useState } from 'react';
-import { Redirect } from "react-router-dom";
+import Footer from './Footer';
 import swal from 'sweetalert';
 import axios from 'axios';
 import './css/ComprarRifa.css';
-//import emailjs from 'emailjs-com';
 
 
 export default class CompraRifa extends Component {
@@ -17,10 +16,35 @@ export default class CompraRifa extends Component {
         compras: {},
         isWaiting: false
     }
-    componentDidMount(){
-        let urlElements = window.location.href.split('/')
-        console.log(urlElements);
+    async componentDidMount() {
+        let urlElements = window.location.href.split('&')
+        if (urlElements[2]) {
+            if (urlElements[3].split('=')[1] === "approved") {
+                try {
+                    const external_reference = urlElements[4].split('=')[1];
+                    const res = await fetch('https://www.juntosxoscar.com.ar/rifas/obtener_rifas_compra/' + external_reference, {
+                        method: "GET"
+                    });
+                    const response = await res.json();
+                    swal({
+                        title: "Gracias por tu colaboracion",
+                        text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
+                        icon: "success"
+                    });
+
+                } catch (error) {
+                    console.log(error.message)
+                }
+            } else {
+                swal({
+                    title: "Ocurrio un error en el pago",
+                    text: "Al momento de realizar la compra, sucedio un error. Por favor intentelo de nuevo!",
+                    icon: "error"
+                });
+            }
+        }
     }
+
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)
         let nuevaCantidad = this.state.cantidadRifas + cantidad;
@@ -82,7 +106,6 @@ export default class CompraRifa extends Component {
         this.setState({ compras: newCompra });
 
         const res = await axios.put('https://www.juntosxoscar.com.ar/rifas/comprar_mp', newCompra);
-        console.log(window.location.href)
         if (res.data.errores !== undefined) {
             swal({
                 title: "Ocurrio un error en la compra de sus rifas",
@@ -93,29 +116,13 @@ export default class CompraRifa extends Component {
                 isWaiting: false
             });
         } else {
-            let win = window.open(res.data.data.init_point, '_blank');
+            let win = window.open(res.data.data.init_point, "_self");
             win.focus();
-
-            /*
-            ESTO VA DESPUES DE QUE SE PAGUE TODO Y DE TODO OK
-            SE ABRE EL MODAL Y TAMBIEN SE MANDA EL EMAIL CON LOS DATOS ANASHE
-            swal({
-                title: "Gracias por tu colaboracion",
-                text: "Tu cantidad de rifas son " + this.state.cantidadRifas + "\n Tus numeros asignados son: " + res.data.rifas_compradas.map(rifa => rifa),
-                icon: "success"
-            });
-            const newRifasConsulta = {
-                rifas: res.data.rifas_compradas,
-                email: this.state.email,
-                nombre: this.state.nombre,
-                apellido: this.state.apellido
-            }
-            await axios.post("https://www.juntosxoscar.com.ar/nodemailer/rifas", newRifasConsulta);
             this.vaciarState();
             e.target.reset();
             this.setState({
                 isWaiting: false
-            });*/
+            });
         }
     }
 
@@ -196,7 +203,7 @@ export default class CompraRifa extends Component {
                                 <label htmlFor="nombre" className="form-label m-auto ">Nombre</label>
                             </div>
                             <div className="col-9">
-                                <input name="nombre" id="nombre" type="text" className="form-control" onChange={this.onInputChange} value={this.state.nombre} />
+                                <input name="nombre" id="nombre" type="text" className="form-control" placeholder="nombre" onChange={this.onInputChange} value={this.state.nombre} />
                             </div>
                         </div>
 
@@ -205,7 +212,7 @@ export default class CompraRifa extends Component {
                                 <label htmlFor="apellido" className="form-label m-auto ">Apellido</label>
                             </div>
                             <div className="col-9">
-                                <input name="apellido" id="apellido" type="text" className="form-control" onChange={this.onInputChange} value={this.state.apellido} />
+                                <input name="apellido" id="apellido" type="text" className="form-control" placeholder="apellido" onChange={this.onInputChange} value={this.state.apellido} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
@@ -213,7 +220,7 @@ export default class CompraRifa extends Component {
                                 <label htmlFor="email" className="form-label m-auto ">Email</label>
                             </div>
                             <div className="col-9">
-                                <input name="email" id="email" type="email" className="form-control" onChange={this.onInputChange} value={this.state.email} />
+                                <input name="email" id="email" type="email" className="form-control" placeholder="email@email.com" onChange={this.onInputChange} value={this.state.email} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
@@ -221,7 +228,7 @@ export default class CompraRifa extends Component {
                                 <label htmlFor="telefono" className="form-label m-auto ">Tel&eacute;fono</label>
                             </div>
                             <div className="col-9">
-                                <input name="telefono" id="telefono" type="number" className="form-control" onChange={this.onInputChange} value={this.state.telefono} />
+                                <input name="telefono" id="telefono" type="number" className="form-control" placeholder="11 12345678" onChange={this.onInputChange} value={this.state.telefono} />
                             </div>
                         </div>
                         <div className="text-end">

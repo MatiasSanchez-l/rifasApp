@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const authorization = require("../middleware/authorization");
-const { loguear_usuario, verificado} = require('../controllers/usuarios.controller');
+const { loguear_usuario, verificado } = require('../controllers/usuarios.controller');
 
 router.route("/login")
     .post(loguear_usuario);

@@ -109,7 +109,7 @@ export default class Premios extends Component {
                             <li>Cantidad de parlantes: 1</li>
                             <li>Configuración de canales: Stereo</li>
                             <li>Formato del parlante: Caja</li>
-                            
+
                         </ul>
                     </div>
                     <div className="col-6 text-center parlante">

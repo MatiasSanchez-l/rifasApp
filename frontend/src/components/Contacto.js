@@ -40,7 +40,6 @@ export default class Contacto extends Component {
                 this.setState({
                     isWaiting: false
                 });
-                console.log("if de que salio todo bien");
                 this.vaciarState();
                 e.target.reset();
             }
@@ -53,7 +52,6 @@ export default class Contacto extends Component {
                 this.setState({
                     isWaiting: false
                 });
-                console.log("if de que salio todo mal")
                 this.vaciarState();
                 e.target.reset();
             }

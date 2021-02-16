@@ -260,11 +260,11 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
           }
 
           //creacion de array numeros random 
-          const numeros_random = [];
+          let numeros_random = [];
           
           //comprar rifas aleatorias
           for (let i = 0; i < cantidad_rifas_comprar; i++) {
-            const numero_ramdon = Math.floor(
+            let numero_ramdon = Math.floor(
                 Math.random() * cantidad_rifas_disponibles
             );
 

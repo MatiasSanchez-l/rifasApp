@@ -417,14 +417,17 @@ rifasCtrl.notificacion = async (req, res) => {
             pass: "xqjjnyzmmxlxmufe"
           },
         });
-        await transporter.sendMail({
-          from: "<juntosxoscar@gmail.com>", // sender address
-          to: "santifagliano@live.com.ar", // list of receivers
-          subject: "Bono Contribucion - Juntos x Oscar", // Subject line
-          html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
-        });
-        console.log("mandamos email")
-        res.sendStatus(200)
+        try {
+          await transporter.sendMail({
+            from: "<juntosxoscar@gmail.com>", // sender address
+            to: "santifagliano@live.com.ar", // list of receivers
+            subject: "Bono Contribucion - Juntos x Oscar", // Subject line
+            html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
+          });
+        } catch (error) {
+          /* insertar error en la columna compra */
+        }
+        res.sendStatus(200);
       } catch (e) {
         console.error(e.message);
       }

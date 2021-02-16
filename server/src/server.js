@@ -37,6 +37,9 @@ app.use("/rifas", require("./routes/rifas"));
 app.use("/usuarios", require("./routes/usuarios"));
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/nodemailer", require("./routes/nodemailer"));
+app.use((err, req, res) => {
+  res.status(500).send(err);
+});
 
 puerto = process.env.PORT || 5005;
 app.listen(puerto, () => {

@@ -72,7 +72,6 @@ const Dashboard = ({ setAuth }) => {
         try {
             const response = await fetch("https://www.juntosxoscar.com.ar/rifas/total", {
                 method: "GET",
-
             });
             const parseRes = await response.json();
             setRecaudado(parseRes.data.monto[0].total);
@@ -119,6 +118,7 @@ const Dashboard = ({ setAuth }) => {
                 method: "GET"
             });
             const parseRes = await res.json();
+            console.log(parseRes)
             if (parseRes.status === "success") {
                 const arrayNuevo = verificarCamposVacios(parseRes.data.rifas);
                 setRifas(arrayNuevo);

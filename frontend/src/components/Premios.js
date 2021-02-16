@@ -85,7 +85,7 @@ export default class Premios extends Component {
                         <p className="text-center mt-3">3° Premio</p>
                     </div>
                     <div className="col-6" id="tercero">
-                        <h5>Box Spa de Manos.</h5>
+                        <h5>Box Spa de Manos La Boutique de Uñas.</h5>
                         <p>Incluye:</p>
                         <ul>
                             <li>Crema Exfoliante de manos de Lavanda.</li>

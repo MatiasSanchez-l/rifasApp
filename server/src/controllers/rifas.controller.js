@@ -247,12 +247,34 @@ rifasCtrl.comprar_rifas_mp = async (req, res) => {
             [monto, cantidad_rifas_comprar, estado, fecha]
           );
           const compra_id = compra_id_json.rows[0].compra_id;
+          
+          //obtener array rifas compradas
+          const estado_compra = 'aprobado';
+          const resultado = await db.query(
+            "SELECT rifa_id FROM rifa r JOIN compra c ON c.compra_id = r.compra_id WHERE c.estado = $1;",
+            [estado_compra]
+          );
+          const rifas_compradas = [];
+      
+          for (let i = 0; i < resultado.rows.length; i++) {
+            rifas_compradas.push(resultado.rows[i].rifa_id);
+          }
 
+          //creacion de array numeros random 
+          const numeros_random = [];
+          
           //comprar rifas aleatorias
           for (let i = 0; i < cantidad_rifas_comprar; i++) {
             const numero_ramdon = Math.floor(
-              Math.random() * cantidad_rifas_disponibles
+                Math.random() * cantidad_rifas_disponibles
             );
+
+            while (numeros_ramdon.includes(numero_ramdon) || rifas_compradas.includes(numero_ramdon)) {
+              numero_ramdon = Math.floor(
+                Math.random() * cantidad_rifas_disponibles
+              );
+            }
+            numeros_random.push(numero_ramdon);
 
             const rifa_a_comprar =
               rifas_disponibles.rows[numero_ramdon].rifa_id;

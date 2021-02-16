@@ -11,11 +11,11 @@ const marks = [
         label: '0%'
     },
     {
-        value: 200000,
+        value: 50,
         label: '50%'
     },
     {
-        value: 400000,
+        value: 100,
         label: '100%'
     }
 ]

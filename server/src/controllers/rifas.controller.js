@@ -6,7 +6,7 @@ const rifasCtrl = {};
 rifasCtrl.obtener_rifas = async (req, res) => {
   try {
     const resultado = await db.query(
-      "select rifa_id as numero_rifa, disponible, nombre as cliente_nombre, apellido as cliente_apellido, email as cliente_email, telefono as cliente_telefono, compra_id from rifa r left join cliente cl on cl.cliente_id = r.cliente_id;"
+      "SELECT rifa_id AS numero_rifa, disponible, nombre AS cliente_nombre, apellido AS cliente_apellido, email AS cliente_email, telefono AS cliente_telefono, r.compra_id, c.estado, c.fecha FROM rifa r LEFT JOIN cliente cl ON cl.cliente_id = r.cliente_id LEFT JOIN compra c ON c.compra_id = r.compra_id;"
     );
     res.status(200).json({
       status: "success",
@@ -24,7 +24,7 @@ rifasCtrl.obtener_rifa_random = async (req, res) => {
   try {
     const estado = 'aprobado';
     const rifas_compradas = await db.query(
-      "SELECT rifa_id FROM rifa r JOIN compra c ON c.compra_id = r.compra_id WHERE r.disponible = FALSE AND c.estado=$1;",
+      "SELECT r.rifa_id, cli.nombre, cli.apellido, cli.email, cli.telefono FROM rifa r JOIN compra c ON c.compra_id = r.compra_id JOIN cliente cli ON cli.cliente_id = r.cliente_id WHERE r.disponible = FALSE AND c.estado=$1;",
       [estado]
     );
     const cantidad_rifas = rifas_compradas.rows.length;
@@ -33,10 +33,18 @@ rifasCtrl.obtener_rifa_random = async (req, res) => {
     const numero_ramdon = Math.floor(Math.random() * cantidad_rifas);
 
     const rifa = rifas_compradas.rows[numero_ramdon].rifa_id;
+    const nombre = rifas_compradas.rows[numero_ramdon].nombre;
+    const apellido = rifas_compradas.rows[numero_ramdon].apellido;
+    const email = rifas_compradas.rows[numero_ramdon].email;
+    const telefono = rifas_compradas.rows[numero_ramdon].telefono;
 
     res.status(200).json({
       data: {
         rifa: rifa,
+        nombre: nombre,
+        apellido: apellido,
+        email: email,
+        telefono: telefono
       },
     });
   } catch (e) {

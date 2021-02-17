@@ -166,7 +166,7 @@ export default class CompraRifa extends Component {
                         </div>
                         <div className="col-12 text-center">
                             <h5 className="fw-bold"> Tercer paso</h5>
-                            <p>Seleccione el bot&oacute;n 'continuar' para efectuar el pago de su contribuci&oacute;n.</p>
+                            <p>Seleccione el bot&oacute;n 'proceder a realizar el pago' para efectuar el pago de su contribuci&oacute;n.</p>
                         </div>
                     </div>
                 </div>

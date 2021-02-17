@@ -11,6 +11,7 @@ import Contacto from './components/Contacto';
 import Dashboard from './components/Dashboard';
 import Premios from './components/Premios';
 import Login from './components/Login';
+import Aux from './components/Aux';
 //import Footer from './components/Footer';
 
 toast.configure();
@@ -48,16 +49,16 @@ function App() {
   return (
     <Fragment>
       <Router>
-        <Header />
+        
         <div className="container">
           <Switch>
-            <Route exact path="/matisanti" component={Home} />
-            <Route exact path="/comprarBonomatisanti" component={CompraRifa} />
-            <Route exact path="/contactomatisanti" component={Contacto} />
-            <Route exact path="/premiosmatisanti" component={Premios} />
-            <Route exact path="/loginmatisanti" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboardmatisanti" />)} />
-            <Route exact path="/dashboardmatisanti" render={props => isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/loginmatisanti" />} />
-            <Route render={() => <Redirect to={{ pathname: "/matisanti" }} />} />
+            <Route exact path="/" component={Aux} />
+            <Route exact path="/comprarBonoms" component={CompraRifa} />
+            <Route exact path="/contactoms" component={Contacto} />
+            <Route exact path="/premiosms" component={Premios} />
+            <Route exact path="/loginms" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboardms" />)} />
+            <Route exact path="/dashboardms" render={props => isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/loginms" />} />
+            <Route render={() => <Redirect to={{ pathname: "/" }} />} />
           </Switch>
         </div>
         

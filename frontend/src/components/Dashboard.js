@@ -35,6 +35,11 @@ const columnas = [
         sortable: true
     },
     {
+        name: "Estado Email",
+        selector: "mail_estado",
+        sortable: true
+    },
+    {
         name: "Cliente Telefono",
         selector: "cliente_telefono",
         sortable: true
@@ -111,6 +116,9 @@ const Dashboard = ({ setAuth }) => {
                 }
                 if (arrayNuevo[i].estado === null) {
                     arrayNuevo[i].estado = "No comprada";
+                }
+                if (arrayNuevo[i].mail_estado === null) {
+                    arrayNuevo[i].estado = "Nulo";
                 }
 
             }

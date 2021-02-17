@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS compra(
     compra_id SERIAL PRIMARY KEY,
     monto INT NOT NULL,
     cantidad INT NOT NULL,
+    mail_estado VARCHAR(50),
     estado VARCHAR(50) NOT NULL,
     fecha DATE NOT NULL DEFAULT CURRENT_DATE
 );

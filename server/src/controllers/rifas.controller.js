@@ -6,7 +6,7 @@ const rifasCtrl = {};
 rifasCtrl.obtener_rifas = async (req, res) => {
   try {
     const resultado = await db.query(
-      "SELECT rifa_id AS numero_rifa, disponible, nombre AS cliente_nombre, apellido AS cliente_apellido, email AS cliente_email, telefono AS cliente_telefono, r.compra_id, c.estado, c.fecha FROM rifa r LEFT JOIN cliente cl ON cl.cliente_id = r.cliente_id LEFT JOIN compra c ON c.compra_id = r.compra_id;"
+      "SELECT rifa_id AS numero_rifa, disponible, nombre AS cliente_nombre, apellido AS cliente_apellido, email AS cliente_email, telefono AS cliente_telefono, r.compra_id, c.estado, c.fecha, c.mail_estado FROM rifa r LEFT JOIN cliente cl ON cl.cliente_id = r.cliente_id LEFT JOIN compra c ON c.compra_id = r.compra_id;"
     );
     res.status(200).json({
       status: "success",
@@ -387,8 +387,9 @@ rifasCtrl.notificacion = async (req, res) => {
       const cliente_id = cliente_id_json.rows[0].cliente_id;
 
       //actualizar estado compra
-      await db.query("UPDATE compra SET estado = $1 WHERE compra_id = $2;", [
+      await db.query("UPDATE compra SET estado = $1, mail_estado = $2 WHERE compra_id = $3;", [
         estado,
+        "enviado",
         compra_id,
       ]);
 
@@ -406,7 +407,6 @@ rifasCtrl.notificacion = async (req, res) => {
       for (let i = 0; i < resultado.rows.length; i++) {
         rifas_compradas.push(resultado.rows[i].rifa_id);
       }
-      await db.query("COMMIT");
       try {
         const transporter = nodemailer.createTransport({
           host: "smtp.gmail.com",
@@ -425,9 +425,14 @@ rifasCtrl.notificacion = async (req, res) => {
             html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
           });
         } catch (error) {
-          /* insertar error en la columna compra */
+          await db.query("UPDATE compra SET mail_estado = $1 WHERE compra_id = $2;", [
+            "rechazado",
+            compra_id
+          ]);
         }
+        await db.query("COMMIT");
         res.sendStatus(200);
+
       } catch (e) {
         console.error(e.message);
       }

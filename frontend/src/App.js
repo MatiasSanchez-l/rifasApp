@@ -51,13 +51,13 @@ function App() {
         <Header />
         <div className="container">
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/comprarBono" component={CompraRifa} />
-            <Route exact path="/contacto" component={Contacto} />
-            <Route exact path="/premios" component={Premios} />
-            <Route exact path="/login" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)} />
-            <Route exact path="/dashboard" render={props => isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/login" />} />
-            <Route render={() => <Redirect to={{ pathname: "/" }} />} />
+            <Route exact path="/matisanti" component={Home} />
+            <Route exact path="/comprarBonomatisanti" component={CompraRifa} />
+            <Route exact path="/contactomatisanti" component={Contacto} />
+            <Route exact path="/premiosmatisanti" component={Premios} />
+            <Route exact path="/loginmatisanti" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboardmatisanti" />)} />
+            <Route exact path="/dashboardmatisanti" render={props => isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/loginmatisanti" />} />
+            <Route render={() => <Redirect to={{ pathname: "/matisanti" }} />} />
           </Switch>
         </div>
         

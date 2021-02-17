@@ -9,12 +9,12 @@ const mercadopago = require('mercadopago');
 const app = express();
 
 //middlewares
-app.use('/', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/contacto', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/comprarBono', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/login', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/dashboard', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/premios', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/matisanti', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/contactomatisanti', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/comprarBonomatisanti', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/loginmatisanti', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/dashboardmatisanti', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/premiosmatisanti', express.static(path.join(__dirname, '../../frontend/build')));
 
 app.use(express.json());
 app.use(cors());

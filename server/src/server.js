@@ -21,9 +21,8 @@ app.use(cors());
 
 // Agrega credenciales
 mercadopago.configure({
-  access_token: "APP_USR-1942401537898783-021701-74a14f864b39058c0589bd4d876e6879-45548179"
+  access_token: process.env.ACCESS_TOKEN
 });
-mercadopago.configurations.setAccessToken("APP_USR-1942401537898783-021701-74a14f864b39058c0589bd4d876e6879-45548179")
 
 //rutas
 app.use("/rifas", require("./routes/rifas"));

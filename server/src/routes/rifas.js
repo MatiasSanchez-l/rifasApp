@@ -27,8 +27,6 @@ router.route("/obtener_rifas_compra/:external_reference")
 router.route("/total")
     .get(obtener_total);
 
-router.use((err, req, res) => {
-    res.status(500).send(err);
-});
+
 
 module.exports = router;

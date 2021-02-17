@@ -118,7 +118,7 @@ const Dashboard = ({ setAuth }) => {
                     arrayNuevo[i].estado = "No comprada";
                 }
                 if (arrayNuevo[i].mail_estado === null) {
-                    arrayNuevo[i].estado = "Nulo";
+                    arrayNuevo[i].mail_estado = "Nulo";
                 }
 
             }

@@ -116,7 +116,6 @@ export default class CompraRifa extends Component {
         };
 
         this.setState({ compras: newCompra });
-
         const res = await axios.put('https://www.juntosxoscar.com.ar/rifas/comprar_mp', newCompra);
         if (res.data.errores !== undefined) {
             swal({

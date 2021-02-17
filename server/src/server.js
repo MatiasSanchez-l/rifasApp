@@ -21,9 +21,9 @@ app.use(cors());
 
 // Agrega credenciales
 mercadopago.configure({
-  access_token: "APP_USR-4817255936513591-021314-6299eaa071aee0cabb74e4db0867f1b5-45548179"
+  access_token: "APP_USR-1942401537898783-021701-74a14f864b39058c0589bd4d876e6879-45548179"
 });
-mercadopago.configurations.setAccessToken("APP_USR-4817255936513591-021314-6299eaa071aee0cabb74e4db0867f1b5-45548179")
+mercadopago.configurations.setAccessToken("APP_USR-1942401537898783-021701-74a14f864b39058c0589bd4d876e6879-45548179")
 //rutas
 app.use("/rifas", require("./routes/rifas"));
 app.use("/usuarios", require("./routes/usuarios"));

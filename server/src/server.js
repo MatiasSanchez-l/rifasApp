@@ -9,12 +9,12 @@ const mercadopago = require('mercadopago');
 const app = express();
 
 //middlewares
-app.use('/matisanti', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/contactomatisanti', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/comprarBonomatisanti', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/loginmatisanti', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/dashboardmatisanti', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/premiosmatisanti', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/contactoms', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/comprarBonoms', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/loginms', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/dashboardms', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/premiosms', express.static(path.join(__dirname, '../../frontend/build')));
 
 app.use(express.json());
 app.use(cors());
@@ -30,7 +30,7 @@ app.use("/usuarios", require("./routes/usuarios"));
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/nodemailer", require("./routes/nodemailer"));
 app.use((err, req, res) => {
-  //console.log(err)
+  console.log(err.message)
   //res.sendStatus(500);
 });
 

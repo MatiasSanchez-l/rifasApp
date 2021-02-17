@@ -378,7 +378,7 @@ rifasCtrl.notificacion = async (req, res) => {
       const cliente_email = pago.response.payer.email;
       const fecha = new Date();
       const estado = "aprobado";
-
+console.log(cliente_telefono)
       //registrar cliente
       const cliente_id_json = await db.query(
         "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",

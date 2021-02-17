@@ -61,7 +61,7 @@ const Dashboard = ({ setAuth }) => {
 
     const [recaudado, setRecaudado] = useState("");
 
-    const [rifaAleatoria, setRifaAleatoria] = useState("");
+    const [rifaAleatoria, setRifaAleatoria] = useState({});
 
     let [isWaiting, setWaiting] = useState(false);
 
@@ -163,7 +163,7 @@ const Dashboard = ({ setAuth }) => {
             });
             const parseRes = await response.json();
             console.log(parseRes);
-            setRifaAleatoria(parseRes.data.rifa);
+            setRifaAleatoria(parseRes.data);
         } catch (err) {
             console.error(err.message + "recaudado");
         }
@@ -228,7 +228,7 @@ const Dashboard = ({ setAuth }) => {
                 </div>
                 <div>
                     <button className="btn btn-primary" onClick={onClick}>Generar rifa aleatoria</button>
-                    <p className="p-3"><b>{rifaAleatoria}</b></p>
+                    <p className="p-3"><b>{rifaAleatoria.rifa} - {rifaAleatoria.nombre} - {rifaAleatoria.apellido} - {rifaAleatoria.email} -  {rifaAleatoria.telefono}</b></p>
                 </div>
                 <div className="row p-2 mt-3">
                     <div className="col-12 col-md-4">

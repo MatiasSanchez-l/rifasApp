@@ -228,7 +228,7 @@ const Dashboard = ({ setAuth }) => {
                 </div>
                 <div>
                     <button className="btn btn-primary" onClick={onClick}>Generar rifa aleatoria</button>
-                    <p className="p-3"><b>{rifaAleatoria.rifa} - {rifaAleatoria.nombre} - {rifaAleatoria.apellido} - {rifaAleatoria.email} -  {rifaAleatoria.telefono}</b></p>
+                    <p className="p-3"><b>{"Bono numero: "+rifaAleatoria.rifa} - {rifaAleatoria.nombre} - {rifaAleatoria.apellido} - {rifaAleatoria.email} -  {rifaAleatoria.telefono}</b></p>
                 </div>
                 <div className="row p-2 mt-3">
                     <div className="col-12 col-md-4">

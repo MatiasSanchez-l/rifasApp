@@ -56,10 +56,10 @@ export default class Home extends Component {
                                 - Cabezón! ¿Vos sos b…?
                             </p>
                             <p>
-                                El cabezón es Oscar Fagliano, un hombre de 55 años que el 11 de septiembre de 2020 fue diagnosticado con ELA (Esclerosis Lateral Amiotrófica). Un balde de agua fría que le anticipó que sus músculos se iban a ir perdiendo, y con ellos, todas sus posibilidades de moverse y valerse por sí mismo.
+                                El cabezón es <span className="fw-bold"> Oscar Fagliano</span>, un hombre de 55 años que el 11 de septiembre de 2020 <span className="fw-bold"> fue diagnosticado con ELA (Esclerosis Lateral Amiotrófica)</span>. Un balde de agua fría que le anticipó que sus músculos se iban a ir perdiendo, y con ellos, todas sus posibilidades de moverse y valerse por sí mismo.
                             </p>
                             <p>
-                                El diálogo con el que empieza este texto lo tuvo Oscar con sus amigos de la infancia, los del Fiat 600. Ellos arrancaron esta idea que hoy es una necesidad concreta. Vivimos en un dúplex, nuestro cuarto está arriba y la escalera es cada vez más imposible. Queremos hacer una habitación abajo. Somos gente de trabajo y no nos sobra nada. Por eso nos atrevemos a pedir ayuda.
+                                El diálogo con el que empieza este texto lo tuvo Oscar con sus amigos de la infancia, los del Fiat 600. Ellos arrancaron esta idea que hoy es una necesidad concreta. <span className="fw-bold"> Vivimos en un dúplex, nuestro cuarto está arriba</span> y la escalera es cada vez más imposible. <span className="fw-bold"> Queremos hacer una habitación abajo</span>. Somos gente de trabajo y no nos sobra nada. Por eso nos atrevemos a pedir <span className="fw-bold">ayuda</span>.
                             </p>
                             <p>
                                 La ELA cambió la vida de Oscar y también la de toda la familia, los amigos y las comunidades a las que pertenecemos. Armamos entre todos una red de amor que sostiene y contiene, y ayuda a encontrar alegría y esperanza, incluso en estos momentos.
@@ -82,8 +82,7 @@ export default class Home extends Component {
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className="videoHome"></iframe>
-                            <hr className="hr"/>
-                        <h5 className="text-center mt-2 fw-bold col-12">Total Recaudado</h5>
+                        <h5 className="text-center mt-5 fw-bold col-12">Total Recaudado</h5>
                         <div className="d-flex justify-content-between p-2">
 
                             <Slider
@@ -111,7 +110,7 @@ export default class Home extends Component {
                     <div className="p-5 text-center">
                         CADA RIFA COMPRADA TIENE UN NÚMERO ÚNICO
                         E IRREPETIBLE, TODOS LOS NÚMEROS SERAN
-                        SORTEADOS EL DIA __________ . HABRA CUATRO
+                        SORTEADOS EL DIA <span className="fw-bold">31 / 03 / 2021 </span>. HABRA CUATRO
                         FUTUROS GANADORES, QUE SERÁN CONTACTADOS
                         PARA OBTENER SU PREMIO.
                     </div>
@@ -159,7 +158,7 @@ export default class Home extends Component {
                         <Link className="btn btn-dark btn-outline-verde-home" to="/premios">Ver premios</Link>
                     </div>
                 </div>
-               
+
             </div>
         )
     }

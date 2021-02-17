@@ -444,10 +444,7 @@ console.log(cliente_telefono)
       //volver a poner las rifas en disponibles
       const estado = "denegado";
 
-      await db.query(
-        "UPDATE rifa SET disponible = true::boolean, compra_id = null WHERE compra_id = $1;",
-        [compra_id]
-      );
+      
 
       //actualizar estado compra
       await db.query("UPDATE compra SET estado = $1 WHERE compra_id = $2;", [

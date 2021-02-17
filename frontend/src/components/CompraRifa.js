@@ -27,7 +27,7 @@ export default class CompraRifa extends Component {
                     const response = await res.json();
                     swal({
                         title: "Gracias por tu colaboracion",
-                        text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa),
+                        text: "Tu cantidad de rifas son " + (response.rifas_compradas).length + "\n Tus numeros asignados son: " + response.rifas_compradas.map(rifa => rifa)+"\n De todos modos, se le enivo un email con los datos de sus bonos.",
                         icon: "success"
                     });
 

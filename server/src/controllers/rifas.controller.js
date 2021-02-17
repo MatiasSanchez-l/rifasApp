@@ -207,7 +207,7 @@ rifasCtrl.comprar_rifas = async (req, res) => {
 rifasCtrl.comprar_rifas_mp = async (req, res) => {
   try {
     // cantidad de rifas a comprar
-    const precio_rifa = 1;
+    const precio_rifa = 200;
     const cantidad_rifas_comprar = req.body.cantidad;
     const monto = cantidad_rifas_comprar * precio_rifa;
     const cliente_nombre = req.body.nombre;

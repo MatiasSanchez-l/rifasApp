@@ -10,11 +10,11 @@ const app = express();
 
 //middlewares
 app.use('/', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/contactoms', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/comprarBonoms', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/loginms', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/dashboardms', express.static(path.join(__dirname, '../../frontend/build')));
-app.use('/premiosms', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/contacto', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/comprarBono', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/login', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/dashboard', express.static(path.join(__dirname, '../../frontend/build')));
+app.use('/premios', express.static(path.join(__dirname, '../../frontend/build')));
 
 app.use(express.json());
 app.use(cors());

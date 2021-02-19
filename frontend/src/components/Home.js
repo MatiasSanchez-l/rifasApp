@@ -5,6 +5,7 @@ import { Slider } from '@material-ui/core';
 import regaloVerde from './helper/cajaVerde.png';
 import axios from 'axios';
 
+
 const marks = [
     {
         value: 0,
@@ -82,7 +83,8 @@ export default class Home extends Component {
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className="videoHome"></iframe>
-                        <h5 className="text-center mt-5 fw-bold col-12">Total Recaudado</h5>
+                        <h5 className="text-center mt-4 fw-bold col-12">Total Recaudado</h5>
+
                         <div className="d-flex justify-content-between p-2">
 
                             <Slider
@@ -94,6 +96,7 @@ export default class Home extends Component {
                             />
                             <i className="p-1 fas fa-home"></i>
                         </div>
+                        <hr className="hr" />
                         <div className="d-flex justify-content-center fs-5">
                             <p className="p-1 m-auto text-center">Para poder acompañarnos durante el proceso del proyecto seguinos en
                                 <button
@@ -101,6 +104,10 @@ export default class Home extends Component {
                                     onClick={this.irAlInstagram}> <i className="fab fa-instagram "></i> @juntosxoscar
                                 </button>
                             </p>
+
+                        </div>
+                        <div className="m-auto text-center p-5">
+                            <Link to="/comprarBono" className="btn btn-outline-danger p-3 boton-compra">COMPRAR BONOS</Link>
                         </div>
                     </div>
                 </div>
@@ -108,7 +115,7 @@ export default class Home extends Component {
                 <div>
                     <h3 className="text-center">¿C&oacute;mo funciona el sorteo?</h3>
                     <div className="p-5 text-center">
-                        CADA RIFA COMPRADA TIENE UN NÚMERO ÚNICO
+                        CADA BONO CONTRIBUIDO TIENE UN NÚMERO ÚNICO
                         E IRREPETIBLE, TODOS LOS NÚMEROS SERAN
                         SORTEADOS EL DIA <span className="fw-bold">31 / 03 / 2021 </span>. HABRA CUATRO
                         FUTUROS GANADORES, QUE SERÁN CONTACTADOS

@@ -60,7 +60,7 @@ function App() {
             <Route render={() => <Redirect to={{ pathname: "/" }} />} />
           </Switch>
         </div>
-        
+
       </Router>
     </Fragment>
   );

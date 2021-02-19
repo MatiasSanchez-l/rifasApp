@@ -370,7 +370,7 @@ rifasCtrl.notificacion = async (req, res) => {
 
     await db.query("BEGIN");
     const compra_id = pago.response.external_reference;
-
+    console.log("<<<<<<<<< llego el pago el estado es: " + pago.response.status)
     if (pago.response.status === "approved") {
       const cliente_nombre = pago.response.payer.first_name;
       const cliente_apellido = pago.response.payer.last_name;
@@ -378,7 +378,7 @@ rifasCtrl.notificacion = async (req, res) => {
       const cliente_email = pago.response.payer.email;
       const fecha = new Date();
       const estado = "aprobado";
-
+console.log(cliente_telefono)
       //registrar cliente
       const cliente_id_json = await db.query(
         "INSERT INTO cliente(nombre, apellido, email, telefono) VALUES ($1, $2, $3, $4) returning cliente_id;",
@@ -387,10 +387,11 @@ rifasCtrl.notificacion = async (req, res) => {
       const cliente_id = cliente_id_json.rows[0].cliente_id;
 
       //actualizar estado compra
+      const estadoEmail = 'enviado';
       await db.query("UPDATE compra SET estado = $1, mail_estado = $2 WHERE compra_id = $3;", [
         estado,
-        "enviado",
-        compra_id,
+        estadoEmail,
+        compra_id
       ]);
 
       //actualizar cliente de rifa
@@ -407,6 +408,7 @@ rifasCtrl.notificacion = async (req, res) => {
       for (let i = 0; i < resultado.rows.length; i++) {
         rifas_compradas.push(resultado.rows[i].rifa_id);
       }
+      await db.query("COMMIT");
       try {
         const transporter = nodemailer.createTransport({
           host: "smtp.gmail.com",
@@ -425,25 +427,24 @@ rifasCtrl.notificacion = async (req, res) => {
             html: "<div>  <p>Gracias por su contribucion!</p> <hr>  <p>" + cliente_nombre + " " + cliente_apellido + "</p> <p>Los numeros que le tocaron fueron: </p> <b>" + rifas_compradas.map(rifa => " " + rifa) + "</b> <br> <hr> <p>Buena Suerte y gracias por su colaboracion!</p></div>", // plain text body
           });
         } catch (error) {
+          await db.query("BEGIN");
+          const estadoEmail2 = 'rechazado';
           await db.query("UPDATE compra SET mail_estado = $1 WHERE compra_id = $2;", [
-            "rechazado",
+            estadoEmail2,
             compra_id
           ]);
+          await db.query("COMMIT");
         }
-        await db.query("COMMIT");
-        res.sendStatus(200);
-
       } catch (e) {
         console.error(e.message);
       }
+      res.sendStatus(200);
+
     } else {
       //volver a poner las rifas en disponibles
       const estado = "denegado";
 
-      await db.query(
-        "UPDATE rifa SET disponible = true::boolean, compra_id = null WHERE compra_id = $1;",
-        [compra_id]
-      );
+      
 
       //actualizar estado compra
       await db.query("UPDATE compra SET estado = $1 WHERE compra_id = $2;", [

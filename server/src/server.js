@@ -30,8 +30,8 @@ app.use("/usuarios", require("./routes/usuarios"));
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/nodemailer", require("./routes/nodemailer"));
 app.use((err, req, res) => {
-  console.log(err)
-  res.sendStatus(500);
+  console.log(err.message)
+  //res.sendStatus(500);
 });
 
 puerto = process.env.PORT || 5005;

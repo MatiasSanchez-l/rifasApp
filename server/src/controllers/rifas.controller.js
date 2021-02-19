@@ -486,4 +486,78 @@ rifasCtrl.obtener_rifas_compra = async (req, res) => {
   }
 };
 
+rifasCtrl.rifas_total = async (req, res) => {
+  try {
+    const resultado = await db.query(
+      "SELECT COUNT(rifa_id) FROM rifa;"
+    );
+    
+    const rifas_total = resultado.rows[0].count;
+
+    res.status(200).json({
+      rifas_total: rifas_total
+    });
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send(e);
+  }
+};
+
+rifasCtrl.rifas_aprobadas = async (req, res) => {
+  try {
+    const estado = 'aprobado';
+    const resultado = await db.query(
+      "SELECT COUNT(rifa_id) FROM rifa WHERE estado=$1;",
+      [estado]
+    );
+    
+    const rifas_aprobadas = resultado.rows[0].count;
+
+    res.status(200).json({
+      rifas_aprobadas: rifas_aprobadas
+    });
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send(e);
+  }
+};
+
+rifasCtrl.rifas_denegadas = async (req, res) => {
+  try {
+    const estado = 'denegado';
+    const resultado = await db.query(
+      "SELECT COUNT(rifa_id) FROM rifa WHERE estado=$1;",
+      [estado]
+    );
+    
+    const rifas_denegadas = resultado.rows[0].count;
+
+    res.status(200).json({
+      rifas_denegadas: rifas_denegadas
+    });
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send(e);
+  }
+};
+
+rifasCtrl.rifas_pendientes = async (req, res) => {
+  try {
+    const estado = 'pendiente';
+    const resultado = await db.query(
+      "SELECT COUNT(rifa_id) FROM rifa WHERE estado=$1;",
+      [estado]
+    );
+    
+    const rifas_pendientes = resultado.rows[0].count;
+
+    res.status(200).json({
+      rifas_pendientes: rifas_pendientes
+    });
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = rifasCtrl;

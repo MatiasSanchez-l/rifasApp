@@ -13,8 +13,15 @@ export default class CompraRifa extends Component {
         email: '',
         telefono: '',
         compras: {},
-        isWaiting: false
+        isWaiting: true
     }
+    componentDidMount(){
+        swal({
+            title: "Hemos llegado al tope de donaciones",
+            icon: "success"
+        })
+    }
+    /*
     async componentDidMount() {
         let urlElements = window.location.href.split('&');
         if (urlElements[2]) {
@@ -42,7 +49,7 @@ export default class CompraRifa extends Component {
                 });
             }
         }
-    }
+    }*/
 
     sumarCantidadRifas = e => {
         let cantidad = Number(e.target.value)
@@ -89,7 +96,7 @@ export default class CompraRifa extends Component {
             [e.target.name]: e.target.value
         });
     }
-
+/*
     registrarUsuarioYCompra = async e => {
         let camposValidos = true;
         let mensaje = "";
@@ -136,7 +143,7 @@ export default class CompraRifa extends Component {
             });
         }
     }
-
+*/
     vaciarState = () => {
         this.setState({
             cantidadRifas: 0,
@@ -209,13 +216,13 @@ export default class CompraRifa extends Component {
                     <div>
                         <h5 className="fw-bold text-center mb-4">Formulario de datos</h5>
                     </div>
-                    <form onSubmit={this.registrarUsuarioYCompra} className="formulario-datos">
+                    <form className="formulario-datos">
                         <div className="row justify-content-between my-3">
                             <div className="col-3">
                                 <label htmlFor="nombre" className="form-label m-auto ">Nombre</label>
                             </div>
                             <div className="col-9">
-                                <input name="nombre" id="nombre" type="text" className="form-control" placeholder="nombre" onChange={this.onInputChange} value={this.state.nombre} />
+                                <input disabled name="nombre" id="nombre" type="text" className="form-control" placeholder="nombre" onChange={this.onInputChange} value={this.state.nombre} />
                             </div>
                         </div>
 
@@ -224,7 +231,7 @@ export default class CompraRifa extends Component {
                                 <label htmlFor="apellido" className="form-label m-auto ">Apellido</label>
                             </div>
                             <div className="col-9">
-                                <input name="apellido" id="apellido" type="text" className="form-control" placeholder="apellido" onChange={this.onInputChange} value={this.state.apellido} />
+                                <input disabled name="apellido" id="apellido" type="text" className="form-control" placeholder="apellido" onChange={this.onInputChange} value={this.state.apellido} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
@@ -232,7 +239,7 @@ export default class CompraRifa extends Component {
                                 <label htmlFor="email" className="form-label m-auto ">Email</label>
                             </div>
                             <div className="col-9">
-                                <input name="email" id="email" type="email" className="form-control" placeholder="email@email.com" onChange={this.onInputChange} value={this.state.email} />
+                                <input disabled name="email" id="email" type="email" className="form-control" placeholder="email@email.com" onChange={this.onInputChange} value={this.state.email} />
                             </div>
                         </div>
                         <div className="row justify-content-between my-3">
@@ -240,7 +247,7 @@ export default class CompraRifa extends Component {
                                 <label htmlFor="telefono" className="form-label m-auto ">Tel&eacute;fono</label>
                             </div>
                             <div className="col-9">
-                                <input name="telefono" id="telefono" type="number" className="form-control" placeholder="11 12345678" onChange={this.onInputChange} value={this.state.telefono} />
+                                <input disabled name="telefono" id="telefono" type="number" className="form-control" placeholder="11 12345678" onChange={this.onInputChange} value={this.state.telefono} />
                             </div>
                         </div>
                         <p className="text-center">Indicaciones: </p>
@@ -252,7 +259,7 @@ export default class CompraRifa extends Component {
                             <li>Ante cualquier consulta o pregunta no dude en pasar por nuestra seccion de contacto y dejarnos su problema.</li>
                         </ul>
                         <div className="text-end">
-                            <button disabled={this.state.isWaiting} type="submit" className="btn btn-outline-dark btn-outline-verde">Proceder a realizar el pago</button>
+                            <button disabled={this.state.isWaiting} type="button" className="btn btn-outline-dark btn-outline-verde">Proceder a realizar el pago</button>
                         </div>
                     </form>
                 </div>

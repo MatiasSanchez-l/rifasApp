@@ -13,7 +13,7 @@ router.route("/rifa_rand")
 
 router.route("/crear/:cantidad")
     .post(crear_rifas);
-
+/*
 router.route("/comprar")
     .put(validInfo, comprar_rifas);
 
@@ -22,7 +22,7 @@ router.route("/comprar_mp")
 
 router.route("/notificaciones")
     .post(notificacion);
-
+*/
 router.route("/obtener_rifas_compra/:external_reference")
     .get(obtener_rifas_compra);
 

@@ -3,7 +3,7 @@ import './css/Home.css';
 import { Link } from 'react-router-dom';
 import { Slider } from '@material-ui/core';
 import regaloVerde from './helper/cajaVerde.png';
-import axios from 'axios';
+//import axios from 'axios';
 
 
 const marks = [
@@ -12,30 +12,30 @@ const marks = [
         label: '0%'
     },
     {
-        value: 500000,
+        value: 1,
         label: '50%'
     },
     {
-        value: 1000000,
+        value: 2,
         label: '100%'
     }
 ]
 
 export default class Home extends Component {
     state = {
-        recaudado: ""
+        recaudado: 2
     }
     irAlInstagram = () => {
         let win = window.open("https://www.instagram.com/juntosxoscar/", '_blank');
         win.focus();
     }
-
+/*
     async componentDidMount() {
         const res = await axios.get('https://www.juntosxoscar.com.ar/rifas/total');
         let cantidad = res.data.data.monto[0].total;
         this.setState({ recaudado: cantidad });
     }
-
+*/
     render() {
         return (
             <div className="container mt-3 mb-3">
@@ -91,7 +91,7 @@ export default class Home extends Component {
                                 valueLabelDisplay="off"
                                 value={this.state.recaudado}
                                 min={0}
-                                max={1000000}
+                                max={2}
                                 marks={marks}
                             />
                             <i className="p-1 fas fa-home"></i>
